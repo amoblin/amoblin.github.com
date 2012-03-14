@@ -51,4 +51,18 @@ jekyll-rst项目：https://github.com/xdissent/jekyll-rst
 
 可以在site-packages下创建一个文件sitecustomize.py，这个文件会在pyhton启动时加载。把上面的python脚本内容放入这个文件，搞定！
 
+放到github
+===========
+
+github对jekyll做了一些限制，如下：
+
+safe: true
+source: <your pages repo>
+destination: <the build dir>
+lsi: false
+pygments: true
+
+safe参数表明github不支持扩展，那么也就不能使用jekyll-rst了。这样的话，只能在本地编译了。
+
 此文是使用jekyll-rst写的第一篇文章。
+

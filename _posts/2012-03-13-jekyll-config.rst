@@ -53,3 +53,16 @@ jekyll是用ruby开发的，首先需要安装ruby，安装ruby，最好用版�
 jekyllbootstrap来快速创建：http://jekyllbootstrap.com/
 
 
+
+`像黑客一样写博客——Jekyll入门_
+
+__ http://www.soimort.org/tech-blog/2011/11/19/introduction-to-jekyll_zh.html
+
+
+`使用Jekyll在Github上搭建博客_
+
+__ http://taberh.me/2011/12/26/use-Jekyll-build-Blog-on-Github.html
+
+
+蒋鑫介绍如何在github上建立个人主页
+http://www.worldhello.net/gotgithub/03-project-hosting/050-homepage.html

@@ -1,0 +1,4 @@
+safe: false
+pygments: true
+#server: true
+markdown: rdiscount

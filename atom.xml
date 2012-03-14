@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title></title>
+ <link href="/atom.xml" rel="self"/>
+ <link href=""/>
+ <updated>2012-03-14T16:52:34+08:00</updated>
+ <id></id>
+ <author>
+   <name></name>
+   <email></email>
+ </author>
+
+ 
+ <entry>
+   <title>World</title>
+   <link href="/2012/03/14/world.html"/>
+   <updated>2012-03-14T00:00:00+08:00</updated>
+   <id>h/2012/03/14/world</id>
+   <content type="html">&lt;p&gt;从GAE的micor-blog到SAE的WP，我以为找到了最终的站点，但jekyll来了，我又开始了迁徙。&lt;/p&gt;
+&lt;div class=&quot;section&quot; id=&quot;id1&quot;&gt;
+&lt;h2&gt;安装jekyll&lt;/h2&gt;
+&lt;p&gt;jekyll是用ruby开发的，首先需要安装ruby，安装ruby，最好用版本管理，其中之一是rvm。所以我们先安装rvm，然后，通过rvm安装ruby，然后安装jekyll这个gem包。&lt;/p&gt;
+&lt;/div&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Hello</title>
+   <link href="/2012/03/14/hello.html"/>
+   <updated>2012-03-14T00:00:00+08:00</updated>
+   <id>h/2012/03/14/hello</id>
+   <content type="html">&lt;h1&gt;hello&lt;/h1&gt;
+
+&lt;h2&gt;world&lt;/h2&gt;
+</content>
+ </entry>
+ 
+ 
+</feed>

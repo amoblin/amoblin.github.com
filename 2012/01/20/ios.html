@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Linghua Zhang" />
+    <title>ios开发学习</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/styles/style.css">
+    <link rel="stylesheet" href="/media/styles/github.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>ios开发学习</h1>
+        </header>
+        <nav>
+        <span><a title="home page" class="" href="/">home</a></span>
+        <span><a title="tags" class="" href="/tags.html">tags</a></span>
+        <span><a title="blogroll" class="" href="/links.html">links</a></span>
+        <span><a title="subscribe me" class="" href="/atom.xml">feed</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<!-- id: 17 -->
+<p>界面文件 后缀为.nib或.xib，4.2以后改为storyboard。</p>
+<div class="section" id="id1">
+<h2>真机开发</h2>
+<p>钥匙串访问(keychain)中创建证书，用于程序签名:</p>
+<p>钥匙串访问-&gt; 证书助理 -&gt; 创建证书：</p>
+<p>名称：iPhone Developer
+证书类型：代码签名</p>
+<p>修改Xcode：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">cd</span> /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk<br/><span style="color: #000080; font-weight: bold">$</span> sudo vi SDKSettings.plist<br/></pre></div>
+<p>将如下内容：
+.. code-block:: text</p>
+<blockquote>
+15         &lt;key&gt;CODE_SIGNING_REQUIRED&lt;/key&gt;
+16         &lt;string&gt;YES&lt;/string&gt;</blockquote>
+<p>中YES改为NO。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">cd</span> /Developer/Platforms/iPhoneOS.platform/<br/></pre></div>
+<p>将XCiPhoneOSCodeSignContext中的iPhoneOS删掉。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> vi Info.plist<br/><span style="color: #808080">:1,$s/XCiPhoneOSCodeSignContext/XCCodeSignContext/g</span><br/></pre></div>
+<div class="section" id="id2">
+<h3>二进制补丁</h3>
+<p>XCode 4.2中路径变了：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">cd</span> /Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/PrivatePlugIns/iPhoneOS<span style="color: #BB6622; font-weight: bold">\ </span>Build<span style="color: #BB6622; font-weight: bold">\ </span>System<span style="color: #BB6622; font-weight: bold">\ </span>Support.xcplugin/Contents/MacOS<br/><span style="color: #000080; font-weight: bold">$</span> dd <span style="color: #008000; font-weight: bold">if</span><span style="color: #666666">=</span>iPhoneOS<span style="color: #BB6622; font-weight: bold">\ </span>Build<span style="color: #BB6622; font-weight: bold">\ </span>System<span style="color: #BB6622; font-weight: bold">\ </span>Support <span style="color: #19177C">of</span><span style="color: #666666">=</span>working <span style="color: #19177C">bs</span><span style="color: #666666">=</span>500 <span style="color: #19177C">count</span><span style="color: #666666">=</span>255<br/><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">echo</span> -n xc3x26x00x00 &gt;&gt; working<br/><span style="color: #000080; font-weight: bold">$</span> chmod 755 working<br/><span style="color: #000080; font-weight: bold">$</span> mv iPhoneOS<span style="color: #BB6622; font-weight: bold">\ </span>Build<span style="color: #BB6622; font-weight: bold">\ </span>System<span style="color: #BB6622; font-weight: bold">\ </span>Support iPhoneOS<span style="color: #BB6622; font-weight: bold">\ </span>Build<span style="color: #BB6622; font-weight: bold">\ </span>System<span style="color: #BB6622; font-weight: bold">\ </span>Support.orig<br/><span style="color: #000080; font-weight: bold">$</span> mv working iPhoneOS<span style="color: #BB6622; font-weight: bold">\ </span>Build<span style="color: #BB6622; font-weight: bold">\ </span>System<span style="color: #BB6622; font-weight: bold">\ </span>Support<br/></pre></div>
+</div>
+<div class="section" id="id3">
+<h3>自定义生成后脚本</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> wget http://www.alexwhittemore.com/iphone/gen_entitlements.txt<br/><span style="color: #000080; font-weight: bold">$</span> mv gen_entitlements.txt gen_entitlements.py<br/><span style="color: #000080; font-weight: bold">$</span> chmod 755 gen_entitlements.py<br/></pre></div>
+</div>
+<div class="section" id="id4">
+<h3>修改工程设置</h3>
+<p>Add Build Phrase -&gt; Add Run Script，输入以下内容：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000">export </span><span style="color: #19177C">CODESIGN_ALLOCATE</span><span style="color: #666666">=</span>/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate<br/><span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">[</span> <span style="color: #BA2121">&quot;${PLATFORM_NAME}&quot;</span> <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;iphoneos&quot;</span> <span style="color: #666666">]</span>; <span style="color: #008000; font-weight: bold">then</span><br/>/Developer/iphoneentitlements401/gen_entitlements.py <span style="color: #BA2121">&quot;my.company.${PROJECT_NAME}&quot;</span> <span style="color: #BA2121">&quot;${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent&quot;</span>;<br/>codesign -f -s <span style="color: #BA2121">&quot;iPhone Developer&quot;</span> --entitlements <span style="color: #BA2121">&quot;${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent&quot;</span> <span style="color: #BA2121">&quot;${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/&quot;</span><br/><span style="color: #008000; font-weight: bold">fi</span><br/></pre></div>
+<p>参考资料：</p>
+<blockquote>
+<a class="reference external" href="http://hi.baidu.com/jaywclove/blog/item/0782355562849cdab645ae14.html">http://hi.baidu.com/jaywclove/blog/item/0782355562849cdab645ae14.html</a></blockquote>
+</div>
+</div>
+<div class="section" id="iosunix">
+<h2>iOS中Unix环境配置</h2>
+<p>软件源地址：/etc/apt/sources.list.d/</p>
+<ol class="arabic simple">
+<li>安装aptitude：</li>
+</ol>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> apt-get install aptitude<br/></pre></div>
+<ol class="arabic simple">
+<li>使用aptitude搜索软件包：</li>
+</ol>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> aptitude search vim<br/></pre></div>
+<p>Linux/Unix用户必备工具：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo apt-get install less vim git python screen<br/></pre></div>
+<p>通过命令行发短信：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo apt-get install sendsms<br/></pre></div>
+</div>
+<div class="section" id="id5">
+<h2>iOS中常用命令</h2>
+<ol class="arabic simple">
+<li>重启SpringBoard</li>
+</ol>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo sbreload<br/></pre></div>
+<ol class="arabic simple">
+<li>重启iphone</li>
+</ol>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo reboot<br/></pre></div>
+<p><a class="reference external" href="http://slj.me/2010/10/50-open-source-iphone-apps-for-iphone-developers/">http://slj.me/2010/10/50-open-source-iphone-apps-for-iphone-developers/</a></p>
+<p>git</p>
+<p><a class="reference external" href="https://github.com/haqu/tweejump.git">https://github.com/haqu/tweejump.git</a></p>
+<p><a class="reference external" href="https://github.com/freshbooks-addons/freshbooks-iphone-project.git">https://github.com/freshbooks-addons/freshbooks-iphone-project.git</a></p>
+</div>
+</section>
+<section class="meta">
+
+<span class="tags">
+  tagged by 
+  
+</span>
+
+<span class="time">
+  <time datetime="2012-01-20">2012-01-20</time>
+</span>
+</section>
+
+
+        </article>
+        <div id="copy">&copy; 2012 amoblin | powered by jekyll | themed by <a href="http://lhzhang.com" title="sext ii">sext ii</a></div>
+      </div>
+    </div> <!--! end of #container -->
+  </body>
+</html>

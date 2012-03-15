@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Linghua Zhang" />
+    <title>Google Code Git不能clone的解决</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/styles/style.css">
+    <link rel="stylesheet" href="/media/styles/github.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>Google Code Git不能clone的解决</h1>
+        </header>
+        <nav>
+        <span><a title="home page" class="" href="/">home</a></span>
+        <span><a title="tags" class="" href="/tags.html">tags</a></span>
+        <span><a title="blogroll" class="" href="/links.html">links</a></span>
+        <span><a title="subscribe me" class="" href="/atom.xml">feed</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<!-- id: 11 -->
+<p>最近Google Code开始支持Git了，赞一个！</p>
+<p>但使用git clone项目时却出现了下面的错误：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git clone https://code.google.com/p/leveldb/<br/><span style="color: #808080">Cloning into leveldb...</span><br/><span style="color: #808080">error: SSL: certificate subject name (climb) does not match target host name &#39;code.google.com&#39; while accessing https://code.google.com/p/leveldb/info/refs</span><br/><br/><span style="color: #808080">fatal: HTTP request failed</span><br/></pre></div>
+<p>尝试添加网站证书到/etc/ssl/certs/ca-certificates.crt还是不行。</p>
+<p>后来终于发现解决办法：禁用Git的SSL验证。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">export </span><span style="color: #19177C">GIT_SSL_NO_VERIFY</span><span style="color: #666666">=</span>1<br/></pre></div>
+<p>解决！</p>
+</section>
+<section class="meta">
+
+<span class="tags">
+  tagged by 
+  
+</span>
+
+<span class="time">
+  <time datetime="2011-12-06">2011-12-06</time>
+</span>
+</section>
+
+
+        </article>
+        <div id="copy">&copy; 2012 amoblin | powered by jekyll | themed by <a href="http://lhzhang.com" title="sext ii">sext ii</a></div>
+      </div>
+    </div> <!--! end of #container -->
+  </body>
+</html>

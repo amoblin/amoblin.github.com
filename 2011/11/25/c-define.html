@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Linghua Zhang" />
+    <title>C中宏定义研究</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/styles/style.css">
+    <link rel="stylesheet" href="/media/styles/github.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>C中宏定义研究</h1>
+        </header>
+        <nav>
+        <span><a title="home page" class="" href="/">home</a></span>
+        <span><a title="tags" class="" href="/tags.html">tags</a></span>
+        <span><a title="blogroll" class="" href="/links.html">links</a></span>
+        <span><a title="subscribe me" class="" href="/atom.xml">feed</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<!-- id: 9 -->
+<p>简单替换</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#define PI 3.14</span><br/></pre></div>
+<p>带参数（宏函数）</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#define SQUARE(a) ((a)*(a))</span><br/></pre></div>
+<!-- more -->
+<p>注意两点：</p>
+<ol class="arabic simple">
+<li>参数要加括号</li>
+<li>整体要加括号</li>
+</ol>
+<p>原因很简单，宏只是简单的替换。需要括号来保证替换后不受运算符优先级的干扰。</p>
+<p>带#的宏函数</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#define STR(a) #a</span><br/></pre></div>
+<p>替换结果为将参数加引号。而下例：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#define STR(a) &quot;a&quot;</span><br/></pre></div>
+<p>会替换为字符串&quot;a&quot;，和参数无关。</p>
+<p>这里有一个原则：遇引号不替换</p>
+<p>带##的宏函数</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#define PRE(a) L##a</span><br/></pre></div>
+<p>会把参数a前面加上L。</p>
+<p>看下面一个例子：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#define PRE(a,b) vo##a##b()</span><br/>PRE(id te,st) {<br/>    printf(<span style="color: #BA2121">&quot;Hello, world!</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>);<br/>}<br/></pre></div>
+<p>展开后为：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">void</span> <span style="color: #0000FF">test</span>() {<br/>    printf(<span style="color: #BA2121">&quot;Hello, world!</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>);<br/>}<br/></pre></div>
+</section>
+<section class="meta">
+
+<span class="tags">
+  tagged by 
+  
+</span>
+
+<span class="time">
+  <time datetime="2011-11-25">2011-11-25</time>
+</span>
+</section>
+
+
+        </article>
+        <div id="copy">&copy; 2012 amoblin | powered by jekyll | themed by <a href="http://lhzhang.com" title="sext ii">sext ii</a></div>
+      </div>
+    </div> <!--! end of #container -->
+  </body>
+</html>

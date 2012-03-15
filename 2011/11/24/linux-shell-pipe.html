@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Linghua Zhang" />
+    <title>linux shell 重定向</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/styles/style.css">
+    <link rel="stylesheet" href="/media/styles/github.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>linux shell 重定向</h1>
+        </header>
+        <nav>
+        <span><a title="home page" class="" href="/">home</a></span>
+        <span><a title="tags" class="" href="/tags.html">tags</a></span>
+        <span><a title="blogroll" class="" href="/links.html">links</a></span>
+        <span><a title="subscribe me" class="" href="/atom.xml">feed</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<!-- id: 5 -->
+<p>shell下有标准输入stdin，标准输出stdout，标准错误输出stderr，标示符分别为0，1，2。
+默认的标准输入是键盘，标准输出和标准错误输出是显示器。</p>
+<p>利用重定向可以改变默认的标准输入输出，使用&quot;&lt;&quot;来重定向标准输入，利用&quot;&gt;&quot;来进行重定向输出。</p>
+<p>另外，可以使用&quot;&gt;&gt;&quot;在重定向输出时不是覆盖，而是追加。</p>
+<p>重定向标准输入我不太常用，仅对输出重定向举例如下：</p>
+<!-- more -->
+<ol class="arabic simple">
+<li>将echo的标准输出重定向到/tmp/a.txt文件</li>
+</ol>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">echo </span>hello world<br/><span style="color: #808080">hello world</span><br/><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">echo </span>hello world &gt; /tmp/a.txt<br/><span style="color: #000080; font-weight: bold">$</span> cat /tmp/a.txt<br/><span style="color: #808080">hello world</span><br/></pre></div>
+<ol class="arabic simple" start="2">
+<li>将echo的标准输出重定向追加到/tmp/a.txt文件</li>
+</ol>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">echo </span>hello world &gt;&gt; /tmp/a.txt<br/><span style="color: #000080; font-weight: bold">$</span> cat /tmp/a.txt<br/><span style="color: #808080">hello world</span><br/><span style="color: #808080">hello world</span><br/></pre></div>
+<ol class="arabic simple" start="3">
+<li>将标准错误输出重定向到/tmp/error.log文件</li>
+</ol>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> cat not-exists.txt<br/><span style="color: #808080">cat: not-exists.txt: 没有那个文件或目录</span><br/><span style="color: #000080; font-weight: bold">$</span> cat not-exists.txt 2&gt; /tmp/error.log<br/><span style="color: #000080; font-weight: bold">$</span> cat /tmp/error.log<br/><span style="color: #808080">cat: not-exists.txt: 没有那个文件或目录</span><br/></pre></div>
+<ol class="arabic simple" start="4">
+<li>将标准输出和标准错误输出都重定向到/tmp/log文件</li>
+</ol>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> cat /tmp/a.txt not-exist<br/><span style="color: #808080">hello world</span><br/><span style="color: #808080">hello world</span><br/><span style="color: #808080">cat: not-exitst: 没有那个文件或目录</span><br/><span style="color: #000080; font-weight: bold">$</span> cat /tmp/a.txt not-exist &gt; /tmp/log 2&gt;&amp;1<br/><span style="color: #000080; font-weight: bold">$</span> cat /tmp/log<br/><span style="color: #808080">hello world</span><br/><span style="color: #808080">hello world</span><br/><span style="color: #808080">cat: not-exitst: 没有那个文件或目录</span><br/></pre></div>
+</section>
+<section class="meta">
+
+<span class="tags">
+  tagged by 
+  
+</span>
+
+<span class="time">
+  <time datetime="2011-11-24">2011-11-24</time>
+</span>
+</section>
+
+
+        </article>
+        <div id="copy">&copy; 2012 amoblin | powered by jekyll | themed by <a href="http://lhzhang.com" title="sext ii">sext ii</a></div>
+      </div>
+    </div> <!--! end of #container -->
+  </body>
+</html>

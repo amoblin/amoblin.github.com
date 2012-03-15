@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Linghua Zhang" />
+    <title>bash + screen + vim 配置</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/styles/style.css">
+    <link rel="stylesheet" href="/media/styles/github.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>bash + screen + vim 配置</h1>
+        </header>
+        <nav>
+        <span><a title="home page" class="" href="/">home</a></span>
+        <span><a title="tags" class="" href="/tags.html">tags</a></span>
+        <span><a title="blogroll" class="" href="/links.html">links</a></span>
+        <span><a title="subscribe me" class="" href="/atom.xml">feed</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<!-- id: 16 -->
+<p>screen默认主键是C-a，这个很不方便，C-a在emacs风格的bash下是到行首，而在vim中是增1。</p>
+<p>最好改为其他键。由于screen的快捷键大多在键盘左半区域，所以最好也在左边。</p>
+<p>C-q, C-s 终端占用，不能使用。</p>
+<div class="section" id="bashemacs">
+<h2>bash的emacs风格快捷键（部分）</h2>
+<p>C-w 清空输入
+C-e 行尾
+C-r 历史搜索
+C-t 交换字母
+C-a 行首
+C-f 右移
+C-z 暂停
+C-c 结束</p>
+<p>可以选择的：C-t, C-x, C-v</p>
+</div>
+<div class="section" id="vim">
+<h2>vim普通模式键盘绑定</h2>
+<p>C-w 切换窗口
+C-e 上升1行
+C-r redo
+C-t pop标签栈
+C-a 增1
+C-d 下半页
+C-f 下一页
+C-x 减1
+C-v 块操作</p>
+<p>可以选择的：C-s, C-x, C-c</p>
+</div>
+<div class="section" id="id1">
+<h2>结论</h2>
+<p>取交集得： C-x</p>
+</div>
+<div class="section" id="mac">
+<h2>Mac下使用</h2>
+<p>由于mac下只有左边有Control，所以需要选择一个右边的按键。</p>
+<p>vim中：</p>
+<p>C-p 上一个文件
+C-n 下一个文件
+C-b 上一页
+C-o 还没搞清楚
+C-u 上半页
+C-[ 不能用，否则vim中无法使用escape键。
+C-] ctags中定位tag。</p>
+<p>bash中：
+C-l 清屏
+C-m 不能用，否则bash中无法回车。
+C-k</p>
+<p>综上，选择使用C-，在screen中配置为：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">escape ^\\<br/></pre></div>
+<p>参考：</p>
+<p><a class="reference external" href="http://houbolin.cn/blog/2009/12/03/linux-%E4%B8%8Bscreen%E5%91%BD%E4%BB%A4/">http://houbolin.cn/blog/2009/12/03/linux-%E4%B8%8Bscreen%E5%91%BD%E4%BB%A4/</a></p>
+</div>
+</section>
+<section class="meta">
+
+<span class="tags">
+  tagged by 
+  
+</span>
+
+<span class="time">
+  <time datetime="2011-12-23">2011-12-23</time>
+</span>
+</section>
+
+
+        </article>
+        <div id="copy">&copy; 2012 amoblin | powered by jekyll | themed by <a href="http://lhzhang.com" title="sext ii">sext ii</a></div>
+      </div>
+    </div> <!--! end of #container -->
+  </body>
+</html>

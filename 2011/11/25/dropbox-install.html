@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Linghua Zhang" />
+    <title>国内Dropbox安装使用</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/styles/style.css">
+    <link rel="stylesheet" href="/media/styles/github.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>国内Dropbox安装使用</h1>
+        </header>
+        <nav>
+        <span><a title="home page" class="" href="/">home</a></span>
+        <span><a title="tags" class="" href="/tags.html">tags</a></span>
+        <span><a title="blogroll" class="" href="/links.html">links</a></span>
+        <span><a title="subscribe me" class="" href="/atom.xml">feed</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<!-- id: 10 -->
+<p>目前Dropboxd的情况是http不能访问，https可以访问，和google docs,google reader一样。</p>
+<p>所以下面是讲如何在https下完成安装。</p>
+<!-- more -->
+<p>下载在线安装包：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> wget https://www.dropbox.com/downloading?os<span style="color: #666666">=</span>lnx<br/></pre></div>
+<p>os的值可以是win,lnx,mac。</p>
+<p>下载包很小，安装也很快，但注意，这只是安装了一个空壳，接下来才是真正的安装：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> dropbox start -i<br/></pre></div>
+<p>这样会启动安装程序，自动从官网下载数据包进行在线安装。</p>
+<p>但是我们访问不了，所以安装失败。怎么办呢？手工下载吧。</p>
+<p>下载数据包到主目录，目前最新版是1.2.48：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">cd</span> ~<br/><span style="color: #000080; font-weight: bold">$</span> wget https://dl-web.dropbox.com/u/17/dropbox-lnx.x86-1.2.48.tar.gz<br/></pre></div>
+<p>修改dropbox脚本，替换网上下载数据包为使用本地数据包：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo sed -i <span style="color: #BA2121">&#39;s/urlopen(.*)/urlopen(os.path.join(os.path.expanduser(&quot;~&quot;), &quot;dropbox-%s-%s.tar.gz&quot; % (plat(), &quot;1.2.48&quot;)))/&#39;</span> <span style="color: #BA2121">`</span>which dropbox<span style="color: #BA2121">`</span><br/></pre></div>
+<p>然后就可以安装啦:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> dropbox start -i<br/></pre></div>
+<p>查看运行状态:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> dropbox status<br/><span style="color: #808080">Downloading 909 files (5.9 KB/sec, 2 days left)</span><br/></pre></div>
+<p>获取public url：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> dropbox public filename<br/></pre></div>
+<!-- https://dl.dropbox.com/u/6993309/Dropbox.apk -->
+<!-- windows: -->
+<!-- http://cdn.dropbox.com/Dropbox%201.1.31.exe -->
+<!-- 在线代理:http://www.7daili.com/ -->
+</section>
+<section class="meta">
+
+<span class="tags">
+  tagged by 
+  
+</span>
+
+<span class="time">
+  <time datetime="2011-11-25">2011-11-25</time>
+</span>
+</section>
+
+
+        </article>
+        <div id="copy">&copy; 2012 amoblin | powered by jekyll | themed by <a href="http://lhzhang.com" title="sext ii">sext ii</a></div>
+      </div>
+    </div> <!--! end of #container -->
+  </body>
+</html>

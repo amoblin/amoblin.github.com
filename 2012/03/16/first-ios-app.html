@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Linghua Zhang" />
+    <title>第一个iOS程序</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/styles/style.css">
+    <link rel="stylesheet" href="/media/styles/github.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>第一个iOS程序</h1>
+        </header>
+        <nav>
+        <span><a title="home page" class="" href="/">home</a></span>
+        <span><a title="tags" class="" href="/tags.html">tags</a></span>
+        <span><a title="blogroll" class="" href="/links.html">links</a></span>
+        <span><a title="subscribe me" class="" href="/atom.xml">feed</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<div class="section" id="ios">
+<h2>第一个iOS程序</h2>
+<p>1月19日开始第一个ios开发程序。</p>
+<p>在Xcode4.2下创建一个SingleView Application项目first</p>
+<p>Device Family: iPhone
+Use Storyboard
+Use Automatic Reference Counting</p>
+<p>进入first项目根目录，有两个目录first和first.xcodeproj。进入first目录。</p>
+<p>查看文件：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">cd </span>first<br/><span style="color: #000080; font-weight: bold">$</span> ls<br/><span style="color: #808080">AppDelegate.h    ViewController.h en.lproj         first-Prefix.pch</span><br/><span style="color: #808080">AppDelegate.m    ViewController.m first-Info.plist main.m</span><br/></pre></div>
+<p>Storyboard在这里：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> ls en.lproj/<br/><span style="color: #808080">InfoPlist.strings         MainStoryboard.storyboard</span><br/></pre></div>
+<p>Storyboard的层次结构：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">document</span><br/><span style="color: #808080">    dependencies</span><br/><span style="color: #808080">    scenes</span><br/><span style="color: #808080">        scene</span><br/><span style="color: #808080">            objects</span><br/><span style="color: #808080">                placeholder</span><br/><span style="color: #808080">                viewController</span><br/><span style="color: #808080">                    view</span><br/><span style="color: #808080">                        rect</span><br/><span style="color: #808080">                        autoresizingMask</span><br/><span style="color: #808080">                        subviews</span><br/><span style="color: #808080">                        color</span><br/><span style="color: #808080">                    connections</span><br/><span style="color: #808080">                        outlet</span><br/><span style="color: #808080">    classes(一开始木有)</span><br/><span style="color: #808080">    simulatedMetricsContainer</span><br/></pre></div>
+</div>
+<div class="section" id="label">
+<h2>添加一个Label</h2>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">-                        &lt;subviews/&gt;</span><br/><span style="color: #808080">+                        &lt;subviews&gt;</span><br/><span style="color: #808080">+                            &lt;label opaque=&quot;NO&quot; clipsSubviews=&quot;YES&quot; userInteractionEnabled=&quot;NO&quot; contentMode=&quot;left&quot; text=&quot;Label&quot; lineBre</span><br/><span style="color: #808080">+                                &lt;rect key=&quot;frame&quot; x=&quot;139&quot; y=&quot;20&quot; width=&quot;42&quot; height=&quot;21&quot;/&gt;</span><br/><span style="color: #808080">+                                &lt;autoresizingMask key=&quot;autoresizingMask&quot; flexibleMaxX=&quot;YES&quot; flexibleMaxY=&quot;YES&quot;/&gt;</span><br/><span style="color: #808080">+                                &lt;fontDescription key=&quot;fontDescription&quot; type=&quot;system&quot; pointSize=&quot;17&quot;/&gt;</span><br/><span style="color: #808080">+                                &lt;color key=&quot;textColor&quot; cocoaTouchSystemColor=&quot;darkTextColor&quot;/&gt;</span><br/><span style="color: #808080">+                                &lt;nil key=&quot;highlightedColor&quot;/&gt;</span><br/><span style="color: #808080">+                            &lt;/label&gt;</span><br/><span style="color: #808080">+                        &lt;/subviews&gt;</span><br/><span style="color: #808080">                         &lt;color key=&quot;backgroundColor&quot; white=&quot;1&quot; alpha=&quot;1&quot; colorSpace=&quot;custom&quot; customColorSpace=&quot;calibratedWhite&quot;/&gt;</span><br/><span style="color: #808080">                     &lt;/view&gt;</span><br/><span style="color: #808080">                 &lt;/viewController&gt;</span><br/><span style="color: #808080">             &lt;/objects&gt;</span><br/><span style="color: #808080">         &lt;/scene&gt;</span><br/><span style="color: #808080">     &lt;/scenes&gt;</span><br/><span style="color: #808080">+    &lt;classes&gt;</span><br/><span style="color: #808080">+        &lt;class className=&quot;ViewController&quot; superclassName=&quot;UIViewController&quot;&gt;</span><br/><span style="color: #808080">+            &lt;source key=&quot;sourceIdentifier&quot; type=&quot;project&quot; relativePath=&quot;./Classes/ViewController.h&quot;/&gt;</span><br/><span style="color: #808080">+        &lt;/class&gt;</span><br/><span style="color: #808080">+    &lt;/classes&gt;</span><br/></pre></div>
+<p>做了2件事：</p>
+<ol class="arabic simple">
+<li>在subviews里增加了label，设置了相关属性。</li>
+<li>在document下，scenes后增加了classes元素，关联到了ViewController.h文件，来做以后的事件处理。</li>
+</ol>
+</div>
+<div class="section" id="outlet">
+<h2>设置Outlet关联</h2>
+<p>修改了如下3个文件：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">#</span>       modified:   ViewController.h<br/><span style="color: #000080; font-weight: bold">#</span>       modified:   ViewController.m<br/><span style="color: #000080; font-weight: bold">#</span>       modified:   en.lproj/MainStoryboard.storyboard<br/></pre></div>
+<p>先看Storyboard</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">--- a/first/en.lproj/MainStoryboard.storyboard</span><br/><span style="color: #808080">+++ b/first/en.lproj/MainStoryboard.storyboard</span><br/><span style="color: #808080">@@ -23,6 +23,9 @@</span><br/><span style="color: #808080">                         &lt;/subviews&gt;</span><br/><span style="color: #808080">                         &lt;color key=&quot;backgroundColor&quot; white=&quot;1&quot; alpha=&quot;1&quot; colorSpace=&quot;custom&quot; customColorSpace=&quot;calibratedWhite&quot;/&gt;</span><br/><span style="color: #808080">                     &lt;/view&gt;</span><br/><span style="color: #808080">+                    &lt;connections&gt;</span><br/><span style="color: #808080">+                        &lt;outlet property=&quot;statusLabel&quot; destination=&quot;qCc-nf-TgC&quot; id=&quot;b2g-zn-NAy&quot;/&gt;</span><br/><span style="color: #808080">+                    &lt;/connections&gt;</span><br/><span style="color: #808080">                 &lt;/viewController&gt;</span><br/><span style="color: #808080">             &lt;/objects&gt;</span><br/><span style="color: #808080">         &lt;/scene&gt;</span><br/><span style="color: #808080">@@ -30,6 +33,9 @@</span><br/><span style="color: #808080">     &lt;classes&gt;</span><br/><span style="color: #808080">         &lt;class className=&quot;ViewController&quot; superclassName=&quot;UIViewController&quot;&gt;</span><br/><span style="color: #808080">             &lt;source key=&quot;sourceIdentifier&quot; type=&quot;project&quot; relativePath=&quot;./Classes/ViewController.h&quot;/&gt;</span><br/><span style="color: #808080">+            &lt;relationships&gt;</span><br/><span style="color: #808080">+                &lt;relationship kind=&quot;outlet&quot; name=&quot;statusLabel&quot; candidateClass=&quot;UILabel&quot;/&gt;</span><br/><span style="color: #808080">+            &lt;/relationships&gt;</span><br/><span style="color: #808080">         &lt;/class&gt;</span><br/><span style="color: #808080">     &lt;/classes&gt;</span><br/></pre></div>
+<p>也做了2件事：</p>
+<ol class="arabic simple">
+<li>增加connections元素，设置outlet关联到前面的label：outlet.destination == label.id</li>
+<li>增加relationships元素，添加子节点relationship，kind为outlet。</li>
+</ol>
+<p>再看ViewController.h。增加了一行：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="border: 1px solid #FF0000">@</span>property (strong, nonatomic) IBOutlet UILabel<span style="color: #666666">*</span> statusLabel;<br/></pre></div>
+<p>在ViewController类中对应增加statusLabel数据成员。</p>
+<p>ViewController.m中增加了2行：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">---</span> a<span style="color: #666666">/</span>first<span style="color: #666666">/</span>ViewController.m<br/><span style="color: #666666">+++</span> b<span style="color: #666666">/</span>first<span style="color: #666666">/</span>ViewController.m<br/><span style="border: 1px solid #FF0000">@@</span> <span style="color: #666666">-9</span>,<span style="color: #666666">6</span> <span style="color: #666666">+9</span>,<span style="color: #666666">7</span> <span style="border: 1px solid #FF0000">@@</span><br/><span style="color: #BC7A00"> #import &quot;ViewController.h&quot;</span><br/><br/> <span style="border: 1px solid #FF0000">@</span>implementation ViewController<br/><span style="color: #666666">+</span><span style="border: 1px solid #FF0000">@</span>synthesize statusLabel;<br/><br/> <span style="color: #666666">-</span> (<span style="color: #B00040">void</span>)didReceiveMemoryWarning<br/> {<br/><span style="border: 1px solid #FF0000">@@</span> <span style="color: #666666">-26</span>,<span style="color: #666666">6</span> <span style="color: #666666">+27</span>,<span style="color: #666666">7</span> <span style="border: 1px solid #FF0000">@@</span><br/><br/> <span style="color: #666666">-</span> (<span style="color: #B00040">void</span>)viewDidUnload<br/> {<br/><span style="color: #666666">+</span>    [self setStatusLabel<span style="color: #666666">:</span>nil];<br/>     [super viewDidUnload];<br/>     <span style="color: #408080; font-style: italic">// Release any retained subviews of the main view.</span><br/>     <span style="color: #408080; font-style: italic">// e.g. self.myOutlet = nil;</span><br/></pre></div>
+<p>增加的&#64;synthesize行表示自动增加对应数据成员的get和set成员函数。</p>
+<p>viewDidUnload是结束程序时的操作，这里将label的内存空间释放。</p>
+</div>
+<div class="section" id="button">
+<h2>添加button</h2>
+<p>添加button后，Storyboard中在subviews下增加了button元素。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">                            &lt;/label&gt;</span><br/><span style="color: #808080">+                            &lt;button opaque=&quot;NO&quot; contentMode=&quot;scaleToFill&quot; contentHorizontalAlignment=&quot;center&quot; contentVerticalAlignment</span><br/><span style="color: #808080">+                                &lt;rect key=&quot;frame&quot; x=&quot;26&quot; y=&quot;13&quot; width=&quot;72&quot; height=&quot;37&quot;/&gt;</span><br/><span style="color: #808080">+                                &lt;autoresizingMask key=&quot;autoresizingMask&quot; flexibleMaxX=&quot;YES&quot; flexibleMaxY=&quot;YES&quot;/&gt;</span><br/><span style="color: #808080">+                                &lt;fontDescription key=&quot;fontDescription&quot; type=&quot;boldSystem&quot; pointSize=&quot;15&quot;/&gt;</span><br/><span style="color: #808080">+                                &lt;state key=&quot;normal&quot;&gt;</span><br/><span style="color: #808080">+                                    &lt;color key=&quot;titleColor&quot; red=&quot;0.19607843459999999&quot; green=&quot;0.30980393290000002&quot; blue=&quot;0.521568656000</span><br/><span style="color: #808080">+                                    &lt;color key=&quot;titleShadowColor&quot; white=&quot;0.5&quot; alpha=&quot;1&quot; colorSpace=&quot;calibratedWhite&quot;/&gt;</span><br/><span style="color: #808080">+                                &lt;/state&gt;</span><br/><span style="color: #808080">+                                &lt;state key=&quot;highlighted&quot;&gt;</span><br/><span style="color: #808080">+                                    &lt;color key=&quot;titleColor&quot; white=&quot;1&quot; alpha=&quot;1&quot; colorSpace=&quot;calibratedWhite&quot;/&gt;</span><br/><span style="color: #808080">+                                &lt;/state&gt;</span><br/><span style="color: #808080">+                            &lt;/button&gt;</span><br/><span style="color: #808080">                         &lt;/subviews&gt;</span><br/></pre></div>
+</div>
+<div class="section" id="action">
+<h2>action关联</h2>
+<p>设置action关联后，ViewController类中添加了事件方法和具体实现。</p>
+<p>Storyboard中，button元素下增加了connections元素。relationships节点下增加子节点relationship，kind为action。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">                             &lt;state key=&quot;highlighted&quot;&gt;</span><br/><span style="color: #808080">                                 &lt;color key=&quot;titleColor&quot; white=&quot;1&quot; alpha=&quot;1&quot; colorSpace=&quot;calibratedWhite&quot;/&gt;</span><br/><span style="color: #808080">                             &lt;/state&gt;</span><br/><span style="color: #808080">+                                &lt;connections&gt;</span><br/><span style="color: #808080">+                                    &lt;action selector=&quot;greeting:&quot; destination=&quot;2&quot; eventType=&quot;touchUpInside&quot; id=&quot;Ua1-dU-BsV&quot;/&gt;</span><br/><span style="color: #808080">+                                &lt;/connections&gt;</span><br/><span style="color: #808080">                             &lt;/button&gt;</span><br/><span style="color: #808080">                         &lt;/subviews&gt;</span><br/><span style="color: #808080">                         &lt;color key=&quot;backgroundColor&quot; white=&quot;1&quot; alpha=&quot;1&quot; colorSpace=&quot;custom&quot; customColorSpace=&quot;calibratedWhite&quot;/&gt;</span><br/><span style="color: #808080">@@ -46,6 +49,7 @@</span><br/><span style="color: #808080">         &lt;class className=&quot;ViewController&quot; superclassName=&quot;UIViewController&quot;&gt;</span><br/><span style="color: #808080">             &lt;source key=&quot;sourceIdentifier&quot; type=&quot;project&quot; relativePath=&quot;./Classes/ViewController.h&quot;/&gt;</span><br/><span style="color: #808080">             &lt;relationships&gt;</span><br/><span style="color: #808080">+                &lt;relationship kind=&quot;action&quot; name=&quot;greeting:&quot;/&gt;</span><br/><span style="color: #808080">                 &lt;relationship kind=&quot;outlet&quot; name=&quot;statusLabel&quot; candidateClass=&quot;UILabel&quot;/&gt;</span><br/><span style="color: #808080">             &lt;/relationships&gt;</span><br/><span style="color: #808080">         &lt;/class&gt;</span><br/></pre></div>
+<p>AppDelegate.h</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#import &lt;UIKit/UIKit.h&gt;</span><br/><br/><span style="border: 1px solid #FF0000">@</span>interface BIDAppDelegate <span style="color: #666666">:</span> UIResponder <span style="color: #666666">&lt;</span>UIApplicationDelegate<span style="color: #666666">&gt;</span><br/><br/><span style="border: 1px solid #FF0000">@</span>property (strong, nonatomic) UIWindow<span style="color: #666666">*</span> window;<br/><br/><span style="border: 1px solid #FF0000">@</span>end<br/></pre></div>
+<p>AppDelegate.m</p>
+<p>方法：</p>
+<ul>
+<li><p class="first">application:didFinishLaunchingWithOptions</p>
+<p>这是一个多重参数函数</p>
+</li>
+<li><p class="first">applicationWillResignActive</p>
+</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>表格使用</h2>
+<ol class="arabic simple">
+<li>拖入表格，选中并关联到下面的 View Controller，关联上dataSource和Delegate。</li>
+<li>ViewController.h中类要实现UITableViewDataSource和UITableViewDelegate。</li>
+</ol>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="border: 1px solid #FF0000">@</span>interface MasterViewController <span style="color: #666666">:</span> UITableViewController <span style="color: #666666">&lt;</span>UITableViewDelegate, UITableViewDataSource<span style="color: #666666">&gt;</span><br/><br/><span style="border: 1px solid #FF0000">@</span>property (strong, nonatomic) NSArray<span style="color: #666666">*</span> listData;<br/></pre></div>
+<ol class="arabic simple">
+<li>ViewController.m中增加如下函数：</li>
+</ol>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="border: 1px solid #FF0000">@</span>synthesize listData;<br/><br/><span style="color: #666666">-</span> (NSInteger)tableView<span style="color: #666666">:</span>(UITableView<span style="color: #666666">*</span> )tableView numberOfRowsInSection<span style="color: #666666">:</span>(NSInteger)section {<br/>    <span style="color: #008000; font-weight: bold">return</span> [self.listData count];<br/>}<br/><br/><span style="color: #666666">-</span> (UITableViewCell<span style="color: #666666">*</span> )tableView<span style="color: #666666">:</span>(UITableView<span style="color: #666666">*</span> )tableView cellForRowAtIndexPath<span style="color: #666666">:</span>(NSIndexPath<span style="color: #666666">*</span> )indexPath {<br/>    <span style="color: #008000; font-weight: bold">static</span> NSString<span style="color: #666666">*</span> SimpleTableIdentifier <span style="color: #666666">=</span> <span style="border: 1px solid #FF0000">@</span><span style="color: #BA2121">&quot;SimpleTableIndentifier&quot;</span>;<br/><br/>    UITableViewCell<span style="color: #666666">*</span> cell <span style="color: #666666">=</span> [tableView dequeueReusableCellWithIdentifier<span style="color: #666666">:</span>SimpleTableIdentifier];<br/>    <span style="color: #008000; font-weight: bold">if</span>( cell <span style="color: #666666">==</span> nil) {<br/>        cell <span style="color: #666666">=</span> [[UITableViewCell alloc] initWithStyle<span style="color: #666666">:</span>UITableViewCellStyleDefault reuseIdentifier<span style="color: #666666">:</span>SimpleTableIdentifier];<br/>    }<br/><br/>    NSUInteger row <span style="color: #666666">=</span> [indexPath row];<br/>    cell.textLabel.text <span style="color: #666666">=</span> [listData objectAtIndex<span style="color: #666666">:</span>row];<br/>    <span style="color: #008000; font-weight: bold">return</span> cell;<br/>}<br/></pre></div>
+</div>
+<div class="section" id="id2">
+<h2>多视图控制</h2>
+<p>注意segue的使用，一定要聚焦到特定的控件上，比如button，而不是它的父控件，否则无效。</p>
+</div>
+<div class="section" id="id3">
+<h2>参考资料</h2>
+<p><a class="reference external" href="http://www.raywenderlich.com/5138/beginning-storyboards-in-ios-5-part-1">http://www.raywenderlich.com/5138/beginning-storyboards-in-ios-5-part-1</a></p>
+</div>
+</section>
+<section class="meta">
+
+<span class="tags">
+  tagged by 
+  
+</span>
+
+<span class="time">
+  <time datetime="2012-03-16">2012-03-16</time>
+</span>
+</section>
+
+
+        </article>
+        <div id="copy">&copy; 2012 amoblin | powered by jekyll | themed by <a href="http://lhzhang.com" title="sext ii">sext ii</a></div>
+      </div>
+    </div> <!--! end of #container -->
+  </body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Linghua Zhang" />
+    <title>zeromq学习笔记</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/styles/style.css">
+    <link rel="stylesheet" href="/media/styles/github.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>zeromq学习笔记</h1>
+        </header>
+        <nav>
+        <span><a title="home page" class="" href="/">home</a></span>
+        <span><a title="tags" class="" href="/tags.html">tags</a></span>
+        <span><a title="blogroll" class="" href="/links.html">links</a></span>
+        <span><a title="subscribe me" class="" href="/atom.xml">feed</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<div class="section" id="id1">
+<h2>名词解释</h2>
+<p>IDC: Internet Data Center，互联网数据中心。</p>
+<p>ZooKeeper: Hadoop子项目，Chubby的开源实现，协同工作系统。</p>
+<p>Pacemaker: 类似Zooeeper的项目。</p>
+<p>Paxos:</p>
+<p>Redis:</p>
+<p>Gossip协议：</p>
+<p>Thrift协议：</p>
+<p>Cassandra: Apache的开源分布式KV存储系统，最初由Facebook开发。</p>
+<p>Dynomite: KV存储。</p>
+<p>HAProxy: 前端负载均衡。</p>
+<p>Thrift: Facebook的跨语言服务器部署框架。</p>
+</div>
+<div class="section" id="id2">
+<h2>底层库</h2>
+<p>libevent: 一个轻量级I/O框架。</p>
+<p>epoll</p>
+</div>
+<div class="section" id="id3">
+<h2>ZeroMQ类似实现对比</h2>
+<p>异步队列?</p>
+<p>AMQP vs. RabbitMQ</p>
+<p>Round-robin进行负载均衡</p>
+</div>
+<div class="section" id="id4">
+<h2>ZeroMQ的模式</h2>
+<p>三种模式：</p>
+<ol class="arabic">
+<li><p class="first">请求应答模式</p>
+<p>传统的c/s模式。见hwclient.js和hwserver.js。</p>
+</li>
+<li><p class="first">订阅发布模式</p>
+<blockquote>
+<p>publisher.js和subscriber.js。</p>
+</blockquote>
+</li>
+<li><p class="first">推拉模式</p>
+</li>
+</ol>
+<p>默认阻塞，使用Poller实现非阻塞。</p>
+</div>
+<div class="section" id="node-js">
+<h2>Node.js使用例子</h2>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> context <span style="color: #666666">=</span> require(<span style="color: #BA2121">&#39;zeromq&#39;</span>)<br/></pre></div>
+<p>请求/响应模式：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> server <span style="color: #666666">=</span> context.createSocket(<span style="color: #BA2121">&#39;rep&#39;</span>)<br/><br/>server.on(<span style="color: #BA2121">&#39;message&#39;</span>, <span style="color: #008000; font-weight: bold">function</span>(request) {<br/><br/>})<br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> client <span style="color: #666666">=</span> context.createSocket(<span style="color: #BA2121">&#39;req&#39;</span>)<br/></pre></div>
+<p>发布/订阅模式：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> publisher <span style="color: #666666">=</span> context.createSocket(<span style="color: #BA2121">&#39;pub&#39;</span>)<br/></pre></div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">&lt;string&gt;</tt>, line 96)</p>
+<p>Content block expected for the &quot;code-block&quot; directive; none found.</p>
+<pre class="literal-block">
+.. code-block:: javascript
+
+
+</pre>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>zeromq安装</h2>
+<p>目前最新稳定版：http://download.zeromq.org/zeromq-2.1.11.tar.gz</p>
+<p>github地址：https://github.com/zeromq/zeromq2-1</p>
+<p>编译安装三部曲：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> ./configure<br/><span style="color: #000080; font-weight: bold">$</span> make<br/><span style="color: #000080; font-weight: bold">$</span> sudo make install<br/></pre></div>
+<p>另外还需要更新动态链接库：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo ldconfig<br/></pre></div>
+</div>
+<div class="section" id="python">
+<h2>python绑定</h2>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo easy_install pyzmq<br/></pre></div>
+</div>
+<div class="section" id="id6">
+<h2>Node.js绑定</h2>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> npm install zmq<br/></pre></div>
+</div>
+</section>
+<section class="meta">
+
+<span class="tags">
+  tagged by 
+  
+</span>
+
+<span class="time">
+  <time datetime="2012-03-16">2012-03-16</time>
+</span>
+</section>
+
+
+        </article>
+        <div id="copy">&copy; 2012 amoblin | powered by jekyll | themed by <a href="http://lhzhang.com" title="sext ii">sext ii</a></div>
+      </div>
+    </div> <!--! end of #container -->
+  </body>
+</html>

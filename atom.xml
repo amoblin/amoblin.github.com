@@ -4,7 +4,7 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2012-03-15T19:08:53+08:00</updated>
+ <updated>2012-03-16T17:58:41+08:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -13,7 +13,579 @@
 
  
  <entry>
-   <title>idevice</title>
+   <title>zeromq学习笔记</title>
+   <link href="/2012/03/16/zeromq-note.html"/>
+   <updated>2012-03-16T00:00:00+08:00</updated>
+   <id>h/2012/03/16/zeromq-note</id>
+   <content type="html">&lt;div class=&quot;section&quot; id=&quot;id1&quot;&gt;
+&lt;h2&gt;名词解释&lt;/h2&gt;
+&lt;p&gt;IDC: Internet Data Center，互联网数据中心。&lt;/p&gt;
+&lt;p&gt;ZooKeeper: Hadoop子项目，Chubby的开源实现，协同工作系统。&lt;/p&gt;
+&lt;p&gt;Pacemaker: 类似Zooeeper的项目。&lt;/p&gt;
+&lt;p&gt;Paxos:&lt;/p&gt;
+&lt;p&gt;Redis:&lt;/p&gt;
+&lt;p&gt;Gossip协议：&lt;/p&gt;
+&lt;p&gt;Thrift协议：&lt;/p&gt;
+&lt;p&gt;Cassandra: Apache的开源分布式KV存储系统，最初由Facebook开发。&lt;/p&gt;
+&lt;p&gt;Dynomite: KV存储。&lt;/p&gt;
+&lt;p&gt;HAProxy: 前端负载均衡。&lt;/p&gt;
+&lt;p&gt;Thrift: Facebook的跨语言服务器部署框架。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
+&lt;h2&gt;底层库&lt;/h2&gt;
+&lt;p&gt;libevent: 一个轻量级I/O框架。&lt;/p&gt;
+&lt;p&gt;epoll&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id3&quot;&gt;
+&lt;h2&gt;ZeroMQ类似实现对比&lt;/h2&gt;
+&lt;p&gt;异步队列?&lt;/p&gt;
+&lt;p&gt;AMQP vs. RabbitMQ&lt;/p&gt;
+&lt;p&gt;Round-robin进行负载均衡&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id4&quot;&gt;
+&lt;h2&gt;ZeroMQ的模式&lt;/h2&gt;
+&lt;p&gt;三种模式：&lt;/p&gt;
+&lt;ol class=&quot;arabic&quot;&gt;
+&lt;li&gt;&lt;p class=&quot;first&quot;&gt;请求应答模式&lt;/p&gt;
+&lt;p&gt;传统的c/s模式。见hwclient.js和hwserver.js。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class=&quot;first&quot;&gt;订阅发布模式&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;publisher.js和subscriber.js。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class=&quot;first&quot;&gt;推拉模式&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;默认阻塞，使用Poller实现非阻塞。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;node-js&quot;&gt;
+&lt;h2&gt;Node.js使用例子&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;var&lt;/span&gt; context &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; require(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;#39;zeromq&amp;#39;&lt;/span&gt;)&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;请求/响应模式：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;var&lt;/span&gt; server &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; context.createSocket(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;#39;rep&amp;#39;&lt;/span&gt;)&lt;br/&gt;&lt;br/&gt;server.on(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;#39;message&amp;#39;&lt;/span&gt;, &lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;function&lt;/span&gt;(request) {&lt;br/&gt;&lt;br/&gt;})&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;var&lt;/span&gt; client &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; context.createSocket(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;#39;req&amp;#39;&lt;/span&gt;)&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;发布/订阅模式：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;var&lt;/span&gt; publisher &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; context.createSocket(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;#39;pub&amp;#39;&lt;/span&gt;)&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;system-message&quot;&gt;
+&lt;p class=&quot;system-message-title&quot;&gt;System Message: ERROR/3 (&lt;tt class=&quot;docutils&quot;&gt;&amp;lt;string&amp;gt;&lt;/tt&gt;, line 96)&lt;/p&gt;
+&lt;p&gt;Content block expected for the &amp;quot;code-block&amp;quot; directive; none found.&lt;/p&gt;
+&lt;pre class=&quot;literal-block&quot;&gt;
+.. code-block:: javascript
+
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id5&quot;&gt;
+&lt;h2&gt;zeromq安装&lt;/h2&gt;
+&lt;p&gt;目前最新稳定版：http://download.zeromq.org/zeromq-2.1.11.tar.gz&lt;/p&gt;
+&lt;p&gt;github地址：https://github.com/zeromq/zeromq2-1&lt;/p&gt;
+&lt;p&gt;编译安装三部曲：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; ./configure&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; make&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; sudo make install&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;另外还需要更新动态链接库：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; sudo ldconfig&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;python&quot;&gt;
+&lt;h2&gt;python绑定&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; sudo easy_install pyzmq&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id6&quot;&gt;
+&lt;h2&gt;Node.js绑定&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; npm install zmq&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>命令行下使用xcode编译工程</title>
+   <link href="/2012/03/16/xcode-in-command-line.html"/>
+   <updated>2012-03-16T00:00:00+08:00</updated>
+   <id>h/2012/03/16/xcode-in-command-line</id>
+   <content type="html">&lt;p&gt;虽说Xcode使用起来很方便，但有时候为了快捷也希望能够在终端输入一条命令执行编译，幸好Xcode提供了相关的命令，可以通过它来编译xcode工程。&lt;/p&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;查看环境&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; xcodebuild -showsdks&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;Mac OS X SDKs:&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;        Mac OS X 10.6                   -sdk macosx10.6&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;        Mac OS X 10.7                   -sdk macosx10.7&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;iOS SDKs:&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;        iOS 5.0                         -sdk iphoneos5.0&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;iOS Simulator SDKs:&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;        Simulator - iOS 4.3             -sdk iphonesimulator4.3&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;        Simulator - iOS 5.0             -sdk iphonesimulator5.0&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;编译&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; xcodebuild -sdk iphoneos5.0&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;还不知道如何通过命令来运行程序，探索中。。。&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>网络编程学习</title>
+   <link href="/2012/03/16/unix-network-programming-note.html"/>
+   <updated>2012-03-16T00:00:00+08:00</updated>
+   <id>h/2012/03/16/unix-network-programming-note</id>
+   <content type="html">&lt;div class=&quot;section&quot; id=&quot;socket&quot;&gt;
+&lt;h2&gt;SOCKET编程基础&lt;/h2&gt;
+&lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
+&lt;h3&gt;服务器端&lt;/h3&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;创建套接字：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #B00040&quot;&gt;int&lt;/span&gt; listenfd;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;if&lt;/span&gt;( (listenfd &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; socket(AF_INET, SOCK_STREAM, &lt;span style=&quot;color: #666666&quot;&gt;0&lt;/span&gt;)) &lt;span style=&quot;color: #666666&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&quot;color: #666666&quot;&gt;0&lt;/span&gt;) {&lt;br/&gt;    printf(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;socket error!&lt;/span&gt;&lt;span style=&quot;color: #BB6622; font-weight: bold&quot;&gt;\n&lt;/span&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;&lt;/span&gt;);&lt;br/&gt;    exit(&lt;span style=&quot;color: #666666&quot;&gt;1&lt;/span&gt;);&lt;br/&gt;}&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;设置服务器端口相关，这里为80端口，注意这里的sockaddr_in结构体。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;struct&lt;/span&gt; sockaddr_in servaddr;&lt;br/&gt;&lt;br/&gt;bzero(&lt;span style=&quot;color: #666666&quot;&gt;&amp;amp;&lt;/span&gt;servaddr, &lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;sizeof&lt;/span&gt;(servaddr));&lt;br/&gt;servaddr.sin_family &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; AF_INET;&lt;br/&gt;servaddr.sin_addr.s_addr &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; htonl(INADDR_ANY);&lt;br/&gt;servaddr.sin_port &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; htons(&lt;span style=&quot;color: #666666&quot;&gt;80&lt;/span&gt;);&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;绑定端口。这里将sockaddr_in结构体转换为sockaddr结构体。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;if&lt;/span&gt;( bind(listenfd, (&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;struct&lt;/span&gt; sockaddr &lt;span style=&quot;color: #666666&quot;&gt;*&lt;/span&gt; ) &lt;span style=&quot;color: #666666&quot;&gt;&amp;amp;&lt;/span&gt;servaddr, &lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;sizeof&lt;/span&gt;(servaddr)) &lt;span style=&quot;color: #666666&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&quot;color: #666666&quot;&gt;0&lt;/span&gt;) {&lt;br/&gt;    printf(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;bind error!&lt;/span&gt;&lt;span style=&quot;color: #BB6622; font-weight: bold&quot;&gt;\n&lt;/span&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;&lt;/span&gt;);&lt;br/&gt;    exit(&lt;span style=&quot;color: #666666&quot;&gt;1&lt;/span&gt;);&lt;br/&gt;}&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;# 监听端口，这里设置套接字排队最大连接数为5，根据BSD传统。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;if&lt;/span&gt;( listen(listenfd, &lt;span style=&quot;color: #666666&quot;&gt;5&lt;/span&gt;) &lt;span style=&quot;color: #666666&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&quot;color: #666666&quot;&gt;0&lt;/span&gt;) {&lt;br/&gt;    printf(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;listen error!&lt;/span&gt;&lt;span style=&quot;color: #BB6622; font-weight: bold&quot;&gt;\n&lt;/span&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;&lt;/span&gt;);&lt;br/&gt;    exit(&lt;span style=&quot;color: #666666&quot;&gt;1&lt;/span&gt;);&lt;br/&gt;}&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;处理连接。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #B00040&quot;&gt;int&lt;/span&gt; connfd;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;for&lt;/span&gt;(;;) {&lt;br/&gt;    &lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;if&lt;/span&gt; ((connfd &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; accept(listenfd, &lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;struct&lt;/span&gt; sockaddr &lt;span style=&quot;color: #666666&quot;&gt;*&lt;/span&gt; ) &lt;span style=&quot;color: #008000&quot;&gt;NULL&lt;/span&gt;, &lt;span style=&quot;color: #008000&quot;&gt;NULL&lt;/span&gt;) &lt;span style=&quot;color: #666666&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&quot;color: #666666&quot;&gt;0&lt;/span&gt;) {&lt;br/&gt;        printf(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;accept error!&lt;/span&gt;&lt;span style=&quot;color: #BB6622; font-weight: bold&quot;&gt;\n&lt;/span&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;&lt;/span&gt;);&lt;br/&gt;        exit(&lt;span style=&quot;color: #666666&quot;&gt;1&lt;/span&gt;);&lt;br/&gt;    }&lt;br/&gt;    &lt;span style=&quot;color: #408080; font-style: italic&quot;&gt;/* 这里处理连接请求，最简单的是直接处理，但如果比较耗时的话其他就访问不了。&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #408080; font-style: italic&quot;&gt;     * 要能够同时处理多个请求，一般用线程或子进程来完成，&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #408080; font-style: italic&quot;&gt;     * 这样主进程能够继续或者说同时处理下一个请求。 \*/&lt;/span&gt;&lt;br/&gt;    close(connfd);&lt;br/&gt;}&lt;br/&gt;close(listenfd);&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id3&quot;&gt;
+&lt;h3&gt;客户端&lt;/h3&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;创建套接字&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #B00040&quot;&gt;int&lt;/span&gt; sockfd;&lt;br/&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;if&lt;/span&gt;( (sockfd &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; socket(AF_INET, SOCK_STREAM, &lt;span style=&quot;color: #666666&quot;&gt;0&lt;/span&gt;) &lt;span style=&quot;color: #666666&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&quot;color: #666666&quot;&gt;0&lt;/span&gt;)) {&lt;br/&gt;    printf(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;socket error.&lt;/span&gt;&lt;span style=&quot;color: #BB6622; font-weight: bold&quot;&gt;\n&lt;/span&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;&lt;/span&gt;);&lt;br/&gt;    exit(&lt;span style=&quot;color: #666666&quot;&gt;1&lt;/span&gt;);&lt;br/&gt;    }&lt;br/&gt;}&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;设置访问端口。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;struct&lt;/span&gt; sockaddr_in servaddr;&lt;br/&gt;&lt;br/&gt;bzero(&lt;span style=&quot;color: #666666&quot;&gt;&amp;amp;&lt;/span&gt;servaddr, &lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;sizeof&lt;/span&gt;(servaddr));&lt;br/&gt;servaddr.sin_family &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; AF_INET;&lt;br/&gt;servaddr.sin_port &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; htons(&lt;span style=&quot;color: #666666&quot;&gt;80&lt;/span&gt;);&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;if&lt;/span&gt;( inet_pton(AF_INET, &lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;127.0.0.1&amp;quot;&lt;/span&gt;, &lt;span style=&quot;color: #666666&quot;&gt;&amp;amp;&lt;/span&gt;servaddr.sin_addr) &lt;span style=&quot;color: #666666&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span style=&quot;color: #666666&quot;&gt;0&lt;/span&gt;) {&lt;br/&gt;    printf(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;inet_pton error.&lt;/span&gt;&lt;span style=&quot;color: #BB6622; font-weight: bold&quot;&gt;\n&lt;/span&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;&lt;/span&gt;);&lt;br/&gt;    exit(&lt;span style=&quot;color: #666666&quot;&gt;1&lt;/span&gt;);&lt;br/&gt;}&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;发起连接。错误代码保存在全局变量errno中，errno在errno.h中定义。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;if&lt;/span&gt;( connect(sockfd, (&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;struct&lt;/span&gt; sockaddr &lt;span style=&quot;color: #666666&quot;&gt;*&lt;/span&gt; ) &lt;span style=&quot;color: #666666&quot;&gt;&amp;amp;&lt;/span&gt;servaddr, &lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;sizeof&lt;/span&gt;(servaddr)) &lt;span style=&quot;color: #666666&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&quot;color: #666666&quot;&gt;0&lt;/span&gt;) {&lt;br/&gt;    printf(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;connect error: %s&lt;/span&gt;&lt;span style=&quot;color: #BB6622; font-weight: bold&quot;&gt;\n&lt;/span&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;&lt;/span&gt;, strerror(errno));&lt;br/&gt;    exit(&lt;span style=&quot;color: #666666&quot;&gt;1&lt;/span&gt;);&lt;br/&gt;}&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;读写socket，应用处理。这里可以使用各种I/O复用等。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;while&lt;/span&gt;(read(sockfd, recvlien, MAXLINE) &lt;span style=&quot;color: #666666&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&quot;color: #666666&quot;&gt;0&lt;/span&gt;) {&lt;br/&gt;}&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;i-o&quot;&gt;
+&lt;h2&gt;I/O复用技术&lt;/h2&gt;
+&lt;div class=&quot;section&quot; id=&quot;select&quot;&gt;
+&lt;h3&gt;select&lt;/h3&gt;
+&lt;p&gt;头文件&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #BC7A00&quot;&gt;#include &amp;lt;sys/select.h&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;定义相关变量并初始化：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #B00040&quot;&gt;int&lt;/span&gt; maxfdp1;&lt;br/&gt;fd_set rset;&lt;br/&gt;&lt;br/&gt;FD_ZERO(&lt;span style=&quot;color: #666666&quot;&gt;&amp;amp;&lt;/span&gt;rset);&lt;br/&gt;FD_SET(fileno(fp), &lt;span style=&quot;color: #666666&quot;&gt;&amp;amp;&lt;/span&gt;rset);&lt;br/&gt;FD_SET(sockfd, &lt;span style=&quot;color: #666666&quot;&gt;&amp;amp;&lt;/span&gt;rset);&lt;br/&gt;maxfdp1 &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; max(fileno(fp), sockfd) &lt;span style=&quot;color: #666666&quot;&gt;+&lt;/span&gt; &lt;span style=&quot;color: #666666&quot;&gt;1&lt;/span&gt;;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;使用select，在可读时响应：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;if&lt;/span&gt;(( n&lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt;select(maxfdp1, &lt;span style=&quot;color: #666666&quot;&gt;&amp;amp;&lt;/span&gt;rset, &lt;span style=&quot;color: #008000&quot;&gt;NULL&lt;/span&gt;, &lt;span style=&quot;color: #008000&quot;&gt;NULL&lt;/span&gt;, &lt;span style=&quot;color: #008000&quot;&gt;NULL&lt;/span&gt;)) &lt;span style=&quot;color: #666666&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&quot;color: #666666&quot;&gt;0&lt;/span&gt;) {&lt;br/&gt;    printf(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;select error.&lt;/span&gt;&lt;span style=&quot;color: #BB6622; font-weight: bold&quot;&gt;\n&lt;/span&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;&lt;/span&gt;);&lt;br/&gt;    exit(&lt;span style=&quot;color: #666666&quot;&gt;1&lt;/span&gt;);&lt;br/&gt;}&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;通过FD_ISSET()判断哪个文件描述符可读：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;if&lt;/span&gt;( FD_ISSET(fileno(fp), &lt;span style=&quot;color: #666666&quot;&gt;&amp;amp;&lt;/span&gt;rset)) {&lt;br/&gt;    &lt;span style=&quot;color: #408080; font-style: italic&quot;&gt;// Now can read from fp.&lt;/span&gt;&lt;br/&gt;}&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;if&lt;/span&gt;( FD_ISSET( sockfd, &lt;span style=&quot;color: #666666&quot;&gt;&amp;amp;&lt;/span&gt;rset)) {&lt;br/&gt;    &lt;span style=&quot;color: #408080; font-style: italic&quot;&gt;// Now can read from sockfd.&lt;/span&gt;&lt;br/&gt;}&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;具体的例子参见str_cli2函数（在echo_client.c中）。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;pselect&quot;&gt;
+&lt;h3&gt;pselect&lt;/h3&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;poll&quot;&gt;
+&lt;h3&gt;poll&lt;/h3&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id4&quot;&gt;
+&lt;h2&gt;相关库&lt;/h2&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;libevent&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>leveldb学习笔记</title>
+   <link href="/2012/03/16/leveldb-note.html"/>
+   <updated>2012-03-16T00:00:00+08:00</updated>
+   <id>h/2012/03/16/leveldb-note</id>
+   <content type="html">&lt;div class=&quot;section&quot; id=&quot;id1&quot;&gt;
+&lt;h2&gt;服务器构架&lt;/h2&gt;
+&lt;p&gt;前端有一级缓存L1&lt;/p&gt;
+&lt;p&gt;中间有Memory Cache作为二级缓存L2&lt;/p&gt;
+&lt;p&gt;后端MySQL数据库自带三级缓存L3&lt;/p&gt;
+&lt;p&gt;Memory Cache产品，最经典的是MemoryCached。&lt;/p&gt;
+&lt;p&gt;硬盘产品，现在使用SSD硬盘来提到I/O能力。我们使用FusionIO公司的SSD硬盘。&lt;/p&gt;
+&lt;p&gt;但MemoryCached不能和SSD较好地整合。在和SSD的整合方面，leveldb是最不错的。&lt;/p&gt;
+&lt;p&gt;我们尝试leveldb和FusionIO产品的整合。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
+&lt;h2&gt;磁盘阵列&lt;/h2&gt;
+&lt;p&gt;RAID: Redundant Array of Independent Disks, 磁盘阵列&lt;/p&gt;
+&lt;p&gt;分为RAID-0, RAID-1, RADI-1E, RAID-5, RAID-6, RAID-7, RAID-10, RAID-50。&lt;/p&gt;
+&lt;p&gt;RAID-0: 多个磁盘合并成一个大容量磁盘，不具有冗余。并行I/O。读写速度快。&lt;/p&gt;
+&lt;p&gt;RAID-1：互相做镜像。冗余最高，安全性最好。读取速度快。写入速度稍慢。&lt;/p&gt;
+&lt;p&gt;RAID-2: 在RAID-0的基础上加入Hamming码作为错误校验码。至少需要3台磁盘。&lt;/p&gt;
+&lt;p&gt;RAID-3：数据交错存储。数据分散在各个磁盘。&lt;/p&gt;
+&lt;p&gt;RAID-4：和RAID-3类似，不过以区块为单位分区。&lt;/p&gt;
+&lt;p&gt;RAID-5：组合RAID-0和RAID-1，使用奇偶校验信息做冗余。读取速度和RAID-0相近，写入速度较慢（由于奇偶校验信息）。&lt;/p&gt;
+&lt;p&gt;RAID-6：比RAID-5增加一个独立的奇偶校验信息块，使用不同的算法。可靠性很高，允许两块磁盘失效。写性能很差。&lt;/p&gt;
+&lt;p&gt;实际应用中RAID-5，RAID-6比较多。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;memorycached&quot;&gt;
+&lt;h2&gt;MemoryCached学习&lt;/h2&gt;
+&lt;p&gt;MemoryCached使用LRU（Least Recently Used）算法。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;nosql&quot;&gt;
+&lt;h2&gt;NoSQL相关理论&lt;/h2&gt;
+&lt;div class=&quot;section&quot; id=&quot;id3&quot;&gt;
+&lt;h3&gt;术语&lt;/h3&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;Five Minutes Rule&lt;/li&gt;
+&lt;li&gt;CAP理论：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;ul class=&quot;simple&quot;&gt;
+&lt;li&gt;C：Consistency 一致性&lt;/li&gt;
+&lt;li&gt;A: Availability 可用性&lt;/li&gt;
+&lt;li&gt;P: Partition(Tolerence of network Partition) 分区容忍性（分布式）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;ACID&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;ul class=&quot;simple&quot;&gt;
+&lt;li&gt;A: Atomic 原子性&lt;/li&gt;
+&lt;li&gt;C: Consistency&lt;/li&gt;
+&lt;li&gt;I:&lt;/li&gt;
+&lt;li&gt;D: D&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;LSM Tree (Log Structurted Merge Tree， 内存中日志树)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;MMAP&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id4&quot;&gt;
+&lt;h3&gt;分区策略&lt;/h3&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;一致性Hash环 DHTs&lt;/li&gt;
+&lt;li&gt;范围分区，比如Bigtable&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;bittable&quot;&gt;
+&lt;h2&gt;BitTable论文学习&lt;/h2&gt;
+&lt;p&gt;映射： :math: (row:string, column:string, timestamp:int64) rightarrow string&lt;/p&gt;
+&lt;p&gt;时间戳：时间逆序&lt;/p&gt;
+&lt;p&gt;API:&lt;/p&gt;
+&lt;p&gt;SSTable文件格式用来存储Bigtable数据。提供持久，有序的键值映射。&lt;/p&gt;
+&lt;p&gt;每个SSTable包含一系列 块 block，典型的块大小是64KB，可以修改配置文件改变。SSTable的末尾是block的索引。打开SSTable时会把索引载入内存。对索引进行二分查找找到目标块，然后从磁盘中读取该块。也可以把整个SSTable读入内存，这样再查找就不需磁盘I/O操作了。&lt;/p&gt;
+&lt;div class=&quot;section&quot; id=&quot;chubby&quot;&gt;
+&lt;h3&gt;Chubby&lt;/h3&gt;
+&lt;p&gt;Chubby使用Paxos算法。。。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id5&quot;&gt;
+&lt;h3&gt;实现&lt;/h3&gt;
+&lt;p&gt;主服务器， 很多节点tablet服务器， 通信。&lt;/p&gt;
+&lt;p&gt;tablet server管理一组tablets，一般有上千个tablets。tablet server管理已加载的tablets的读写请求，还负责把太大的tablet拆小。&lt;/p&gt;
+&lt;p&gt;一个Bigtable集群存储很多tables，每个table由一组tablets组成。每个tablet关联着特定行范围的所有数据。&lt;/p&gt;
+&lt;p&gt;一开始，每个表只有一个tablet，随着tablet的增大，自动分裂成多个tablets，默认每个tablet的大小上线是100-200MB。&lt;/p&gt;
+&lt;div class=&quot;section&quot; id=&quot;tablet&quot;&gt;
+&lt;h4&gt;5.1 Tablet定位&lt;/h4&gt;
+&lt;p&gt;Chubby文件 -&amp;gt; 根tablet&lt;/p&gt;
+&lt;p&gt;根tablet在METADATA表中存储所有的tablets位置信息。METADATA表中存的第一个，当然是根tablet了。根tablet比较特殊，它永不分裂。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id6&quot;&gt;
+&lt;h2&gt;LevelDB综述&lt;/h2&gt;
+&lt;p&gt;leveldb主要解决随机写的效率低下问题。&lt;/p&gt;
+&lt;p&gt;打开数据库初始化时，加载.sst索引数据。在内存中构建一个memtable。同时创建日志文件。以后的写操作都会确保memtable和日志文件的一致性。&lt;/p&gt;
+&lt;p&gt;写文件用Put函数实现。当进行Put操作时，不是对磁盘而是对memtable进行操作。操作成功的话会将操作追加到操作日志文件中，从而将随机写转化为顺序写。&lt;/p&gt;
+&lt;p&gt;当memtable规模超过预设值时，memtable会分成2部分。一部分对key排序，建立索引后把k/v数据和索引一并持久化存储为.sst文件。同时删除对应的日志文件内容。这叫做minor compaction。&lt;/p&gt;
+&lt;p&gt;当leveldb意外退出时，系统可以从操作日志中恢复数据，持久化到.sst文件。&lt;/p&gt;
+&lt;p&gt;读操作用Get函数实现。首先使用bloom过滤器判断是否存在该key，若存在的话，二分查找定位到所需.sst文件，将.sst文件载入内存，和memtable合并（即将操作顺序执行一遍），然后返回最终值，也就是最新值。&lt;/p&gt;
+&lt;p&gt;当.sst文件个数超过预设值时，会合并成1个.sst文件。这叫做major compaction。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id7&quot;&gt;
+&lt;h2&gt;数据格式分析&lt;/h2&gt;
+&lt;div class=&quot;section&quot; id=&quot;id8&quot;&gt;
+&lt;h3&gt;静态分析&lt;/h3&gt;
+&lt;p&gt;数据库目录下一般有如下几类文件：&lt;/p&gt;
+&lt;ul class=&quot;simple&quot;&gt;
+&lt;li&gt;$version.sst文件（Sorted String Table)&lt;/li&gt;
+&lt;li&gt;$version.log文件（当前操作）&lt;/li&gt;
+&lt;li&gt;CURRENT   存放MANIFEST文件名&lt;/li&gt;
+&lt;li&gt;LOCK&lt;/li&gt;
+&lt;li&gt;LOG   存放最新的系统日志&lt;/li&gt;
+&lt;li&gt;LOG.old   存放日志存档&lt;/li&gt;
+&lt;li&gt;MANIFEST-$version MANIFEST文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其中$version为6位整数。&lt;/p&gt;
+&lt;p&gt;$version.log的格式如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class=&quot;first&quot;&gt;block， 不确定。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class=&quot;first&quot;&gt;record，不确定。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class=&quot;first&quot;&gt;checksum&lt;/p&gt;
+&lt;p&gt;是type和data的循环校验码CRC32C。
+uint32类型，4字节，文件头偏移量13字节。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class=&quot;first&quot;&gt;length，uint16类型，2字节。只见到值为0的，不知道作用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class=&quot;first&quot;&gt;type，unit8类型，1字节。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;表示data的类型，取值如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol class=&quot;upperroman simple&quot;&gt;
+&lt;li&gt;1  FULL&lt;/li&gt;
+&lt;li&gt;2  FIRST&lt;/li&gt;
+&lt;li&gt;3  MIDDLE&lt;/li&gt;
+&lt;li&gt;4  LAST&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class=&quot;first&quot;&gt;data 具体的k-v数据。&lt;/p&gt;
+&lt;p&gt;在type=1时，结构为：key的长度 key的内容 value的长度 value的内容&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id9&quot;&gt;
+&lt;h3&gt;时序演示&lt;/h3&gt;
+&lt;div class=&quot;section&quot; id=&quot;id10&quot;&gt;
+&lt;h4&gt;初始化数据库&lt;/h4&gt;
+&lt;p&gt;假设有如下Python操作：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #666666&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #0000FF; font-weight: bold&quot;&gt;leveldb&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #666666&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; db &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; leveldb&lt;span style=&quot;color: #666666&quot;&gt;.&lt;/span&gt;LevelDB(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;#39;./data&amp;#39;&lt;/span&gt;)&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;假设当前目录下没有data子目录。leveldb会创建data目录，初始化如下文件：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;-rw-r--r-- 1 amoblin amoblin   0 2011-12-09 09:52 000003.log&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;-rw-r--r-- 1 amoblin amoblin  16 2011-12-09 09:52 CURRENT&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;-rw-r--r-- 1 amoblin amoblin   0 2011-12-09 09:52 LOCK&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;-rw-rw-r-- 1 amoblin amoblin  53 2011-12-09 09:52 LOG&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;-rw-r--r-- 1 amoblin amoblin 64K 2011-12-09 09:52 MANIFEST-000002&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;000003.log为待写文件，后续Put，Delete等操作会将记录保存至此。&lt;/p&gt;
+&lt;p&gt;CURRENT内容为MANIFEST文件名，初始时MANIFEST版本为2，即MANIFEST-000002。为什么不是1呢？看接下来的LOG文件。&lt;/p&gt;
+&lt;p&gt;LOG文件内容如下：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;2011/12/09-09:52:33.951468 b770d6c0 Delete type=3 #1&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;第一列是创建时间，第二列b770d6c0不知何意。Delete代表删除操作。&lt;/p&gt;
+&lt;p&gt;type=3，说明是MANIFEST文件，#1是版本号。&lt;/p&gt;
+&lt;p&gt;即删除了MANIFEST-000001文件。所以现存的是MANIFEST-000002文件。&lt;/p&gt;
+&lt;p&gt;MANIFEST-000002文件待研究。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;put&quot;&gt;
+&lt;h4&gt;Put数据&lt;/h4&gt;
+&lt;p&gt;接着上面的交互：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #666666&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; db&lt;span style=&quot;color: #666666&quot;&gt;.&lt;/span&gt;Put(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;#39;cba&amp;#39;&lt;/span&gt;, &lt;span style=&quot;color: #BA2121&quot;&gt;&amp;#39;abcd&amp;#39;&lt;/span&gt;)&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这时操作内容被追加到000005.log文件，使其大小由0变为64KB：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;-rw-r--r-- 1 amoblin amoblin 64K 2011-12-09 10:20 000005.log&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;查看其内容&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; od -A d -t x1 000003.log&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;0000000 57 c6 a2 f2 16 00 01 01 00 00 00 00 00 00 00 01&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;0000016 00 00 00 01 03 63 62 61 04 61 62 63 64&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;0000029&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;循环校验码从第1行倒数第3个数值00开始，到第2行第1个00为止，共4字节。&lt;/p&gt;
+&lt;p&gt;接着2字节是length，为0.&lt;/p&gt;
+&lt;p&gt;接着1字节是type，这里为1，表示接下来的data包含全部内容，并未分片。&lt;/p&gt;
+&lt;p&gt;接着是data数据，03表示key的长度，63 62 61是key的内容'cba'的ascii码。&lt;/p&gt;
+&lt;p&gt;然后是value接着2字节是length，为0.&lt;/p&gt;
+&lt;p&gt;接着1字节是type，这里为1，表示接下来的data包含全部内容，并未分片。&lt;/p&gt;
+&lt;p&gt;接着是data数据，03表示key的长度，63 62 61是key的内容'cba'的ascii码。&lt;/p&gt;
+&lt;p&gt;然后04是value的长度，61 62 63 64是value的内容'abcd'的ascii码。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id11&quot;&gt;
+&lt;h4&gt;再次打开数据库&lt;/h4&gt;
+&lt;p&gt;如果打开当前数据库：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #666666&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; db &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; leveldb&lt;span style=&quot;color: #666666&quot;&gt;.&lt;/span&gt;LevelDB(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;#39;./data&amp;#39;&lt;/span&gt;)&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;查看文件变化情况：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;-rw-r--r-- 1 amoblin amoblin 119 2011-12-09 10:37 000005.sst&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;-rw-r--r-- 1 amoblin amoblin   0 2011-12-09 10:37 000006.log&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;-rw-r--r-- 1 amoblin amoblin  16 2011-12-09 10:37 CURRENT&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;-rw-r--r-- 1 amoblin amoblin   0 2011-12-09 10:37 LOCK&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;-rw-rw-r-- 1 amoblin amoblin 289 2011-12-09 10:37 LOG&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;-rw-rw-r-- 1 amoblin amoblin  53 2011-12-09 10:37 LOG.old&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;-rw-r--r-- 1 amoblin amoblin 64K 2011-12-09 10:37 MANIFEST-000004&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;CURRENT内容变为MANIFEST-000004。&lt;/p&gt;
+&lt;p&gt;LOG文件内容如下：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;2011/12/09-10:37:43.285941 b770d6c0 Recovering log #3&lt;br/&gt;2011/12/09-10:37:43.286160 b770d6c0 Level-0 table #5: started&lt;br/&gt;2011/12/09-10:37:43.288104 b770d6c0 Level-0 table #5: 119 bytes OK&lt;br/&gt;2011/12/09-10:37:43.291572 b770d6c0 Delete type=3 #2&lt;br/&gt;2011/12/09-10:37:43.291636 b770d6c0 Delete type=0 #3&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;从系统日志可以看出，leveldb做了3件事：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class=&quot;first&quot;&gt;执行上次的操作&lt;/p&gt;
+&lt;p&gt;我们知道，leveldb的Put，Delete操作都是顺序存放在.log文件中的。何时整理呢？就是这时。&lt;/p&gt;
+&lt;p&gt;创建了000005.sst表，将上次的k/v数据存入。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class=&quot;first&quot;&gt;更新版本号&lt;/p&gt;
+&lt;p&gt;整理完毕后，删除老的版本号MANIFEST-000002，生成新版本号文件MANIFEST-000004。看来没有奇数版本号。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class=&quot;first&quot;&gt;删除旧日志&lt;/p&gt;
+&lt;p&gt;删除日志文件000003.log&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;新文件LOG.old存放上次的LOG文件内容。&lt;/p&gt;
+&lt;p&gt;查看000005.sst文件&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; od -A d -t x1 000005.sst&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;0000000 00 0b 04 63 62 61 01 01 00 00 00 00 00 00 61 62&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;0000016 63 64 00 00 00 00 01 00 00 00 00 e2 3a b7 8c 00&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;0000032 00 00 00 01 00 00 00 00 c0 f2 a1 b0 00 09 02 64&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;0000048 01 ff ff ff ff ff ff ff 00 1a 00 00 00 00 01 00&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;0000064 00 00 00 c9 e4 dd 23 1f 08 2c 16 00 00 00 00 00&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;0000080 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;0000096 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 57&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;0000112 fb 80 8b 24 75 47 db&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;0000119&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;最后48字节是Footer，固定长度。其中从1f开始的40字节是索引。最后8字节是魔数。&lt;/p&gt;
+&lt;p&gt;索引不足40字节的话补0。上面的索引数据是 1f 08 2c 16。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id12&quot;&gt;
+&lt;h2&gt;源码学习&lt;/h2&gt;
+&lt;p&gt;主入口在db.h。&lt;/p&gt;
+&lt;div class=&quot;section&quot; id=&quot;open&quot;&gt;
+&lt;h3&gt;打开数据库Open()&lt;/h3&gt;
+&lt;p&gt;db_impl.cc文件中实现Open函数。&lt;/p&gt;
+&lt;p&gt;3个参数：options选项，数据库名字（文件夹路径），数据库指针。&lt;/p&gt;
+&lt;div class=&quot;section&quot; id=&quot;dbimpl&quot;&gt;
+&lt;h4&gt;DBImpl实例&lt;/h4&gt;
+&lt;p&gt;新建TableCache, VersionSet。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id13&quot;&gt;
+&lt;h4&gt;检测数据库路径&lt;/h4&gt;
+&lt;p&gt;首先根据options进行两种操作：
+1. 若不存在，创建数据库目录。
+#. 若存在，报错。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id14&quot;&gt;
+&lt;h4&gt;创建日志文件&lt;/h4&gt;
+&lt;p&gt;日志文件指针为WritalbeFile*类型。根据已有日志版本创建新日志文件，返回文件句柄。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id15&quot;&gt;
+&lt;h3&gt;Put操作&lt;/h3&gt;
+&lt;p&gt;首先将操作封装到WriteBatch中，然后将WriteBatch送给Write函数。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;delete&quot;&gt;
+&lt;h3&gt;Delete操作&lt;/h3&gt;
+&lt;p&gt;类似上述Put操作。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;write&quot;&gt;
+&lt;h3&gt;Write函数&lt;/h3&gt;
+&lt;p&gt;将操作追加到日志文件 AddRecord ，更新内存数据。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;get&quot;&gt;
+&lt;h3&gt;Get操作&lt;/h3&gt;
+&lt;p&gt;首先在memetable中查找，然后immutable中查找，然后其他。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id16&quot;&gt;
+&lt;h3&gt;退出&lt;/h3&gt;
+&lt;p&gt;退出时会修改MANIFEST文件。&lt;/p&gt;
+&lt;hr class=&quot;docutils&quot; /&gt;
+&lt;p&gt;附：&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;python-leveldb&quot;&gt;
+&lt;h2&gt;python leveldb安装&lt;/h2&gt;
+&lt;p&gt;有两个实现：py-leveldb和cpy-leveldb。&lt;/p&gt;
+&lt;p&gt;cpy-leveldb安装：
+首先配置编译环境：libtool, automake,&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; &lt;span style=&quot;color: #008000&quot;&gt;cd &lt;/span&gt;snappy&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; ./autogen.sh&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; ./configure&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; make&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; &lt;span style=&quot;color: #008000&quot;&gt;cd&lt;/span&gt; ..&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; make -C leveldb&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; sudo python setup.py build&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>iPhone越狱之后。。。</title>
+   <link href="/2012/03/16/jackbreak.html"/>
+   <updated>2012-03-16T00:00:00+08:00</updated>
+   <id>h/2012/03/16/jackbreak</id>
+   <content type="html">&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;安装openssh&lt;/li&gt;
+&lt;li&gt;配置安全性&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul class=&quot;simple&quot;&gt;
+&lt;li&gt;更改root密码&lt;/li&gt;
+&lt;li&gt;禁用root登陆&lt;/li&gt;
+&lt;li&gt;增加新账号&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;解决cydia添加源闪退:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;ssh登陆iphone，执行如下操作：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;#&lt;/span&gt; ls /var/root/Library/&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;AddressBook  Caches  Cookies  Lockdown  Logs  Mail  Preferences  WebKit&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;#&lt;/span&gt; cp -r /User/Library/Keyboard/ /var/root/Library/&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;添加国内178源：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://apt.178.com&quot;&gt;http://apt.178.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;感觉178源靠谱点。&lt;/p&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;安装软件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul class=&quot;simple&quot;&gt;
+&lt;li&gt;Zephyr。这个必装，上划退出这个功能太方便了！ 不过和SBSettings冲突，要安装的化最好卸载SBSettings。&lt;/li&gt;
+&lt;/ul&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>第一个iOS程序</title>
+   <link href="/2012/03/16/first-ios-app.html"/>
+   <updated>2012-03-16T00:00:00+08:00</updated>
+   <id>h/2012/03/16/first-ios-app</id>
+   <content type="html">&lt;div class=&quot;section&quot; id=&quot;ios&quot;&gt;
+&lt;h2&gt;第一个iOS程序&lt;/h2&gt;
+&lt;p&gt;1月19日开始第一个ios开发程序。&lt;/p&gt;
+&lt;p&gt;在Xcode4.2下创建一个SingleView Application项目first&lt;/p&gt;
+&lt;p&gt;Device Family: iPhone
+Use Storyboard
+Use Automatic Reference Counting&lt;/p&gt;
+&lt;p&gt;进入first项目根目录，有两个目录first和first.xcodeproj。进入first目录。&lt;/p&gt;
+&lt;p&gt;查看文件：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; &lt;span style=&quot;color: #008000&quot;&gt;cd &lt;/span&gt;first&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; ls&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;AppDelegate.h    ViewController.h en.lproj         first-Prefix.pch&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;AppDelegate.m    ViewController.m first-Info.plist main.m&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Storyboard在这里：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; ls en.lproj/&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;InfoPlist.strings         MainStoryboard.storyboard&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Storyboard的层次结构：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;document&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;    dependencies&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;    scenes&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;        scene&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;            objects&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                placeholder&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                viewController&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                    view&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                        rect&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                        autoresizingMask&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                        subviews&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                        color&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                    connections&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                        outlet&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;    classes(一开始木有)&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;    simulatedMetricsContainer&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;label&quot;&gt;
+&lt;h2&gt;添加一个Label&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;-                        &amp;lt;subviews/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                        &amp;lt;subviews&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                            &amp;lt;label opaque=&amp;quot;NO&amp;quot; clipsSubviews=&amp;quot;YES&amp;quot; userInteractionEnabled=&amp;quot;NO&amp;quot; contentMode=&amp;quot;left&amp;quot; text=&amp;quot;Label&amp;quot; lineBre&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                                &amp;lt;rect key=&amp;quot;frame&amp;quot; x=&amp;quot;139&amp;quot; y=&amp;quot;20&amp;quot; width=&amp;quot;42&amp;quot; height=&amp;quot;21&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                                &amp;lt;autoresizingMask key=&amp;quot;autoresizingMask&amp;quot; flexibleMaxX=&amp;quot;YES&amp;quot; flexibleMaxY=&amp;quot;YES&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                                &amp;lt;fontDescription key=&amp;quot;fontDescription&amp;quot; type=&amp;quot;system&amp;quot; pointSize=&amp;quot;17&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                                &amp;lt;color key=&amp;quot;textColor&amp;quot; cocoaTouchSystemColor=&amp;quot;darkTextColor&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                                &amp;lt;nil key=&amp;quot;highlightedColor&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                            &amp;lt;/label&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                        &amp;lt;/subviews&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                         &amp;lt;color key=&amp;quot;backgroundColor&amp;quot; white=&amp;quot;1&amp;quot; alpha=&amp;quot;1&amp;quot; colorSpace=&amp;quot;custom&amp;quot; customColorSpace=&amp;quot;calibratedWhite&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                     &amp;lt;/view&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                 &amp;lt;/viewController&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;             &amp;lt;/objects&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;         &amp;lt;/scene&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;     &amp;lt;/scenes&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+    &amp;lt;classes&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+        &amp;lt;class className=&amp;quot;ViewController&amp;quot; superclassName=&amp;quot;UIViewController&amp;quot;&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+            &amp;lt;source key=&amp;quot;sourceIdentifier&amp;quot; type=&amp;quot;project&amp;quot; relativePath=&amp;quot;./Classes/ViewController.h&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+        &amp;lt;/class&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+    &amp;lt;/classes&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;做了2件事：&lt;/p&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;在subviews里增加了label，设置了相关属性。&lt;/li&gt;
+&lt;li&gt;在document下，scenes后增加了classes元素，关联到了ViewController.h文件，来做以后的事件处理。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;outlet&quot;&gt;
+&lt;h2&gt;设置Outlet关联&lt;/h2&gt;
+&lt;p&gt;修改了如下3个文件：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;#&lt;/span&gt;       modified:   ViewController.h&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;#&lt;/span&gt;       modified:   ViewController.m&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;#&lt;/span&gt;       modified:   en.lproj/MainStoryboard.storyboard&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;先看Storyboard&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;--- a/first/en.lproj/MainStoryboard.storyboard&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+++ b/first/en.lproj/MainStoryboard.storyboard&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;@@ -23,6 +23,9 @@&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                         &amp;lt;/subviews&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                         &amp;lt;color key=&amp;quot;backgroundColor&amp;quot; white=&amp;quot;1&amp;quot; alpha=&amp;quot;1&amp;quot; colorSpace=&amp;quot;custom&amp;quot; customColorSpace=&amp;quot;calibratedWhite&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                     &amp;lt;/view&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                    &amp;lt;connections&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                        &amp;lt;outlet property=&amp;quot;statusLabel&amp;quot; destination=&amp;quot;qCc-nf-TgC&amp;quot; id=&amp;quot;b2g-zn-NAy&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                    &amp;lt;/connections&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                 &amp;lt;/viewController&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;             &amp;lt;/objects&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;         &amp;lt;/scene&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;@@ -30,6 +33,9 @@&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;     &amp;lt;classes&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;         &amp;lt;class className=&amp;quot;ViewController&amp;quot; superclassName=&amp;quot;UIViewController&amp;quot;&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;             &amp;lt;source key=&amp;quot;sourceIdentifier&amp;quot; type=&amp;quot;project&amp;quot; relativePath=&amp;quot;./Classes/ViewController.h&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+            &amp;lt;relationships&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                &amp;lt;relationship kind=&amp;quot;outlet&amp;quot; name=&amp;quot;statusLabel&amp;quot; candidateClass=&amp;quot;UILabel&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+            &amp;lt;/relationships&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;         &amp;lt;/class&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;     &amp;lt;/classes&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;也做了2件事：&lt;/p&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;增加connections元素，设置outlet关联到前面的label：outlet.destination == label.id&lt;/li&gt;
+&lt;li&gt;增加relationships元素，添加子节点relationship，kind为outlet。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;再看ViewController.h。增加了一行：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;border: 1px solid #FF0000&quot;&gt;@&lt;/span&gt;property (strong, nonatomic) IBOutlet UILabel&lt;span style=&quot;color: #666666&quot;&gt;*&lt;/span&gt; statusLabel;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在ViewController类中对应增加statusLabel数据成员。&lt;/p&gt;
+&lt;p&gt;ViewController.m中增加了2行：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #666666&quot;&gt;---&lt;/span&gt; a&lt;span style=&quot;color: #666666&quot;&gt;/&lt;/span&gt;first&lt;span style=&quot;color: #666666&quot;&gt;/&lt;/span&gt;ViewController.m&lt;br/&gt;&lt;span style=&quot;color: #666666&quot;&gt;+++&lt;/span&gt; b&lt;span style=&quot;color: #666666&quot;&gt;/&lt;/span&gt;first&lt;span style=&quot;color: #666666&quot;&gt;/&lt;/span&gt;ViewController.m&lt;br/&gt;&lt;span style=&quot;border: 1px solid #FF0000&quot;&gt;@@&lt;/span&gt; &lt;span style=&quot;color: #666666&quot;&gt;-9&lt;/span&gt;,&lt;span style=&quot;color: #666666&quot;&gt;6&lt;/span&gt; &lt;span style=&quot;color: #666666&quot;&gt;+9&lt;/span&gt;,&lt;span style=&quot;color: #666666&quot;&gt;7&lt;/span&gt; &lt;span style=&quot;border: 1px solid #FF0000&quot;&gt;@@&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #BC7A00&quot;&gt; #import &amp;quot;ViewController.h&amp;quot;&lt;/span&gt;&lt;br/&gt;&lt;br/&gt; &lt;span style=&quot;border: 1px solid #FF0000&quot;&gt;@&lt;/span&gt;implementation ViewController&lt;br/&gt;&lt;span style=&quot;color: #666666&quot;&gt;+&lt;/span&gt;&lt;span style=&quot;border: 1px solid #FF0000&quot;&gt;@&lt;/span&gt;synthesize statusLabel;&lt;br/&gt;&lt;br/&gt; &lt;span style=&quot;color: #666666&quot;&gt;-&lt;/span&gt; (&lt;span style=&quot;color: #B00040&quot;&gt;void&lt;/span&gt;)didReceiveMemoryWarning&lt;br/&gt; {&lt;br/&gt;&lt;span style=&quot;border: 1px solid #FF0000&quot;&gt;@@&lt;/span&gt; &lt;span style=&quot;color: #666666&quot;&gt;-26&lt;/span&gt;,&lt;span style=&quot;color: #666666&quot;&gt;6&lt;/span&gt; &lt;span style=&quot;color: #666666&quot;&gt;+27&lt;/span&gt;,&lt;span style=&quot;color: #666666&quot;&gt;7&lt;/span&gt; &lt;span style=&quot;border: 1px solid #FF0000&quot;&gt;@@&lt;/span&gt;&lt;br/&gt;&lt;br/&gt; &lt;span style=&quot;color: #666666&quot;&gt;-&lt;/span&gt; (&lt;span style=&quot;color: #B00040&quot;&gt;void&lt;/span&gt;)viewDidUnload&lt;br/&gt; {&lt;br/&gt;&lt;span style=&quot;color: #666666&quot;&gt;+&lt;/span&gt;    [self setStatusLabel&lt;span style=&quot;color: #666666&quot;&gt;:&lt;/span&gt;nil];&lt;br/&gt;     [super viewDidUnload];&lt;br/&gt;     &lt;span style=&quot;color: #408080; font-style: italic&quot;&gt;// Release any retained subviews of the main view.&lt;/span&gt;&lt;br/&gt;     &lt;span style=&quot;color: #408080; font-style: italic&quot;&gt;// e.g. self.myOutlet = nil;&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;增加的&amp;#64;synthesize行表示自动增加对应数据成员的get和set成员函数。&lt;/p&gt;
+&lt;p&gt;viewDidUnload是结束程序时的操作，这里将label的内存空间释放。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;button&quot;&gt;
+&lt;h2&gt;添加button&lt;/h2&gt;
+&lt;p&gt;添加button后，Storyboard中在subviews下增加了button元素。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;                            &amp;lt;/label&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                            &amp;lt;button opaque=&amp;quot;NO&amp;quot; contentMode=&amp;quot;scaleToFill&amp;quot; contentHorizontalAlignment=&amp;quot;center&amp;quot; contentVerticalAlignment&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                                &amp;lt;rect key=&amp;quot;frame&amp;quot; x=&amp;quot;26&amp;quot; y=&amp;quot;13&amp;quot; width=&amp;quot;72&amp;quot; height=&amp;quot;37&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                                &amp;lt;autoresizingMask key=&amp;quot;autoresizingMask&amp;quot; flexibleMaxX=&amp;quot;YES&amp;quot; flexibleMaxY=&amp;quot;YES&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                                &amp;lt;fontDescription key=&amp;quot;fontDescription&amp;quot; type=&amp;quot;boldSystem&amp;quot; pointSize=&amp;quot;15&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                                &amp;lt;state key=&amp;quot;normal&amp;quot;&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                                    &amp;lt;color key=&amp;quot;titleColor&amp;quot; red=&amp;quot;0.19607843459999999&amp;quot; green=&amp;quot;0.30980393290000002&amp;quot; blue=&amp;quot;0.521568656000&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                                    &amp;lt;color key=&amp;quot;titleShadowColor&amp;quot; white=&amp;quot;0.5&amp;quot; alpha=&amp;quot;1&amp;quot; colorSpace=&amp;quot;calibratedWhite&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                                &amp;lt;/state&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                                &amp;lt;state key=&amp;quot;highlighted&amp;quot;&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                                    &amp;lt;color key=&amp;quot;titleColor&amp;quot; white=&amp;quot;1&amp;quot; alpha=&amp;quot;1&amp;quot; colorSpace=&amp;quot;calibratedWhite&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                                &amp;lt;/state&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                            &amp;lt;/button&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                         &amp;lt;/subviews&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;action&quot;&gt;
+&lt;h2&gt;action关联&lt;/h2&gt;
+&lt;p&gt;设置action关联后，ViewController类中添加了事件方法和具体实现。&lt;/p&gt;
+&lt;p&gt;Storyboard中，button元素下增加了connections元素。relationships节点下增加子节点relationship，kind为action。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;                             &amp;lt;state key=&amp;quot;highlighted&amp;quot;&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                                 &amp;lt;color key=&amp;quot;titleColor&amp;quot; white=&amp;quot;1&amp;quot; alpha=&amp;quot;1&amp;quot; colorSpace=&amp;quot;calibratedWhite&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                             &amp;lt;/state&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                                &amp;lt;connections&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                                    &amp;lt;action selector=&amp;quot;greeting:&amp;quot; destination=&amp;quot;2&amp;quot; eventType=&amp;quot;touchUpInside&amp;quot; id=&amp;quot;Ua1-dU-BsV&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                                &amp;lt;/connections&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                             &amp;lt;/button&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                         &amp;lt;/subviews&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                         &amp;lt;color key=&amp;quot;backgroundColor&amp;quot; white=&amp;quot;1&amp;quot; alpha=&amp;quot;1&amp;quot; colorSpace=&amp;quot;custom&amp;quot; customColorSpace=&amp;quot;calibratedWhite&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;@@ -46,6 +49,7 @@&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;         &amp;lt;class className=&amp;quot;ViewController&amp;quot; superclassName=&amp;quot;UIViewController&amp;quot;&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;             &amp;lt;source key=&amp;quot;sourceIdentifier&amp;quot; type=&amp;quot;project&amp;quot; relativePath=&amp;quot;./Classes/ViewController.h&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;             &amp;lt;relationships&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;+                &amp;lt;relationship kind=&amp;quot;action&amp;quot; name=&amp;quot;greeting:&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;                 &amp;lt;relationship kind=&amp;quot;outlet&amp;quot; name=&amp;quot;statusLabel&amp;quot; candidateClass=&amp;quot;UILabel&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;             &amp;lt;/relationships&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;         &amp;lt;/class&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;AppDelegate.h&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #BC7A00&quot;&gt;#import &amp;lt;UIKit/UIKit.h&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;border: 1px solid #FF0000&quot;&gt;@&lt;/span&gt;interface BIDAppDelegate &lt;span style=&quot;color: #666666&quot;&gt;:&lt;/span&gt; UIResponder &lt;span style=&quot;color: #666666&quot;&gt;&amp;lt;&lt;/span&gt;UIApplicationDelegate&lt;span style=&quot;color: #666666&quot;&gt;&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;border: 1px solid #FF0000&quot;&gt;@&lt;/span&gt;property (strong, nonatomic) UIWindow&lt;span style=&quot;color: #666666&quot;&gt;*&lt;/span&gt; window;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;border: 1px solid #FF0000&quot;&gt;@&lt;/span&gt;end&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;AppDelegate.m&lt;/p&gt;
+&lt;p&gt;方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class=&quot;first&quot;&gt;application:didFinishLaunchingWithOptions&lt;/p&gt;
+&lt;p&gt;这是一个多重参数函数&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class=&quot;first&quot;&gt;applicationWillResignActive&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id1&quot;&gt;
+&lt;h2&gt;表格使用&lt;/h2&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;拖入表格，选中并关联到下面的 View Controller，关联上dataSource和Delegate。&lt;/li&gt;
+&lt;li&gt;ViewController.h中类要实现UITableViewDataSource和UITableViewDelegate。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;border: 1px solid #FF0000&quot;&gt;@&lt;/span&gt;interface MasterViewController &lt;span style=&quot;color: #666666&quot;&gt;:&lt;/span&gt; UITableViewController &lt;span style=&quot;color: #666666&quot;&gt;&amp;lt;&lt;/span&gt;UITableViewDelegate, UITableViewDataSource&lt;span style=&quot;color: #666666&quot;&gt;&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;border: 1px solid #FF0000&quot;&gt;@&lt;/span&gt;property (strong, nonatomic) NSArray&lt;span style=&quot;color: #666666&quot;&gt;*&lt;/span&gt; listData;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;ViewController.m中增加如下函数：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;border: 1px solid #FF0000&quot;&gt;@&lt;/span&gt;synthesize listData;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;color: #666666&quot;&gt;-&lt;/span&gt; (NSInteger)tableView&lt;span style=&quot;color: #666666&quot;&gt;:&lt;/span&gt;(UITableView&lt;span style=&quot;color: #666666&quot;&gt;*&lt;/span&gt; )tableView numberOfRowsInSection&lt;span style=&quot;color: #666666&quot;&gt;:&lt;/span&gt;(NSInteger)section {&lt;br/&gt;    &lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;return&lt;/span&gt; [self.listData count];&lt;br/&gt;}&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;color: #666666&quot;&gt;-&lt;/span&gt; (UITableViewCell&lt;span style=&quot;color: #666666&quot;&gt;*&lt;/span&gt; )tableView&lt;span style=&quot;color: #666666&quot;&gt;:&lt;/span&gt;(UITableView&lt;span style=&quot;color: #666666&quot;&gt;*&lt;/span&gt; )tableView cellForRowAtIndexPath&lt;span style=&quot;color: #666666&quot;&gt;:&lt;/span&gt;(NSIndexPath&lt;span style=&quot;color: #666666&quot;&gt;*&lt;/span&gt; )indexPath {&lt;br/&gt;    &lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;static&lt;/span&gt; NSString&lt;span style=&quot;color: #666666&quot;&gt;*&lt;/span&gt; SimpleTableIdentifier &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;border: 1px solid #FF0000&quot;&gt;@&lt;/span&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;SimpleTableIndentifier&amp;quot;&lt;/span&gt;;&lt;br/&gt;&lt;br/&gt;    UITableViewCell&lt;span style=&quot;color: #666666&quot;&gt;*&lt;/span&gt; cell &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; [tableView dequeueReusableCellWithIdentifier&lt;span style=&quot;color: #666666&quot;&gt;:&lt;/span&gt;SimpleTableIdentifier];&lt;br/&gt;    &lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;if&lt;/span&gt;( cell &lt;span style=&quot;color: #666666&quot;&gt;==&lt;/span&gt; nil) {&lt;br/&gt;        cell &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; [[UITableViewCell alloc] initWithStyle&lt;span style=&quot;color: #666666&quot;&gt;:&lt;/span&gt;UITableViewCellStyleDefault reuseIdentifier&lt;span style=&quot;color: #666666&quot;&gt;:&lt;/span&gt;SimpleTableIdentifier];&lt;br/&gt;    }&lt;br/&gt;&lt;br/&gt;    NSUInteger row &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; [indexPath row];&lt;br/&gt;    cell.textLabel.text &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; [listData objectAtIndex&lt;span style=&quot;color: #666666&quot;&gt;:&lt;/span&gt;row];&lt;br/&gt;    &lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;return&lt;/span&gt; cell;&lt;br/&gt;}&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
+&lt;h2&gt;多视图控制&lt;/h2&gt;
+&lt;p&gt;注意segue的使用，一定要聚焦到特定的控件上，比如button，而不是它的父控件，否则无效。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id3&quot;&gt;
+&lt;h2&gt;参考资料&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://www.raywenderlich.com/5138/beginning-storyboards-in-ios-5-part-1&quot;&gt;http://www.raywenderlich.com/5138/beginning-storyboards-in-ios-5-part-1&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>iDevice保修查询</title>
    <link href="/2012/03/14/idevice.html"/>
    <updated>2012-03-14T00:00:00+08:00</updated>
    <id>h/2012/03/14/idevice</id>
@@ -21,6 +593,44 @@
 &lt;p&gt;果粉保修查询自从被Apple官方封禁以后就没见有更新了，在wifi下会闪退。&lt;/p&gt;
 &lt;p&gt;这个程序刚有雏形，还不完善，本着TDD的思想，在此放出，希望大家多提意见。&lt;/p&gt;
 &lt;p&gt;下载地址：http://code.google.com/p/amoblin/downloads/list&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Jekyll Rst Config</title>
+   <link href="/2012/03/13/jekyll-rst-config.html"/>
+   <updated>2012-03-13T00:00:00+08:00</updated>
+   <id>h/2012/03/13/jekyll-rst-config</id>
+   <content type="html">&lt;div class=&quot;section&quot; id=&quot;jekyll-restructuredtext&quot;&gt;
+&lt;h2&gt;jekyll restructuredText配置&lt;/h2&gt;
+&lt;p&gt;jekyll很好用，可惜默认是用markdown的，而我习惯了restructuredText，幸好jekyll支持插件，而刚好有这么一个插件。&lt;/p&gt;
+&lt;p&gt;jekyll-rst项目：https://github.com/xdissent/jekyll-rst&lt;/p&gt;
+&lt;p&gt;安装jekyll-rst插件到jekyll（官方说明)：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; &lt;span style=&quot;color: #008000&quot;&gt;cd&lt;/span&gt; &amp;lt;jekyll-project-path&amp;gt;&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; git submodule add https://github.com/xdissent/jekyll-rst.git _plugins/jekyll-rst&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后把rst文件放到_posts目录下，使用jekyll编译时就会把rst也转换成html了，文件名的格式和md文件名一样。&lt;/p&gt;
+&lt;p&gt;但发现一个问题，rst文件中有中文的话，生成html文件为空。没有中文的话就正常。初步判断是编码的问题。&lt;/p&gt;
+&lt;p&gt;看了看jekyll-rst的代码，发现jekyll-rst后台使用的是rbst，一个ruby包装的restructuredText转换程序，本质上还是使用自带的rst2html.py来转换。&lt;/p&gt;
+&lt;p&gt;单独使用rbst自带的rst2html.py转换，也没问题，奇怪！&lt;/p&gt;
+&lt;p&gt;再去rbst的给i他湖边主页转悠，看看Issue里有木有人遇到这种情况，可怜的2个Issue呀。第1个看着像，按照所说的，在transform.py中的 import sys 下面增加两句：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #008000&quot;&gt;reload&lt;/span&gt;(sys)&lt;br/&gt;sys&lt;span style=&quot;color: #666666&quot;&gt;.&lt;/span&gt;setdefaultencoding(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;)&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;用来重置python的编码方式为utf8，再执行jekyll，果然好了。&lt;/p&gt;
+&lt;p&gt;现在找到解决方法了，但不优雅。&lt;/p&gt;
+&lt;p&gt;这不是rbst的问题，而是python设置的问题。&lt;/p&gt;
+&lt;p&gt;查看pyhton的默认编码：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; python -c &lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;import sys;print sys.getdefaultencoding()&amp;quot;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;ascii&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;果然不是utf8！这下好了，只要设置pyhton默认编码就行了。&lt;/p&gt;
+&lt;p&gt;可以在site-packages下创建一个文件sitecustomize.py，这个文件会在pyhton启动时加载。把上面的python脚本内容放入这个文件，搞定！&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;github&quot;&gt;
+&lt;h2&gt;放到github&lt;/h2&gt;
+&lt;p&gt;github对jekyll做了一些限制，如下：&lt;/p&gt;
+&lt;p&gt;safe: true
+source: &amp;lt;your pages repo&amp;gt;
+destination: &amp;lt;the build dir&amp;gt;
+lsi: false
+pygments: true&lt;/p&gt;
+&lt;p&gt;safe参数表明github不支持扩展，那么也就不能使用jekyll-rst了。这样的话，只能在本地编译了。&lt;/p&gt;
+&lt;p&gt;此文是使用jekyll-rst写的第一篇文章。&lt;/p&gt;
+&lt;/div&gt;</content>
  </entry>
  
  <entry>
@@ -760,7 +1370,7 @@ false, 0: do not store any revisions (except the one autosave per post)
    <updated>2011-11-25T00:00:00+08:00</updated>
    <id>h/2011/11/25/reStructuredTEXT</id>
    <content type="html">&lt;!-- id: 8 --&gt;
-&lt;p&gt;120315  19:08&lt;/p&gt;
+&lt;p&gt;120316  17:58&lt;/p&gt;
 &lt;table class=&quot;docutils field-list&quot; frame=&quot;void&quot; rules=&quot;none&quot;&gt;
 &lt;col class=&quot;field-name&quot; /&gt;
 &lt;col class=&quot;field-body&quot; /&gt;

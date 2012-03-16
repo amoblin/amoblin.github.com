@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Linghua Zhang" />
+    <title>leveldb学习笔记</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/styles/style.css">
+    <link rel="stylesheet" href="/media/styles/github.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>leveldb学习笔记</h1>
+        </header>
+        <nav>
+        <span><a title="home page" class="" href="/">home</a></span>
+        <span><a title="tags" class="" href="/tags.html">tags</a></span>
+        <span><a title="blogroll" class="" href="/links.html">links</a></span>
+        <span><a title="subscribe me" class="" href="/atom.xml">feed</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<div class="section" id="id1">
+<h2>服务器构架</h2>
+<p>前端有一级缓存L1</p>
+<p>中间有Memory Cache作为二级缓存L2</p>
+<p>后端MySQL数据库自带三级缓存L3</p>
+<p>Memory Cache产品，最经典的是MemoryCached。</p>
+<p>硬盘产品，现在使用SSD硬盘来提到I/O能力。我们使用FusionIO公司的SSD硬盘。</p>
+<p>但MemoryCached不能和SSD较好地整合。在和SSD的整合方面，leveldb是最不错的。</p>
+<p>我们尝试leveldb和FusionIO产品的整合。</p>
+</div>
+<div class="section" id="id2">
+<h2>磁盘阵列</h2>
+<p>RAID: Redundant Array of Independent Disks, 磁盘阵列</p>
+<p>分为RAID-0, RAID-1, RADI-1E, RAID-5, RAID-6, RAID-7, RAID-10, RAID-50。</p>
+<p>RAID-0: 多个磁盘合并成一个大容量磁盘，不具有冗余。并行I/O。读写速度快。</p>
+<p>RAID-1：互相做镜像。冗余最高，安全性最好。读取速度快。写入速度稍慢。</p>
+<p>RAID-2: 在RAID-0的基础上加入Hamming码作为错误校验码。至少需要3台磁盘。</p>
+<p>RAID-3：数据交错存储。数据分散在各个磁盘。</p>
+<p>RAID-4：和RAID-3类似，不过以区块为单位分区。</p>
+<p>RAID-5：组合RAID-0和RAID-1，使用奇偶校验信息做冗余。读取速度和RAID-0相近，写入速度较慢（由于奇偶校验信息）。</p>
+<p>RAID-6：比RAID-5增加一个独立的奇偶校验信息块，使用不同的算法。可靠性很高，允许两块磁盘失效。写性能很差。</p>
+<p>实际应用中RAID-5，RAID-6比较多。</p>
+</div>
+<div class="section" id="memorycached">
+<h2>MemoryCached学习</h2>
+<p>MemoryCached使用LRU（Least Recently Used）算法。</p>
+</div>
+<div class="section" id="nosql">
+<h2>NoSQL相关理论</h2>
+<div class="section" id="id3">
+<h3>术语</h3>
+<ol class="arabic simple">
+<li>Five Minutes Rule</li>
+<li>CAP理论：</li>
+</ol>
+<blockquote>
+<ul class="simple">
+<li>C：Consistency 一致性</li>
+<li>A: Availability 可用性</li>
+<li>P: Partition(Tolerence of network Partition) 分区容忍性（分布式）</li>
+</ul>
+</blockquote>
+<ol class="arabic simple">
+<li>ACID</li>
+</ol>
+<blockquote>
+<ul class="simple">
+<li>A: Atomic 原子性</li>
+<li>C: Consistency</li>
+<li>I:</li>
+<li>D: D</li>
+</ul>
+</blockquote>
+<ol class="arabic simple">
+<li>LSM Tree (Log Structurted Merge Tree， 内存中日志树)</li>
+</ol>
+<p>MMAP</p>
+</div>
+<div class="section" id="id4">
+<h3>分区策略</h3>
+<ol class="arabic simple">
+<li>一致性Hash环 DHTs</li>
+<li>范围分区，比如Bigtable</li>
+</ol>
+</div>
+</div>
+<div class="section" id="bittable">
+<h2>BitTable论文学习</h2>
+<p>映射： :math: (row:string, column:string, timestamp:int64) rightarrow string</p>
+<p>时间戳：时间逆序</p>
+<p>API:</p>
+<p>SSTable文件格式用来存储Bigtable数据。提供持久，有序的键值映射。</p>
+<p>每个SSTable包含一系列 块 block，典型的块大小是64KB，可以修改配置文件改变。SSTable的末尾是block的索引。打开SSTable时会把索引载入内存。对索引进行二分查找找到目标块，然后从磁盘中读取该块。也可以把整个SSTable读入内存，这样再查找就不需磁盘I/O操作了。</p>
+<div class="section" id="chubby">
+<h3>Chubby</h3>
+<p>Chubby使用Paxos算法。。。</p>
+</div>
+<div class="section" id="id5">
+<h3>实现</h3>
+<p>主服务器， 很多节点tablet服务器， 通信。</p>
+<p>tablet server管理一组tablets，一般有上千个tablets。tablet server管理已加载的tablets的读写请求，还负责把太大的tablet拆小。</p>
+<p>一个Bigtable集群存储很多tables，每个table由一组tablets组成。每个tablet关联着特定行范围的所有数据。</p>
+<p>一开始，每个表只有一个tablet，随着tablet的增大，自动分裂成多个tablets，默认每个tablet的大小上线是100-200MB。</p>
+<div class="section" id="tablet">
+<h4>5.1 Tablet定位</h4>
+<p>Chubby文件 -&gt; 根tablet</p>
+<p>根tablet在METADATA表中存储所有的tablets位置信息。METADATA表中存的第一个，当然是根tablet了。根tablet比较特殊，它永不分裂。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>LevelDB综述</h2>
+<p>leveldb主要解决随机写的效率低下问题。</p>
+<p>打开数据库初始化时，加载.sst索引数据。在内存中构建一个memtable。同时创建日志文件。以后的写操作都会确保memtable和日志文件的一致性。</p>
+<p>写文件用Put函数实现。当进行Put操作时，不是对磁盘而是对memtable进行操作。操作成功的话会将操作追加到操作日志文件中，从而将随机写转化为顺序写。</p>
+<p>当memtable规模超过预设值时，memtable会分成2部分。一部分对key排序，建立索引后把k/v数据和索引一并持久化存储为.sst文件。同时删除对应的日志文件内容。这叫做minor compaction。</p>
+<p>当leveldb意外退出时，系统可以从操作日志中恢复数据，持久化到.sst文件。</p>
+<p>读操作用Get函数实现。首先使用bloom过滤器判断是否存在该key，若存在的话，二分查找定位到所需.sst文件，将.sst文件载入内存，和memtable合并（即将操作顺序执行一遍），然后返回最终值，也就是最新值。</p>
+<p>当.sst文件个数超过预设值时，会合并成1个.sst文件。这叫做major compaction。</p>
+</div>
+<div class="section" id="id7">
+<h2>数据格式分析</h2>
+<div class="section" id="id8">
+<h3>静态分析</h3>
+<p>数据库目录下一般有如下几类文件：</p>
+<ul class="simple">
+<li>$version.sst文件（Sorted String Table)</li>
+<li>$version.log文件（当前操作）</li>
+<li>CURRENT   存放MANIFEST文件名</li>
+<li>LOCK</li>
+<li>LOG   存放最新的系统日志</li>
+<li>LOG.old   存放日志存档</li>
+<li>MANIFEST-$version MANIFEST文件</li>
+</ul>
+<p>其中$version为6位整数。</p>
+<p>$version.log的格式如下：</p>
+<ul>
+<li><p class="first">block， 不确定。</p>
+</li>
+<li><p class="first">record，不确定。</p>
+</li>
+<li><p class="first">checksum</p>
+<p>是type和data的循环校验码CRC32C。
+uint32类型，4字节，文件头偏移量13字节。</p>
+</li>
+<li><p class="first">length，uint16类型，2字节。只见到值为0的，不知道作用。</p>
+</li>
+<li><p class="first">type，unit8类型，1字节。</p>
+</li>
+</ul>
+<blockquote>
+<p>表示data的类型，取值如下：</p>
+<blockquote>
+<ol class="upperroman simple">
+<li>1  FULL</li>
+<li>2  FIRST</li>
+<li>3  MIDDLE</li>
+<li>4  LAST</li>
+</ol>
+</blockquote>
+</blockquote>
+<ul>
+<li><p class="first">data 具体的k-v数据。</p>
+<p>在type=1时，结构为：key的长度 key的内容 value的长度 value的内容</p>
+</li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h3>时序演示</h3>
+<div class="section" id="id10">
+<h4>初始化数据库</h4>
+<p>假设有如下Python操作：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">leveldb</span><br/><span style="color: #666666">&gt;&gt;&gt;</span> db <span style="color: #666666">=</span> leveldb<span style="color: #666666">.</span>LevelDB(<span style="color: #BA2121">&#39;./data&#39;</span>)<br/></pre></div>
+<p>假设当前目录下没有data子目录。leveldb会创建data目录，初始化如下文件：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin   0 2011-12-09 09:52 000003.log</span><br/><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin  16 2011-12-09 09:52 CURRENT</span><br/><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin   0 2011-12-09 09:52 LOCK</span><br/><span style="color: #808080">-rw-rw-r-- 1 amoblin amoblin  53 2011-12-09 09:52 LOG</span><br/><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin 64K 2011-12-09 09:52 MANIFEST-000002</span><br/></pre></div>
+<p>000003.log为待写文件，后续Put，Delete等操作会将记录保存至此。</p>
+<p>CURRENT内容为MANIFEST文件名，初始时MANIFEST版本为2，即MANIFEST-000002。为什么不是1呢？看接下来的LOG文件。</p>
+<p>LOG文件内容如下：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">2011/12/09-09:52:33.951468 b770d6c0 Delete type=3 #1<br/></pre></div>
+<p>第一列是创建时间，第二列b770d6c0不知何意。Delete代表删除操作。</p>
+<p>type=3，说明是MANIFEST文件，#1是版本号。</p>
+<p>即删除了MANIFEST-000001文件。所以现存的是MANIFEST-000002文件。</p>
+<p>MANIFEST-000002文件待研究。</p>
+</div>
+<div class="section" id="put">
+<h4>Put数据</h4>
+<p>接着上面的交互：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> db<span style="color: #666666">.</span>Put(<span style="color: #BA2121">&#39;cba&#39;</span>, <span style="color: #BA2121">&#39;abcd&#39;</span>)<br/></pre></div>
+<p>这时操作内容被追加到000005.log文件，使其大小由0变为64KB：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin 64K 2011-12-09 10:20 000005.log</span><br/></pre></div>
+<p>查看其内容</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> od -A d -t x1 000003.log<br/><span style="color: #808080">0000000 57 c6 a2 f2 16 00 01 01 00 00 00 00 00 00 00 01</span><br/><span style="color: #808080">0000016 00 00 00 01 03 63 62 61 04 61 62 63 64</span><br/><span style="color: #808080">0000029</span><br/></pre></div>
+<p>循环校验码从第1行倒数第3个数值00开始，到第2行第1个00为止，共4字节。</p>
+<p>接着2字节是length，为0.</p>
+<p>接着1字节是type，这里为1，表示接下来的data包含全部内容，并未分片。</p>
+<p>接着是data数据，03表示key的长度，63 62 61是key的内容'cba'的ascii码。</p>
+<p>然后是value接着2字节是length，为0.</p>
+<p>接着1字节是type，这里为1，表示接下来的data包含全部内容，并未分片。</p>
+<p>接着是data数据，03表示key的长度，63 62 61是key的内容'cba'的ascii码。</p>
+<p>然后04是value的长度，61 62 63 64是value的内容'abcd'的ascii码。</p>
+</div>
+<div class="section" id="id11">
+<h4>再次打开数据库</h4>
+<p>如果打开当前数据库：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> db <span style="color: #666666">=</span> leveldb<span style="color: #666666">.</span>LevelDB(<span style="color: #BA2121">&#39;./data&#39;</span>)<br/></pre></div>
+<p>查看文件变化情况：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin 119 2011-12-09 10:37 000005.sst</span><br/><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin   0 2011-12-09 10:37 000006.log</span><br/><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin  16 2011-12-09 10:37 CURRENT</span><br/><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin   0 2011-12-09 10:37 LOCK</span><br/><span style="color: #808080">-rw-rw-r-- 1 amoblin amoblin 289 2011-12-09 10:37 LOG</span><br/><span style="color: #808080">-rw-rw-r-- 1 amoblin amoblin  53 2011-12-09 10:37 LOG.old</span><br/><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin 64K 2011-12-09 10:37 MANIFEST-000004</span><br/></pre></div>
+<p>CURRENT内容变为MANIFEST-000004。</p>
+<p>LOG文件内容如下：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">2011/12/09-10:37:43.285941 b770d6c0 Recovering log #3<br/>2011/12/09-10:37:43.286160 b770d6c0 Level-0 table #5: started<br/>2011/12/09-10:37:43.288104 b770d6c0 Level-0 table #5: 119 bytes OK<br/>2011/12/09-10:37:43.291572 b770d6c0 Delete type=3 #2<br/>2011/12/09-10:37:43.291636 b770d6c0 Delete type=0 #3<br/></pre></div>
+<p>从系统日志可以看出，leveldb做了3件事：</p>
+<ul>
+<li><p class="first">执行上次的操作</p>
+<p>我们知道，leveldb的Put，Delete操作都是顺序存放在.log文件中的。何时整理呢？就是这时。</p>
+<p>创建了000005.sst表，将上次的k/v数据存入。</p>
+</li>
+<li><p class="first">更新版本号</p>
+<p>整理完毕后，删除老的版本号MANIFEST-000002，生成新版本号文件MANIFEST-000004。看来没有奇数版本号。</p>
+</li>
+<li><p class="first">删除旧日志</p>
+<p>删除日志文件000003.log</p>
+</li>
+</ul>
+<p>新文件LOG.old存放上次的LOG文件内容。</p>
+<p>查看000005.sst文件</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> od -A d -t x1 000005.sst<br/><span style="color: #808080">0000000 00 0b 04 63 62 61 01 01 00 00 00 00 00 00 61 62</span><br/><span style="color: #808080">0000016 63 64 00 00 00 00 01 00 00 00 00 e2 3a b7 8c 00</span><br/><span style="color: #808080">0000032 00 00 00 01 00 00 00 00 c0 f2 a1 b0 00 09 02 64</span><br/><span style="color: #808080">0000048 01 ff ff ff ff ff ff ff 00 1a 00 00 00 00 01 00</span><br/><span style="color: #808080">0000064 00 00 00 c9 e4 dd 23 1f 08 2c 16 00 00 00 00 00</span><br/><span style="color: #808080">0000080 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</span><br/><span style="color: #808080">0000096 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 57</span><br/><span style="color: #808080">0000112 fb 80 8b 24 75 47 db</span><br/><span style="color: #808080">0000119</span><br/></pre></div>
+<p>最后48字节是Footer，固定长度。其中从1f开始的40字节是索引。最后8字节是魔数。</p>
+<p>索引不足40字节的话补0。上面的索引数据是 1f 08 2c 16。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>源码学习</h2>
+<p>主入口在db.h。</p>
+<div class="section" id="open">
+<h3>打开数据库Open()</h3>
+<p>db_impl.cc文件中实现Open函数。</p>
+<p>3个参数：options选项，数据库名字（文件夹路径），数据库指针。</p>
+<div class="section" id="dbimpl">
+<h4>DBImpl实例</h4>
+<p>新建TableCache, VersionSet。</p>
+</div>
+<div class="section" id="id13">
+<h4>检测数据库路径</h4>
+<p>首先根据options进行两种操作：
+1. 若不存在，创建数据库目录。
+#. 若存在，报错。</p>
+</div>
+<div class="section" id="id14">
+<h4>创建日志文件</h4>
+<p>日志文件指针为WritalbeFile*类型。根据已有日志版本创建新日志文件，返回文件句柄。</p>
+</div>
+</div>
+<div class="section" id="id15">
+<h3>Put操作</h3>
+<p>首先将操作封装到WriteBatch中，然后将WriteBatch送给Write函数。</p>
+</div>
+<div class="section" id="delete">
+<h3>Delete操作</h3>
+<p>类似上述Put操作。</p>
+</div>
+<div class="section" id="write">
+<h3>Write函数</h3>
+<p>将操作追加到日志文件 AddRecord ，更新内存数据。</p>
+</div>
+<div class="section" id="get">
+<h3>Get操作</h3>
+<p>首先在memetable中查找，然后immutable中查找，然后其他。</p>
+</div>
+<div class="section" id="id16">
+<h3>退出</h3>
+<p>退出时会修改MANIFEST文件。</p>
+<hr class="docutils" />
+<p>附：</p>
+</div>
+</div>
+<div class="section" id="python-leveldb">
+<h2>python leveldb安装</h2>
+<p>有两个实现：py-leveldb和cpy-leveldb。</p>
+<p>cpy-leveldb安装：
+首先配置编译环境：libtool, automake,</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">cd </span>snappy<br/><span style="color: #000080; font-weight: bold">$</span> ./autogen.sh<br/><span style="color: #000080; font-weight: bold">$</span> ./configure<br/><span style="color: #000080; font-weight: bold">$</span> make<br/><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">cd</span> ..<br/><span style="color: #000080; font-weight: bold">$</span> make -C leveldb<br/><span style="color: #000080; font-weight: bold">$</span> sudo python setup.py build<br/></pre></div>
+</div>
+</section>
+<section class="meta">
+
+<span class="tags">
+  tagged by 
+  
+</span>
+
+<span class="time">
+  <time datetime="2012-03-16">2012-03-16</time>
+</span>
+</section>
+
+
+        </article>
+        <div id="copy">&copy; 2012 amoblin | powered by jekyll | themed by <a href="http://lhzhang.com" title="sext ii">sext ii</a></div>
+      </div>
+    </div> <!--! end of #container -->
+  </body>
+</html>

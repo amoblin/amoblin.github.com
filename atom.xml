@@ -4,13 +4,53 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2012-03-16T17:58:41+08:00</updated>
+ <updated>2012-04-19T18:18:18+08:00</updated>
  <id></id>
  <author>
    <name></name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Using Sudo With An Alias</title>
+   <link href="/2012/04/19/using-sudo-with-an-alias.html"/>
+   <updated>2012-04-19T00:00:00+08:00</updated>
+   <id>h/2012/04/19/using-sudo-with-an-alias</id>
+   <content type="html">&lt;p&gt;使用bash时发现，在sudo时，所有的配置都失效了，比如alias的配置。&lt;/p&gt;
+&lt;p&gt;我习惯使用vi来打开vim，所以有如下配置：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;alias vi=&amp;#39;vim&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在直接使用vi时，bash很规矩地按照alias来调用vim，从下看出：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; which vi&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;alias vi=&amp;#39;vim&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;    /usr/bin/vim&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;但当使用sudo vi时，就出现了警告：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;Error detected while processing /usr/home/amoblin/.vimrc:&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;line   31:&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;E518: Unknown option: autochdir&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;Press ENTER or type command to continue&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这里vi调用的哪个呢?&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; sudo which vi&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;/bin/vi&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;是原始的vi，不是vim，难怪对autochdir不支持。&lt;/p&gt;
+&lt;p&gt;怎么解决呢？很简单，再增加一个alias：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;alias sudo=&amp;#39;sudo &amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;不要小看这个空格，正是它让你在sudo时能够使用之前的alias配置。&lt;/p&gt;
+&lt;p&gt;传说还有另外一个很变态的alias，欲知详情，请移步这里：&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://www.shellperson.net/using-sudo-with-an-alias/&quot;&gt;http://www.shellperson.net/using-sudo-with-an-alias/&lt;/a&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Objc Note</title>
+   <link href="/2012/04/13/objc-note.html"/>
+   <updated>2012-04-13T00:00:00+08:00</updated>
+   <id>h/2012/04/13/objc-note</id>
+   <content type="html">&lt;p&gt;使用method的方法是:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;[object method]&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;类似于C中：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;object&lt;span style=&quot;color: #666666&quot;&gt;-&amp;gt;&lt;/span&gt;method()&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;BOOL类型取值：YES / NO&lt;/p&gt;
+&lt;p&gt;创建类：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;border: 1px solid #FF0000&quot;&gt;@&lt;/span&gt;interface Person&lt;span style=&quot;color: #666666&quot;&gt;:&lt;/span&gt; NSObject {&lt;br/&gt;    NSString name;&lt;br/&gt;    &lt;span style=&quot;color: #B00040&quot;&gt;int&lt;/span&gt; age;&lt;br/&gt;}&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;nsarray&quot;&gt;
+&lt;h2&gt;NSArray使用&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;NSArray array &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; [NSArray arrayWithObjects&lt;span style=&quot;color: #666666&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;border: 1px solid #FF0000&quot;&gt;@&lt;/span&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;a&amp;quot;&lt;/span&gt;, &lt;span style=&quot;border: 1px solid #FF0000&quot;&gt;@&lt;/span&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;b&amp;quot;&lt;/span&gt;, nil];&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;</content>
+ </entry>
  
  <entry>
    <title>zeromq学习笔记</title>
@@ -596,12 +636,12 @@ Use Automatic Reference Counting&lt;/p&gt;
  </entry>
  
  <entry>
-   <title>Jekyll Rst Config</title>
+   <title>jekyll+reStructuredText配置</title>
    <link href="/2012/03/13/jekyll-rst-config.html"/>
    <updated>2012-03-13T00:00:00+08:00</updated>
    <id>h/2012/03/13/jekyll-rst-config</id>
    <content type="html">&lt;div class=&quot;section&quot; id=&quot;jekyll-restructuredtext&quot;&gt;
-&lt;h2&gt;jekyll restructuredText配置&lt;/h2&gt;
+&lt;h2&gt;jekyll+restructuredText配置&lt;/h2&gt;
 &lt;p&gt;jekyll很好用，可惜默认是用markdown的，而我习惯了restructuredText，幸好jekyll支持插件，而刚好有这么一个插件。&lt;/p&gt;
 &lt;p&gt;jekyll-rst项目：https://github.com/xdissent/jekyll-rst&lt;/p&gt;
 &lt;p&gt;安装jekyll-rst插件到jekyll（官方说明)：&lt;/p&gt;
@@ -1370,7 +1410,7 @@ false, 0: do not store any revisions (except the one autosave per post)
    <updated>2011-11-25T00:00:00+08:00</updated>
    <id>h/2011/11/25/reStructuredTEXT</id>
    <content type="html">&lt;!-- id: 8 --&gt;
-&lt;p&gt;120316  17:58&lt;/p&gt;
+&lt;p&gt;120419  18:18&lt;/p&gt;
 &lt;table class=&quot;docutils field-list&quot; frame=&quot;void&quot; rules=&quot;none&quot;&gt;
 &lt;col class=&quot;field-name&quot; /&gt;
 &lt;col class=&quot;field-body&quot; /&gt;

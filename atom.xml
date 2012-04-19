@@ -4,7 +4,7 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2012-04-19T18:18:18+08:00</updated>
+ <updated>2012-04-19T18:20:34+08:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -13,7 +13,7 @@
 
  
  <entry>
-   <title>Using Sudo With An Alias</title>
+   <title>在sudo中使用alias</title>
    <link href="/2012/04/19/using-sudo-with-an-alias.html"/>
    <updated>2012-04-19T00:00:00+08:00</updated>
    <id>h/2012/04/19/using-sudo-with-an-alias</id>
@@ -1410,7 +1410,7 @@ false, 0: do not store any revisions (except the one autosave per post)
    <updated>2011-11-25T00:00:00+08:00</updated>
    <id>h/2011/11/25/reStructuredTEXT</id>
    <content type="html">&lt;!-- id: 8 --&gt;
-&lt;p&gt;120419  18:18&lt;/p&gt;
+&lt;p&gt;120419  18:20&lt;/p&gt;
 &lt;table class=&quot;docutils field-list&quot; frame=&quot;void&quot; rules=&quot;none&quot;&gt;
 &lt;col class=&quot;field-name&quot; /&gt;
 &lt;col class=&quot;field-body&quot; /&gt;

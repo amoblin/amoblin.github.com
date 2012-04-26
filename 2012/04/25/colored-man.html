@@ -36,9 +36,6 @@
 <p>参考：
 <a class="reference external" href="http://blog.longwin.com.tw/2006/07/color_grep_man_2006/">http://blog.longwin.com.tw/2006/07/color_grep_man_2006/</a></p>
 </div>
-<div class="section" id="grep">
-<h2>彩色grep</h2>
-</div>
 <div class="section" id="less">
 <h2>彩色less</h2>
 <p>让less识别颜色转义序列：</p>
@@ -46,9 +43,11 @@
 <p>参考：</p>
 <p><a class="reference external" href="http://linuxtoy.org/archives/less-highlight.html">http://linuxtoy.org/archives/less-highlight.html</a></p>
 <p><a class="reference external" href="http://xiaogaozi.blogspot.com/2009/01/less.html">http://xiaogaozi.blogspot.com/2009/01/less.html</a></p>
-<p>附带一问：</p>
-<p>如何实现ubuntu的彩色grep效果？</p>
-<p>新老版本的区别。老版本grep只有有限的彩色支持，使用GREP_COLOR来配置，配置内容也很少。</p>
+</div>
+<div class="section" id="grep">
+<h2>彩色grep</h2>
+<p>Mac OS X中如何实现ubuntu的彩色grep效果？</p>
+<p>经过多方查证，发现原因是： 新老版本的区别。老版本grep只有有限的彩色支持，使用GREP_COLOR来配置，配置内容也很少。</p>
 <p>新版grep使用GREP_COLORS来配置，参数丰富了很多，同时保留了GREP_COLOR参数来兼容旧版本。</p>
 <p>mac自带grep版本为2.5.1，居然和centos 5.4上的grep版本一样。</p>
 <p>homebrew里也没有grep，理由是：</p>

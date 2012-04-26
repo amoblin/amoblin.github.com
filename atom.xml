@@ -4,7 +4,7 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2012-04-26T18:04:15+08:00</updated>
+ <updated>2012-04-26T18:20:38+08:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -13,7 +13,7 @@
 
  
  <entry>
-   <title>Too Many Open Files</title>
+   <title>too many open files解决方法</title>
    <link href="/2012/04/26/too-many-open-files.html"/>
    <updated>2012-04-26T00:00:00+08:00</updated>
    <id>h/2012/04/26/too-many-open-files</id>
@@ -45,9 +45,6 @@
 &lt;p&gt;参考：
 &lt;a class=&quot;reference external&quot; href=&quot;http://blog.longwin.com.tw/2006/07/color_grep_man_2006/&quot;&gt;http://blog.longwin.com.tw/2006/07/color_grep_man_2006/&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;grep&quot;&gt;
-&lt;h2&gt;彩色grep&lt;/h2&gt;
-&lt;/div&gt;
 &lt;div class=&quot;section&quot; id=&quot;less&quot;&gt;
 &lt;h2&gt;彩色less&lt;/h2&gt;
 &lt;p&gt;让less识别颜色转义序列：&lt;/p&gt;
@@ -55,9 +52,11 @@
 &lt;p&gt;参考：&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://linuxtoy.org/archives/less-highlight.html&quot;&gt;http://linuxtoy.org/archives/less-highlight.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://xiaogaozi.blogspot.com/2009/01/less.html&quot;&gt;http://xiaogaozi.blogspot.com/2009/01/less.html&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;附带一问：&lt;/p&gt;
-&lt;p&gt;如何实现ubuntu的彩色grep效果？&lt;/p&gt;
-&lt;p&gt;新老版本的区别。老版本grep只有有限的彩色支持，使用GREP_COLOR来配置，配置内容也很少。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;grep&quot;&gt;
+&lt;h2&gt;彩色grep&lt;/h2&gt;
+&lt;p&gt;Mac OS X中如何实现ubuntu的彩色grep效果？&lt;/p&gt;
+&lt;p&gt;经过多方查证，发现原因是： 新老版本的区别。老版本grep只有有限的彩色支持，使用GREP_COLOR来配置，配置内容也很少。&lt;/p&gt;
 &lt;p&gt;新版grep使用GREP_COLORS来配置，参数丰富了很多，同时保留了GREP_COLOR参数来兼容旧版本。&lt;/p&gt;
 &lt;p&gt;mac自带grep版本为2.5.1，居然和centos 5.4上的grep版本一样。&lt;/p&gt;
 &lt;p&gt;homebrew里也没有grep，理由是：&lt;/p&gt;
@@ -1471,7 +1470,7 @@ false, 0: do not store any revisions (except the one autosave per post)
    <updated>2011-11-25T00:00:00+08:00</updated>
    <id>h/2011/11/25/reStructuredTEXT</id>
    <content type="html">&lt;!-- id: 8 --&gt;
-&lt;p&gt;120426  18:04&lt;/p&gt;
+&lt;p&gt;120426  18:20&lt;/p&gt;
 &lt;table class=&quot;docutils field-list&quot; frame=&quot;void&quot; rules=&quot;none&quot;&gt;
 &lt;col class=&quot;field-name&quot; /&gt;
 &lt;col class=&quot;field-body&quot; /&gt;

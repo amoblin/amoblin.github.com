@@ -4,13 +4,42 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2012-04-19T18:20:34+08:00</updated>
+ <updated>2012-04-26T11:14:32+08:00</updated>
  <id></id>
  <author>
    <name></name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>彩色的man</title>
+   <link href="/2012/04/25/colored-man.html"/>
+   <updated>2012-04-25T00:00:00+08:00</updated>
+   <id>h/2012/04/25/colored-man</id>
+   <content type="html">&lt;div class=&quot;section&quot; id=&quot;id1&quot;&gt;
+&lt;h2&gt;终端彩色化&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;man&quot;&gt;
+&lt;h2&gt;彩色man&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;export LESS_TERMCAP_mb=$&amp;#39;\E[01;31m&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;export LESS_TERMCAP_md=$&amp;#39;\E[01;31m&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;export LESS_TERMCAP_me=$&amp;#39;\E[0m&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;export LESS_TERMCAP_se=$&amp;#39;\E[0m&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;export LESS_TERMCAP_so=$&amp;#39;\E[01;44;33m&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;export LESS_TERMCAP_ue=$&amp;#39;\E[0m&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;export LESS_TERMCAP_us=$&amp;#39;\E[01;32m&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;参考：
+&lt;a class=&quot;reference external&quot; href=&quot;http://blog.longwin.com.tw/2006/07/color_grep_man_2006/&quot;&gt;http://blog.longwin.com.tw/2006/07/color_grep_man_2006/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;grep&quot;&gt;
+&lt;h2&gt;彩色grep&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;less&quot;&gt;
+&lt;h2&gt;彩色less&lt;/h2&gt;
+&lt;p&gt;让less识别颜色转义序列：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;export LESS=&amp;#39;-R&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://linuxtoy.org/archives/less-highlight.html&quot;&gt;http://linuxtoy.org/archives/less-highlight.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://xiaogaozi.blogspot.com/2009/01/less.html&quot;&gt;http://xiaogaozi.blogspot.com/2009/01/less.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;附带一问：&lt;/p&gt;
+&lt;p&gt;如何实现ubuntu的彩色grep效果？&lt;/p&gt;
+&lt;/div&gt;</content>
+ </entry>
  
  <entry>
    <title>在sudo中使用alias</title>
@@ -812,7 +841,9 @@ C-t 交换字母
 C-a 行首
 C-f 右移
 C-z 暂停
-C-c 结束&lt;/p&gt;
+C-c 结束
+C-p 上一条命令
+C-n 下一条命令&lt;/p&gt;
 &lt;p&gt;可以选择的：C-t, C-x, C-v&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;section&quot; id=&quot;vim&quot;&gt;
@@ -849,8 +880,11 @@ C-m 不能用，否则bash中无法回车。
 C-k&lt;/p&gt;
 &lt;p&gt;综上，选择使用C-，在screen中配置为：&lt;/p&gt;
 &lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;escape ^\\&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;有时需要在screen中用ssh登陆服务器，然后再开一个screen，这时要另外选择一个eacape键。&lt;/p&gt;
+&lt;p&gt;由于在第二个screen中比较少用ctags，所以综合考虑，选择C-]。&lt;/p&gt;
 &lt;p&gt;参考：&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://houbolin.cn/blog/2009/12/03/linux-%E4%B8%8Bscreen%E5%91%BD%E4%BB%A4/&quot;&gt;http://houbolin.cn/blog/2009/12/03/linux-%E4%B8%8Bscreen%E5%91%BD%E4%BB%A4/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://wiki.archlinux.org/index.php/GNU_Screen&quot;&gt;https://wiki.archlinux.org/index.php/GNU_Screen&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;</content>
  </entry>
  
@@ -1410,7 +1444,7 @@ false, 0: do not store any revisions (except the one autosave per post)
    <updated>2011-11-25T00:00:00+08:00</updated>
    <id>h/2011/11/25/reStructuredTEXT</id>
    <content type="html">&lt;!-- id: 8 --&gt;
-&lt;p&gt;120419  18:20&lt;/p&gt;
+&lt;p&gt;120426  11:14&lt;/p&gt;
 &lt;table class=&quot;docutils field-list&quot; frame=&quot;void&quot; rules=&quot;none&quot;&gt;
 &lt;col class=&quot;field-name&quot; /&gt;
 &lt;col class=&quot;field-body&quot; /&gt;

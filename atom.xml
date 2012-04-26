@@ -4,7 +4,7 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2012-04-26T18:20:38+08:00</updated>
+ <updated>2012-04-26T18:32:16+08:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -32,15 +32,12 @@
  </entry>
  
  <entry>
-   <title>彩色的man</title>
+   <title>给终端加点彩</title>
    <link href="/2012/04/25/colored-man.html"/>
    <updated>2012-04-25T00:00:00+08:00</updated>
    <id>h/2012/04/25/colored-man</id>
-   <content type="html">&lt;div class=&quot;section&quot; id=&quot;id1&quot;&gt;
-&lt;h2&gt;终端彩色化&lt;/h2&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;man&quot;&gt;
-&lt;h2&gt;彩色man&lt;/h2&gt;
+   <content type="html">&lt;div class=&quot;section&quot; id=&quot;man&quot;&gt;
+&lt;h2&gt;彩色的man&lt;/h2&gt;
 &lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;export LESS_TERMCAP_mb=$&amp;#39;\E[01;31m&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;export LESS_TERMCAP_md=$&amp;#39;\E[01;31m&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;export LESS_TERMCAP_me=$&amp;#39;\E[0m&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;export LESS_TERMCAP_se=$&amp;#39;\E[0m&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;export LESS_TERMCAP_so=$&amp;#39;\E[01;44;33m&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;export LESS_TERMCAP_ue=$&amp;#39;\E[0m&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;export LESS_TERMCAP_us=$&amp;#39;\E[01;32m&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;参考：
 &lt;a class=&quot;reference external&quot; href=&quot;http://blog.longwin.com.tw/2006/07/color_grep_man_2006/&quot;&gt;http://blog.longwin.com.tw/2006/07/color_grep_man_2006/&lt;/a&gt;&lt;/p&gt;
@@ -55,13 +52,15 @@
 &lt;/div&gt;
 &lt;div class=&quot;section&quot; id=&quot;grep&quot;&gt;
 &lt;h2&gt;彩色grep&lt;/h2&gt;
-&lt;p&gt;Mac OS X中如何实现ubuntu的彩色grep效果？&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; &lt;span style=&quot;color: #008000&quot;&gt;alias &lt;/span&gt;&lt;span style=&quot;color: #19177C&quot;&gt;grep&lt;/span&gt;&lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;#39;grep --color&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这是fedora和ubuntu的标配，但centos和mac下就要使用上述设置了。然而使用发现，centos和mac下即使使用了这个设置，显示效果仍然比不上fedora/ubuntu。&lt;/p&gt;
+&lt;p&gt;Mac OS X中如何实现ubuntu的彩色grep效果呢？&lt;/p&gt;
 &lt;p&gt;经过多方查证，发现原因是： 新老版本的区别。老版本grep只有有限的彩色支持，使用GREP_COLOR来配置，配置内容也很少。&lt;/p&gt;
 &lt;p&gt;新版grep使用GREP_COLORS来配置，参数丰富了很多，同时保留了GREP_COLOR参数来兼容旧版本。&lt;/p&gt;
-&lt;p&gt;mac自带grep版本为2.5.1，居然和centos 5.4上的grep版本一样。&lt;/p&gt;
+&lt;p&gt;mac自带grep版本为2.5.1，居然和公司服务器centos 5.4上的grep版本一样。&lt;/p&gt;
 &lt;p&gt;homebrew里也没有grep，理由是：&lt;/p&gt;
 &lt;p&gt;We don't ship system duplicates.&lt;/p&gt;
-&lt;p&gt;下载grep源码，最新版2.12。&lt;/p&gt;
+&lt;p&gt;那就自己动手，丰衣足食。下载grep源码，最新版2.12。&lt;/p&gt;
 &lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; xz -d grep-2.12.tar.xz&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; tar -xvf  grep-2.12.tar&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; &lt;span style=&quot;color: #008000&quot;&gt;cd &lt;/span&gt;grep-2.12&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; ./configure &lt;span style=&quot;color: #666666&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; make &lt;span style=&quot;color: #666666&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo make install&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;OK，彩色出来了！&lt;/p&gt;
 &lt;/div&gt;</content>
@@ -1470,7 +1469,7 @@ false, 0: do not store any revisions (except the one autosave per post)
    <updated>2011-11-25T00:00:00+08:00</updated>
    <id>h/2011/11/25/reStructuredTEXT</id>
    <content type="html">&lt;!-- id: 8 --&gt;
-&lt;p&gt;120426  18:20&lt;/p&gt;
+&lt;p&gt;120426  18:32&lt;/p&gt;
 &lt;table class=&quot;docutils field-list&quot; frame=&quot;void&quot; rules=&quot;none&quot;&gt;
 &lt;col class=&quot;field-name&quot; /&gt;
 &lt;col class=&quot;field-body&quot; /&gt;

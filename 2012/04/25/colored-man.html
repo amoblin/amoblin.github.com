@@ -48,6 +48,14 @@
 <p><a class="reference external" href="http://xiaogaozi.blogspot.com/2009/01/less.html">http://xiaogaozi.blogspot.com/2009/01/less.html</a></p>
 <p>附带一问：</p>
 <p>如何实现ubuntu的彩色grep效果？</p>
+<p>新老版本的区别。老版本grep只有有限的彩色支持，使用GREP_COLOR来配置，配置内容也很少。</p>
+<p>新版grep使用GREP_COLORS来配置，参数丰富了很多，同时保留了GREP_COLOR参数来兼容旧版本。</p>
+<p>mac自带grep版本为2.5.1，居然和centos 5.4上的grep版本一样。</p>
+<p>homebrew里也没有grep，理由是：</p>
+<p>We don't ship system duplicates.</p>
+<p>下载grep源码，最新版2.12。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> xz -d grep-2.12.tar.xz<br/><span style="color: #000080; font-weight: bold">$</span> tar -xvf  grep-2.12.tar<br/><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">cd </span>grep-2.12<br/><span style="color: #000080; font-weight: bold">$</span> ./configure <span style="color: #666666">&amp;&amp;</span> make <span style="color: #666666">&amp;&amp;</span> sudo make install<br/></pre></div>
+<p>OK，彩色出来了！</p>
 </div>
 </section>
 <section class="meta">

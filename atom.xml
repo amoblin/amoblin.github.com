@@ -4,13 +4,32 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2012-04-26T11:14:32+08:00</updated>
+ <updated>2012-04-26T18:04:15+08:00</updated>
  <id></id>
  <author>
    <name></name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Too Many Open Files</title>
+   <link href="/2012/04/26/too-many-open-files.html"/>
+   <updated>2012-04-26T00:00:00+08:00</updated>
+   <id>h/2012/04/26/too-many-open-files</id>
+   <content type="html">&lt;p&gt;查看文件系统最大可打开文件数：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; cat /proc/sys/fs/file-max&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;345604&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;程序限制打开文件数：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; &lt;span style=&quot;color: #008000&quot;&gt;ulimit&lt;/span&gt; -n&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;1024&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;修改配置文件：&lt;/p&gt;
+&lt;p&gt;/etc/sysctl.conf&lt;/p&gt;
+&lt;p&gt;插入一行：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;fs.file-max = 8192&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;修改文件：&lt;/p&gt;
+&lt;p&gt;/etc/security/limits.conf&lt;/p&gt;
+&lt;p&gt;添加一行：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;* - nofile 8192&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+ </entry>
  
  <entry>
    <title>彩色的man</title>
@@ -38,6 +57,14 @@
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://xiaogaozi.blogspot.com/2009/01/less.html&quot;&gt;http://xiaogaozi.blogspot.com/2009/01/less.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;附带一问：&lt;/p&gt;
 &lt;p&gt;如何实现ubuntu的彩色grep效果？&lt;/p&gt;
+&lt;p&gt;新老版本的区别。老版本grep只有有限的彩色支持，使用GREP_COLOR来配置，配置内容也很少。&lt;/p&gt;
+&lt;p&gt;新版grep使用GREP_COLORS来配置，参数丰富了很多，同时保留了GREP_COLOR参数来兼容旧版本。&lt;/p&gt;
+&lt;p&gt;mac自带grep版本为2.5.1，居然和centos 5.4上的grep版本一样。&lt;/p&gt;
+&lt;p&gt;homebrew里也没有grep，理由是：&lt;/p&gt;
+&lt;p&gt;We don't ship system duplicates.&lt;/p&gt;
+&lt;p&gt;下载grep源码，最新版2.12。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; xz -d grep-2.12.tar.xz&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; tar -xvf  grep-2.12.tar&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; &lt;span style=&quot;color: #008000&quot;&gt;cd &lt;/span&gt;grep-2.12&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; ./configure &lt;span style=&quot;color: #666666&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; make &lt;span style=&quot;color: #666666&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo make install&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;OK，彩色出来了！&lt;/p&gt;
 &lt;/div&gt;</content>
  </entry>
  
@@ -1444,7 +1471,7 @@ false, 0: do not store any revisions (except the one autosave per post)
    <updated>2011-11-25T00:00:00+08:00</updated>
    <id>h/2011/11/25/reStructuredTEXT</id>
    <content type="html">&lt;!-- id: 8 --&gt;
-&lt;p&gt;120426  11:14&lt;/p&gt;
+&lt;p&gt;120426  18:04&lt;/p&gt;
 &lt;table class=&quot;docutils field-list&quot; frame=&quot;void&quot; rules=&quot;none&quot;&gt;
 &lt;col class=&quot;field-name&quot; /&gt;
 &lt;col class=&quot;field-body&quot; /&gt;

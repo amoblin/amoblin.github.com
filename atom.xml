@@ -4,7 +4,7 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2012-04-26T18:32:16+08:00</updated>
+ <updated>2012-04-27T11:23:49+08:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -1469,7 +1469,7 @@ false, 0: do not store any revisions (except the one autosave per post)
    <updated>2011-11-25T00:00:00+08:00</updated>
    <id>h/2011/11/25/reStructuredTEXT</id>
    <content type="html">&lt;!-- id: 8 --&gt;
-&lt;p&gt;120426  18:32&lt;/p&gt;
+&lt;p&gt;120427  11:23&lt;/p&gt;
 &lt;table class=&quot;docutils field-list&quot; frame=&quot;void&quot; rules=&quot;none&quot;&gt;
 &lt;col class=&quot;field-name&quot; /&gt;
 &lt;col class=&quot;field-body&quot; /&gt;

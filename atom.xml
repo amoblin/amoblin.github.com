@@ -4,7 +4,7 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2012-04-27T11:23:49+08:00</updated>
+ <updated>2012-06-15T10:01:47+08:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -13,11 +13,22 @@
 
  
  <entry>
+   <title>Linux Command Line Tips</title>
+   <link href="/2012/05/10/linux-command-line-tips.html"/>
+   <updated>2012-05-10T00:00:00+08:00</updated>
+   <id>h/2012/05/10/linux-command-line-tips</id>
+   <content type="html">&lt;p&gt;Bash 有个功能叫大括号扩展，大括号包围的，用逗号隔开的参数会扩展为独立的多个参数。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;   $ mv a{,.html}&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;   $ mv a.{html,htm}&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;   $ yum install git&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;   You need to be root to perform this command.&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;   $ sudo !!&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;   sudo yum install git&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;   ...&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;   $ mv /etc/apt/sources.{list,bak}&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;!* 将代替上一个命令的所有参数，(!! 是整条命令和所有参数)&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;!$ 上一条命令的最后一个参数&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;!:3 上一条命令的第3个参数&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+ </entry>
+ 
+ <entry>
    <title>too many open files解决方法</title>
    <link href="/2012/04/26/too-many-open-files.html"/>
    <updated>2012-04-26T00:00:00+08:00</updated>
    <id>h/2012/04/26/too-many-open-files</id>
-   <content type="html">&lt;p&gt;查看文件系统最大可打开文件数：&lt;/p&gt;
+   <content type="html">&lt;div class=&quot;section&quot; id=&quot;too-many-open-files&quot;&gt;
+&lt;h2&gt;too many open files解决方法&lt;/h2&gt;
+&lt;p&gt;查看文件系统最大可打开文件数：&lt;/p&gt;
 &lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; cat /proc/sys/fs/file-max&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;345604&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;程序限制打开文件数：&lt;/p&gt;
 &lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; &lt;span style=&quot;color: #008000&quot;&gt;ulimit&lt;/span&gt; -n&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;1024&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -28,7 +39,21 @@
 &lt;p&gt;修改文件：&lt;/p&gt;
 &lt;p&gt;/etc/security/limits.conf&lt;/p&gt;
 &lt;p&gt;添加一行：&lt;/p&gt;
-&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;* - nofile 8192&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;* - nofile 8192&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;当所有的都不生效时，可以尝试：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; sudo su &lt;span style=&quot;color: #BA2121&quot;&gt;`&lt;/span&gt;whoami&lt;span style=&quot;color: #BA2121&quot;&gt;`&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; &lt;span style=&quot;color: #008000&quot;&gt;ulimit&lt;/span&gt; -n&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id1&quot;&gt;
+&lt;h2&gt;可能遇见的错误&lt;/h2&gt;
+&lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
+&lt;h3&gt;错误1&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;bash: ulimit: open files: cannot modify limit: Operation not permitted&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id3&quot;&gt;
+&lt;h3&gt;错误2&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;ulimit: value exceeds hard limit&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content>
  </entry>
  
  <entry>
@@ -1469,7 +1494,7 @@ false, 0: do not store any revisions (except the one autosave per post)
    <updated>2011-11-25T00:00:00+08:00</updated>
    <id>h/2011/11/25/reStructuredTEXT</id>
    <content type="html">&lt;!-- id: 8 --&gt;
-&lt;p&gt;120427  11:23&lt;/p&gt;
+&lt;p&gt;120615  10:01&lt;/p&gt;
 &lt;table class=&quot;docutils field-list&quot; frame=&quot;void&quot; rules=&quot;none&quot;&gt;
 &lt;col class=&quot;field-name&quot; /&gt;
 &lt;col class=&quot;field-body&quot; /&gt;

@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
-   <channel>
-      <title>Your Great App's Changelog</title>
-      <link>http://amoblin.github.com/gmusci/update.xml</link>
-      <description>Most recent changes with links to updates.</description>
-      <language>zh_CN</language>
+    <channel>
+        <title>Gmusic 更新日志</title>
+        <link>http://amoblin.github.com/gmusic/update.xml</link>
+        <description>新特性列表</description>
+        <language>zh_CN</language>
+        <item>
+            <title>Gmusic 0.2(39)</title>
+            <description><![CDATA[
+                <h2> Gmusic 0.2(39) Changelog</h2>
+                <ul>
+                    <li> [NEW] 下载后导入到iTunes </li>
+                    <li> [NEW] 本地iTunes歌曲搜索 </li>
+                    <li> [NEW] UI优化 </li>
+                </ul>
+                ]]></description>
+            <pubDate>Mon Sep 17 18:04:31 CST 2012</pubDate>
+            <enclosure url="https://amoblin.googlecode.com/files/Gmusic_v0.2.zip" sparkle:shortVersionString="0.2" sparkle:version="39" length="1299972" type="application/octet-stream" sparkle:dsaSignature="MC4CFQCm1vDWDeUSlrx6h4HdJfQIBb1VTQIVALibr1MrdtUB5nns7OVJgD89hXH8" />
+        </item>
     </channel>
 </rss>

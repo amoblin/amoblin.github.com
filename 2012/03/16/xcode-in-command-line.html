@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Linghua Zhang" />
+    <title>命令行下使用xcode编译工程</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/styles/style.css">
+    <link rel="stylesheet" href="/media/styles/github.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>命令行下使用xcode编译工程</h1>
+        </header>
+        <nav>
+        <span><a title="home page" class="" href="/">home</a></span>
+        <span><a title="tags" class="" href="/tags.html">tags</a></span>
+        <span><a title="blogroll" class="" href="/links.html">links</a></span>
+        <span><a title="subscribe me" class="" href="/atom.xml">feed</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<!-- publish: YES -->
+<p><a class="reference external" href="http://www.kunli.info/2010/09/19/xcode-vim-integration/">http://www.kunli.info/2010/09/19/xcode-vim-integration/</a>  vim中实现xcode，用cocoa.vim</p>
+<p><a class="reference external" href="http://www.hudo.it/index.php?topic=390.0">http://www.hudo.it/index.php?topic=390.0</a> ：列举2套方案</p>
+<p>vim的cocoa插件：cocoa.vim</p>
+<p>自动补 [] 的插件：</p>
+<p>xcode的vim插件：XVim： <a class="reference external" href="https://github.com/JugglerShu/XVim">https://github.com/JugglerShu/XVim</a>  很好很强大</p>
+<p><a class="reference external" href="https://github.com/WarWithinMe/xVim">https://github.com/WarWithinMe/xVim</a> 另一个插件，未安装成功</p>
+<p>虽说Xcode使用起来很方便，但有时候为了快捷也希望能够在终端输入一条命令执行编译，幸好Xcode提供了相关的命令，可以通过它来编译xcode工程。</p>
+<ol class="arabic simple">
+<li>查看环境</li>
+</ol>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> xcodebuild -showsdks
+<span class="generic output">Mac OS X SDKs:
+        Mac OS X 10.6                   -sdk macosx10.6
+        Mac OS X 10.7                   -sdk macosx10.7
+
+iOS SDKs:
+        iOS 5.0                         -sdk iphoneos5.0
+
+iOS Simulator SDKs:
+        Simulator - iOS 4.3             -sdk iphonesimulator4.3
+        Simulator - iOS 5.0             -sdk iphonesimulator5.0</span>
+</pre>
+<ol class="arabic simple">
+<li>编译</li>
+</ol>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> xcodebuild -sdk iphoneos5.0
+</pre>
+<p>还不知道如何通过命令来运行程序，探索中。。。</p>
+<div class="section" id="id1">
+<h2>自动配置</h2>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> gem install choctop
+<span class="generic prompt">%</span> install_choctop .
+<span class="generic output">NOTE: Gem.source_index is deprecated, use Specification. It will be removed on or after 2011-11-01.
+Gem.source_index called from /Users/amoblin/.rvm/gems/ruby-1.9.3-p125/gems/rubigen-1.5.8/lib/rubigen/lookup.rb:284.
+NOTE: Gem::SourceIndex#each is deprecated with no replacement. It will be removed on or after 2011-11-01.
+</span><span class="generic prompt">Gem::SourceIndex#</span>each called from /Users/amoblin/.rvm/gems/ruby-1.9.3-p125/gems/rubigen-1.5.8/lib/rubigen/lookup.rb:284.
+<span class="generic output">      create  appcast/build
+      create  Rakefile
+      create  release_notes.txt
+      create  release_notes_template.html.erb
+      readme  README.normal
+You use choctop with the following rake tasks:
+  rake appcast # Create dmg, update appcast file, and upload to host
+  rake build   # Create/update the appcast file
+  rake dmg     # Create the dmg file for appcasting
+  rake upload  # Upload the dmg and appcast files to the host</span>
+</pre>
+</div>
+</section>
+<section class="meta">
+
+<span class="tags">
+  tagged by 
+  
+</span>
+
+<span class="time">
+  <time datetime="2012-03-16">2012-03-16</time>
+</span>
+</section>
+
+
+        </article>
+        <!-- PingLun.La Begin -->
+        <div id="pinglunla_here"></div><a href="http://pinglun.la/" id="logo-pinglunla">评论啦</a><script type="text/javascript" src="http://static.pinglun.la/md/pinglun.la.js" charset="utf-8"></script>
+        <!-- PingLun.La End -->
+        <div id="copy">&copy; 2012 amoblin | powered by jekyll | themed by <a href="http://lhzhang.com" title="sext ii">sext ii</a></div>
+      </div>
+    </div> <!--! end of #container -->
+  </body>
+</html>

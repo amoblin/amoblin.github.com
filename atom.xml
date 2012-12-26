@@ -4,13 +4,69 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2012-12-26T19:02:27+08:00</updated>
+ <updated>2012-12-27T00:04:09+08:00</updated>
  <id></id>
  <author>
    <name></name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>使用MarkBook发布博客到Jekyll</title>
+   <link href="/2012/12/26/markbook-to-jekyll.html"/>
+   <updated>2012-12-26T00:00:00+08:00</updated>
+   <id>h/2012/12/26/markbook-to-jekyll</id>
+   <content type="html">&lt;!-- Author: your_name --&gt;
+&lt;!-- publish: YES --&gt;
+&lt;p&gt;在新版MarkBook( v1.1(77) 中，增加了将rst文件发布到Jekyll博客的功能。具体使用步骤如下。&lt;/p&gt;
+&lt;div class=&quot;section&quot; id=&quot;id1&quot;&gt;
+&lt;h2&gt;新建笔记&lt;/h2&gt;
+&lt;p&gt;点击左下角 &amp;quot; + &amp;quot; 来新建笔记，输入笔记名称，选择笔记类型为RST。注意输入的笔记名称最好是英文，因为jekyll中文件的路径都是英文的。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
+&lt;h2&gt;编辑笔记&lt;/h2&gt;
+&lt;p&gt;在中栏找到新建的笔记，双击打开进行编辑。对RST类型而言，默认生成的模板内容举例如下：&lt;/p&gt;
+&lt;pre class=&quot;literal-block&quot;&gt;
+  1 =================
+  2 markbook-to-jekyl
+  3 =================
+  4
+  5 .. Author: your_name
+  6 .. title:: 可以是中文名
+  7 .. |date| date:: 2012-12-26
+  8 .. publish:: NO
+
+其中第2行是新建笔记时输入的名字，第7行的日期是当前日期，其他内容是固定的。可以修改第二行和地6行的名称，这里用来显示标题。比如我修改完后是这样的：
+&lt;/pre&gt;
+&lt;pre class=&quot;literal-block&quot;&gt;
+  1 ================================
+  2 使用MarkBook发布rst博客到Jekyll
+  3 ================================
+  4
+  5 .. Author: your_name
+  6 .. title:: 使用MarkBook发布博客到Jekyll
+  7 .. |date| date:: 2012-12-26
+  8 .. publish:: NO
+
+然后就可以继续添加内容了。
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id3&quot;&gt;
+&lt;h2&gt;发布笔记&lt;/h2&gt;
+&lt;p&gt;最后需要发布的时候，修改第8行的publish值为YES，这样就会在~/.MarkBook/source/blogs/my_blog下生成文件：&lt;/p&gt;
+&lt;pre class=&quot;code console literal-block&quot;&gt;
+&lt;span class=&quot;generic prompt&quot;&gt;$&lt;/span&gt; ls ~/.MarkBook/source/blogs/my_blog
+&lt;span class=&quot;generic output&quot;&gt;2012-12-26-markbook-to-jekyll.rst&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;你说我自己的jekyll目录不在这个地方啊，那好办，建一个软链接即可：&lt;/p&gt;
+&lt;pre class=&quot;code console literal-block&quot;&gt;
+&lt;span class=&quot;generic prompt&quot;&gt;$&lt;/span&gt; rm -rf ~/.MarkBook/source/blogs/my_blog
+&lt;span class=&quot;generic prompt&quot;&gt;$&lt;/span&gt; ln -sf /path/to/jekyll/_posts ~/.MarkBook/source/blogs/my_blog
+&lt;/pre&gt;
+&lt;p&gt;没错，本篇博客就是这么发布的！&lt;/p&gt;
+&lt;/div&gt;</content>
+ </entry>
  
  <entry>
    <title>MarkBook发布</title>
@@ -22,9 +78,10 @@
 &lt;!-- MarkBook今天发布了，但现在还是发现了一些问题。 --&gt;
 &lt;!-- 新建笔记后中栏并不显示，你需要点其他目录再点回来才可以看到，当然你也可以不点，在中栏的最后一个笔记的下一个那里双击，也可以打开它。 --&gt;
 &lt;!-- 它在那里了，我们只是看不到。 --&gt;
+&lt;p&gt;(本文昨天晚上写好的，今天晚上才发布，在此期间，实现了 &lt;strong&gt;从MarkBook直接发布博客到jekyll&lt;/strong&gt; 的功能。这个稍后会专门讲解)&lt;/p&gt;
 &lt;p&gt;MarkBook正式发布了，从8月23开始第一个提交到现在，共提交76次，终于拿出了一个基本可用版本。&lt;/p&gt;
-&lt;p&gt;入门手册，可以参见。&lt;/p&gt;
-&lt;div class=&quot;section&quot; id=&quot;id1&quot;&gt;
+&lt;p&gt;入门手册，可以参见 &lt;a class=&quot;reference external&quot; href=&quot;http://amoblin.github.com/2012/12/25/MarkBook-User-Guide.html&quot;&gt;MarkBook用户手册&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
 &lt;h2&gt;MarkBook的来由&lt;/h2&gt;
 &lt;p&gt;用了半年多的Evernote，但我是从Linux转Mac的Vim控，总时不时像按ESC键来切换模式，总感觉光标移动得太慢，跟不上节奏。
 随着Evernote上笔记的增多，启动速度越来越慢，后来我都不忍心打开Evernote了。&lt;/p&gt;
@@ -36,16 +93,16 @@
 &lt;p&gt;我要Evernote的UI，但我不负责编辑，因为Vim会做的更好；我不负责版本控制，冲突解决，云同步，因为Git会做的更好；我不负责带格式，因为有很多置标语言会做的更好。我只负责一件事，就是组织笔记，展示笔记，这方面，Sparrow，Reeder，Evernote，都做的很好。&lt;/p&gt;
 &lt;p&gt;所以MarkBook诞生了。&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
+&lt;div class=&quot;section&quot; id=&quot;id3&quot;&gt;
 &lt;h2&gt;MarkBook素描&lt;/h2&gt;
 &lt;p&gt;它有类似Sparrow/Reeder/Evernote的三栏式布局，以最完美的姿态来做内容展示：左栏是笔记分类，中栏是笔记缩略图，右栏是笔记全视图。&lt;/p&gt;
 &lt;p&gt;双击中栏，会调用编辑器来打开笔记进行编辑。当保存修改后，MarkBook会检测到文件的改动，立刻更新视图内容。&lt;/p&gt;
 &lt;p&gt;甚至，你不用在UI上操作，直接在MarkBook笔记目录里进行CLI操作，MarkBook都会同步更新。&lt;/p&gt;
 &lt;p&gt;你用它来记笔记，像现在在Evernote里做的一样，但你不用担心打开缓慢，也不用担心数据安全隐私问题，文件冲突问题。&lt;/p&gt;
 &lt;p&gt;不仅可以用来记笔记，也可以发博客。&lt;/p&gt;
-&lt;p&gt;现在越来越多人从wp赚到了jekyll/Octopress，使用markdown的人也越来越多。通过MarkBook的导入功能，可以将已有博客文章导入到MarkBook中进行管理。&lt;/p&gt;
+&lt;p&gt;现在越来越多人从wp转到了jekyll/Octopress，使用markdown的人也越来越多。通过MarkBook的导入功能，可以将已有博客文章导入到MarkBook中进行管理。&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id3&quot;&gt;
+&lt;div class=&quot;section&quot; id=&quot;id4&quot;&gt;
 &lt;h2&gt;未来展望&lt;/h2&gt;
 &lt;p&gt;现在这个版本还是很基础的，只有基本功能，如笔记的增删改。还有很多有待完善。&lt;/p&gt;
 &lt;ul class=&quot;simple&quot;&gt;
@@ -87,9 +144,9 @@
 &lt;!-- publish: YES --&gt;
 &lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
 &lt;h2&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id10&quot;&gt;MarkBook是什么？&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;MarkBook是用来管理置标语言文件的，目前支持RestructuredText和markdown文件，后续会加入Ascii，wiki等的支持。&lt;/p&gt;
-&lt;p&gt;通过像类似EverNote的界面来管理，组织markup文件，实时更新显示html输出页面。&lt;/p&gt;
-&lt;p&gt;自动发布博客到Octopress站点。&lt;/p&gt;
+&lt;p&gt;MarkBook是用来管理置标语言文件的，目前支持reStructuredText和Markdown文件，后续会加入Ascii，wiki等的支持。&lt;/p&gt;
+&lt;p&gt;通过像类似Evernote的界面来管理，组织Markup文件，实时更新显示HTML输出页面。&lt;/p&gt;
+&lt;p&gt;自动发布博客到Jekyll/Octopress站点。&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;section&quot; id=&quot;id3&quot;&gt;
 &lt;h2&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id11&quot;&gt;使用MarkBook&lt;/a&gt;&lt;/h2&gt;
@@ -180,7 +237,7 @@
 &lt;/div&gt;
 &lt;div class=&quot;section&quot; id=&quot;markdown&quot;&gt;
 &lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id22&quot;&gt;markdown版欢迎页&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;由于amoblin一直用rst，不熟悉makrdown，所以本说明文档是rst格式的，希望有擅长markdown者写一篇markdown版的，不胜感激。&lt;/p&gt;
+&lt;p&gt;由于amoblin一直用rst，不熟悉markdown，所以本说明文档是rst格式的，希望有擅长markdown者写一篇markdown版的，不胜感激。&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;</content>
  </entry>
@@ -288,6 +345,42 @@ git reset HEAD^&lt;/p&gt;
 &lt;/pre&gt;
 &lt;p&gt;果然！&lt;/p&gt;
 &lt;/div&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>octopress站点集锦</title>
+   <link href="/2012/08/27/beautiful-Octopress-sites.html"/>
+   <updated>2012-08-27T00:00:00+08:00</updated>
+   <id>h/2012/08/27/beautiful-Octopress-sites</id>
+   <content type="html">&lt;!-- publish: YES --&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://mrzhang.me&quot;&gt;http://mrzhang.me&lt;/a&gt;  using Mac&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://zonyitoo.github.com&quot;&gt;http://zonyitoo.github.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.leezhong.com&quot;&gt;http://blog.leezhong.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://tinyxd.me&quot;&gt;http://tinyxd.me&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.eddie.com.tw/2012/01/06/heroku-the-best-cloud-platform-on-ruby-language/&quot;&gt;http://blog.eddie.com.tw/2012/01/06/heroku-the-best-cloud-platform-on-ruby-language/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://octopress.org/docs/deploying/heroku/&quot;&gt;http://octopress.org/docs/deploying/heroku/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://opoo.org/o/octopress/&quot;&gt;http://opoo.org/o/octopress/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://cocoa.venj.me/&quot;&gt;http://cocoa.venj.me/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://chen.yanping.me/cn/blog/2012/03/13/pandoc/&quot;&gt;http://chen.yanping.me/cn/blog/2012/03/13/pandoc/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://yihui.name/cn/&quot;&gt;http://yihui.name/cn/&lt;/a&gt; 谢益辉&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://aurora1625.github.com/blog/2012/03/08/de-di-de/&quot;&gt;http://aurora1625.github.com/blog/2012/03/08/de-di-de/&lt;/a&gt; under Mac&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://imwuyu.me/blog/octopress-deploying-to-github-pages.html/&quot;&gt;http://imwuyu.me/blog/octopress-deploying-to-github-pages.html/&lt;/a&gt; Mac&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://newbsd.com/blog/2012/03/19/my-first-try-install-octopress-on-my-mac-os-x-lion-10-dot-7-3-and-some-thing-stuff/&quot;&gt;http://newbsd.com/blog/2012/03/19/my-first-try-install-octopress-on-my-mac-os-x-lion-10-dot-7-3-and-some-thing-stuff/&lt;/a&gt; Mac&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://www.xiaoche.me/blog/2012/01/18/install-octopress/&quot;&gt;http://www.xiaoche.me/blog/2012/01/18/install-octopress/&lt;/a&gt; Mac&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://fedcuit.github.com/blog/2012/08/02/config-octopress-on-mac/&quot;&gt;http://fedcuit.github.com/blog/2012/08/02/config-octopress-on-mac/&lt;/a&gt; Mac&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://sfufoet.github.com/blog/2012/03/19/mac-an-zhuang-ruby-jian-ji/&quot;&gt;http://sfufoet.github.com/blog/2012/03/19/mac-an-zhuang-ruby-jian-ji/&lt;/a&gt; Mac&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.visioncan.com/2011/install-octopress/&quot;&gt;http://blog.visioncan.com/2011/install-octopress/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://gibuloto.com/blog/install-octopress-with-ruby-1-dot-9-3/&quot;&gt;http://gibuloto.com/blog/install-octopress-with-ruby-1-dot-9-3/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://roshanca.com/2012/03/11/macosx-octopress/&quot;&gt;http://roshanca.com/2012/03/11/macosx-octopress/&lt;/a&gt; Hackinstonsh&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://tnki.info/blog/2012/06/30/set-up-octopress-on-mac-os-lion/&quot;&gt;http://tnki.info/blog/2012/06/30/set-up-octopress-on-mac-os-lion/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.neten.de/posts/2012/08/02/mac-octopress-ioerror-invalid-python-installation/&quot;&gt;http://blog.neten.de/posts/2012/08/02/mac-octopress-ioerror-invalid-python-installation/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://evsseny.appspot.com/2012/03/30/Octopress-blog-install.html&quot;&gt;http://evsseny.appspot.com/2012/03/30/Octopress-blog-install.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://colors4.us/blog/2012/01/08/octopressbo-ke-cong-ling-kai-shi-iii/&quot;&gt;http://colors4.us/blog/2012/01/08/octopressbo-ke-cong-ling-kai-shi-iii/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://lucifr.com/about/&quot;&gt;http://lucifr.com/about/&lt;/a&gt; 主题很酷！&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://jokry.com/blog/2012/03/08/octopress/&quot;&gt;http://jokry.com/blog/2012/03/08/octopress/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.eddie.com.tw/2012/04/21/screencast-0-vim-and-my-working-environment/&quot;&gt;http://blog.eddie.com.tw/2012/04/21/screencast-0-vim-and-my-working-environment/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://itspg.github.com/blog/2012/04/06/more-octopress/&quot;&gt;http://itspg.github.com/blog/2012/04/06/more-octopress/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://dayuan.im/blog/add-category-list-for-octopress.html/&quot;&gt;http://dayuan.im/blog/add-category-list-for-octopress.html/&lt;/a&gt; Mac ,beijing&lt;/p&gt;</content>
  </entry>
  
  <entry>
@@ -580,6 +673,65 @@ Press ENTER or type command to continue&lt;/span&gt;
 &lt;h2&gt;Node.js绑定&lt;/h2&gt;
 &lt;pre class=&quot;code console literal-block&quot;&gt;
 &lt;span class=&quot;generic prompt&quot;&gt;$&lt;/span&gt; npm install zmq
+&lt;/pre&gt;
+&lt;/div&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>命令行下使用xcode编译工程</title>
+   <link href="/2012/03/16/xcode-in-command-line.html"/>
+   <updated>2012-03-16T00:00:00+08:00</updated>
+   <id>h/2012/03/16/xcode-in-command-line</id>
+   <content type="html">&lt;!-- publish: YES --&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://www.kunli.info/2010/09/19/xcode-vim-integration/&quot;&gt;http://www.kunli.info/2010/09/19/xcode-vim-integration/&lt;/a&gt;  vim中实现xcode，用cocoa.vim&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://www.hudo.it/index.php?topic=390.0&quot;&gt;http://www.hudo.it/index.php?topic=390.0&lt;/a&gt; ：列举2套方案&lt;/p&gt;
+&lt;p&gt;vim的cocoa插件：cocoa.vim&lt;/p&gt;
+&lt;p&gt;自动补 [] 的插件：&lt;/p&gt;
+&lt;p&gt;xcode的vim插件：XVim： &lt;a class=&quot;reference external&quot; href=&quot;https://github.com/JugglerShu/XVim&quot;&gt;https://github.com/JugglerShu/XVim&lt;/a&gt;  很好很强大&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://github.com/WarWithinMe/xVim&quot;&gt;https://github.com/WarWithinMe/xVim&lt;/a&gt; 另一个插件，未安装成功&lt;/p&gt;
+&lt;p&gt;虽说Xcode使用起来很方便，但有时候为了快捷也希望能够在终端输入一条命令执行编译，幸好Xcode提供了相关的命令，可以通过它来编译xcode工程。&lt;/p&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;查看环境&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&quot;code console literal-block&quot;&gt;
+&lt;span class=&quot;generic prompt&quot;&gt;$&lt;/span&gt; xcodebuild -showsdks
+&lt;span class=&quot;generic output&quot;&gt;Mac OS X SDKs:
+        Mac OS X 10.6                   -sdk macosx10.6
+        Mac OS X 10.7                   -sdk macosx10.7
+
+iOS SDKs:
+        iOS 5.0                         -sdk iphoneos5.0
+
+iOS Simulator SDKs:
+        Simulator - iOS 4.3             -sdk iphonesimulator4.3
+        Simulator - iOS 5.0             -sdk iphonesimulator5.0&lt;/span&gt;
+&lt;/pre&gt;
+&lt;ol class=&quot;arabic simple&quot;&gt;
+&lt;li&gt;编译&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&quot;code console literal-block&quot;&gt;
+&lt;span class=&quot;generic prompt&quot;&gt;$&lt;/span&gt; xcodebuild -sdk iphoneos5.0
+&lt;/pre&gt;
+&lt;p&gt;还不知道如何通过命令来运行程序，探索中。。。&lt;/p&gt;
+&lt;div class=&quot;section&quot; id=&quot;id1&quot;&gt;
+&lt;h2&gt;自动配置&lt;/h2&gt;
+&lt;pre class=&quot;code console literal-block&quot;&gt;
+&lt;span class=&quot;generic prompt&quot;&gt;$&lt;/span&gt; gem install choctop
+&lt;span class=&quot;generic prompt&quot;&gt;%&lt;/span&gt; install_choctop .
+&lt;span class=&quot;generic output&quot;&gt;NOTE: Gem.source_index is deprecated, use Specification. It will be removed on or after 2011-11-01.
+Gem.source_index called from /Users/amoblin/.rvm/gems/ruby-1.9.3-p125/gems/rubigen-1.5.8/lib/rubigen/lookup.rb:284.
+NOTE: Gem::SourceIndex#each is deprecated with no replacement. It will be removed on or after 2011-11-01.
+&lt;/span&gt;&lt;span class=&quot;generic prompt&quot;&gt;Gem::SourceIndex#&lt;/span&gt;each called from /Users/amoblin/.rvm/gems/ruby-1.9.3-p125/gems/rubigen-1.5.8/lib/rubigen/lookup.rb:284.
+&lt;span class=&quot;generic output&quot;&gt;      create  appcast/build
+      create  Rakefile
+      create  release_notes.txt
+      create  release_notes_template.html.erb
+      readme  README.normal
+You use choctop with the following rake tasks:
+  rake appcast # Create dmg, update appcast file, and upload to host
+  rake build   # Create/update the appcast file
+  rake dmg     # Create the dmg file for appcasting
+  rake upload  # Upload the dmg and appcast files to the host&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;</content>
  </entry>

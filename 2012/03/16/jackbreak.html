@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="Linghua Zhang" />
-    <title>iPhone越狱之后。。。</title>
+    <title>Iphone越狱。。。</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
     <link rel="stylesheet" href="/media/styles/style.css">
@@ -17,7 +17,7 @@
     <div id="container">
       <div id="main" role="main">
         <header>
-        <h1>iPhone越狱之后。。。</h1>
+        <h1>Iphone越狱。。。</h1>
         </header>
         <nav>
         <span><a title="home page" class="" href="/">home</a></span>
@@ -27,8 +27,53 @@
         </nav>
         <article class="content">
         <section class="post">
+<!-- publish: YES -->
+<div class="section" id="ios6">
+<h2>iOS6不完美越狱</h2>
+<p><a class="reference external" href="http://cn.ibtimes.com/artnews/14624/20120920/ios6-jailbreak-cydia-install.htm">http://cn.ibtimes.com/artnews/14624/20120920/ios6-jailbreak-cydia-install.htm</a></p>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> wget -q http://downloads.kr1sis.net/cyinstall.sh
+</pre>
+<p>2012-09-20 21:54</p>
+<p>越狱前准备工作：</p>
+<ol class="arabic simple" start="0">
+<li>下载安装tiny umbrella和redsn0w。</li>
+</ol>
+<p>1.备份shsh。使用小雨伞或红雪备份。</p>
+<p>2.备份数据：照片，通讯录，短信等。连接itunes，右键iphone设备，点“备份”。</p>
+<ol class="arabic" start="3">
+<li><dl class="first docutils">
+<dt>了解iphone状态：</dt>
+<dd><p class="first last">DFU模式：Power键3秒；接着不松开Power，同时按Home键，大约15秒；松开Power，继续按着Home键，大约15秒。
+恢复模式：</p>
+</dd>
+</dl>
+</li>
+</ol>
+<p>DFU模式
+如果你的手机固件已经出现问题需重刷，并且itunes也无法识别iphone,不用急，你只要同时按下Power + Home按键，保持10秒钟左右 当屏幕黑了以后 松开Power键，但不要松开Home键，这时候屏幕仍然是黑的，启动iTunes（别松开Home键），iTunes会检测到iPhone处于恢复模式（出现提示窗口），现在可以松开Home键了。这时按着SHIFT键点ITUNES的恢复，选择你所下载的固件版本。和上面步骤就一样了。&quot;</p>
+<p>越狱：</p>
+<p>使用红雪0.9.10b3，点击JackbreakMe，然后关机。</p>
+<p>进到DFU模式。</p>
+<p>越狱完：</p>
+<p>进入Cydia，添加软件源：</p>
+<p>appsync：　<a class="reference external" href="http://cydia.hackulo.us">http://cydia.hackulo.us</a></p>
+<p>178源     <a class="reference external" href="http://apt.178.com/">http://apt.178.com/</a></p>
+<p>iOS开发：</p>
+<p><a class="reference external" href="https://developer.apple.com/downloads/download.action?path=Developer_Tools/xcode_4.2.1_for_lion/xcode_4.2.1_for_lion.dmg">https://developer.apple.com/downloads/download.action?path=Developer_Tools/xcode_4.2.1_for_lion/xcode_4.2.1_for_lion.dmg</a></p>
+<p>下载需要Apple ID。</p>
+<p>udid：4de5047c9db13de80452c481db9c8b65b1b0a954</p>
+<p>升级系统：</p>
+<p>备份数据：</p>
+<p>momento
+clear
+cydia+openbackup备份</p>
+<p>option键 + 恢复按钮，选择ipws文件，进行升级</p>
+<p>iphone无法开机了，怎么办？</p>
+<p>假死现象很常见，也很好解决。</p>
+<p>按住HOME+POWER 20s之后就可以重启了</p>
+<p>在固件刷完之后，如果你想要回当前设备的备份请选择恢复备份，不要选择设置为一个新的设备。</p>
 <ol class="arabic simple">
-<li>安装openssh</li>
 <li>配置安全性</li>
 </ol>
 <ul class="simple">
@@ -40,18 +85,89 @@
 <li>解决cydia添加源闪退:</li>
 </ol>
 <p>ssh登陆iphone，执行如下操作：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">#</span> ls /var/root/Library/<br/><span style="color: #808080">AddressBook  Caches  Cookies  Lockdown  Logs  Mail  Preferences  WebKit</span><br/><span style="color: #000080; font-weight: bold">#</span> cp -r /User/Library/Keyboard/ /var/root/Library/<br/></pre></div>
+<pre class="code console literal-block">
+<span class="generic prompt">#</span> ls /var/root/Library/
+<span class="generic output">AddressBook  Caches  Cookies  Lockdown  Logs  Mail  Preferences  WebKit
+</span><span class="generic prompt">#</span> cp -r /User/Library/Keyboard/ /var/root/Library/
+</pre>
 <ol class="arabic simple">
 <li>添加国内178源：</li>
 </ol>
 <p><a class="reference external" href="http://apt.178.com">http://apt.178.com</a></p>
 <p>感觉178源靠谱点。</p>
-<ol class="arabic simple">
-<li>安装软件</li>
-</ol>
 <ul class="simple">
 <li>Zephyr。这个必装，上划退出这个功能太方便了！ 不过和SBSettings冲突，要安装的化最好卸载SBSettings。</li>
+<li>AppSync</li>
 </ul>
+</div>
+<div class="section" id="iosunix">
+<h2>iOS中Unix环境配置</h2>
+<div class="section" id="ssh">
+<h3>使用ssh登陆系统</h3>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> ssh root&#64;192.168.2.2
+</pre>
+<p>初始密码为alpine，最好修改一下。</p>
+</div>
+<div class="section" id="id1">
+<h3>添加178源</h3>
+<pre class="code console literal-block">
+<span class="generic prompt">#</span> <span class="name builtin">echo</span> <span class="literal string double">&quot;deb http://apt.178.com/ ./&quot;</span> &gt;&gt; /etc/apt/sources.list.d/cydia.list
+<span class="generic prompt">#</span> apt-get update
+</pre>
+<ol class="arabic simple">
+<li>安装aptitude：</li>
+</ol>
+<pre class="code console literal-block">
+<span class="generic prompt">#</span> apt-get install aptitude
+</pre>
+<ol class="arabic simple">
+<li>使用aptitude搜索软件包：</li>
+</ol>
+<pre class="code console literal-block">
+<span class="generic prompt">#</span> aptitude search zephyr
+</pre>
+<p>Linux/Unix用户必备工具：</p>
+<pre class="code console literal-block">
+<span class="generic prompt">#</span> apt-get install sudo less vim git python screen zsh
+</pre>
+<p>iPhone必备软件(Zephyr, NcSettings, KuaiDial)：</p>
+<pre class="code console literal-block">
+<span class="generic prompt">#</span> apt-get install zephyr.178 com.jamied360.ncsettings kuaidial-beta.178
+</pre>
+<p>开发工具集：</p>
+<p>aptitude
+adv-cmds
+basic-cmds
+bootstrap-cmds
+coreutils
+developer-cmds
+file-cmds
+network-cmds
+shell-cmds
+system-cmds
+inetutils</p>
+<p>通过命令行发短信：</p>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> sudo apt-get install sendsms
+</pre>
+</div>
+</div>
+<div class="section" id="ios">
+<h2>iOS中常用命令</h2>
+<ol class="arabic simple">
+<li>重启SpringBoard</li>
+</ol>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> sudo sbreload
+</pre>
+<ol class="arabic simple">
+<li>重启iphone</li>
+</ol>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> sudo reboot
+</pre>
+</div>
 </section>
 <section class="meta">
 

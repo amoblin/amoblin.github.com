@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="Linghua Zhang" />
-    <title>leveldb学习笔记</title>
+    <title>leveldb学习</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
     <link rel="stylesheet" href="/media/styles/style.css">
@@ -17,7 +17,7 @@
     <div id="container">
       <div id="main" role="main">
         <header>
-        <h1>leveldb学习笔记</h1>
+        <h1>leveldb学习</h1>
         </header>
         <nav>
         <span><a title="home page" class="" href="/">home</a></span>
@@ -27,6 +27,7 @@
         </nav>
         <article class="content">
         <section class="post">
+<!-- publish: YES -->
 <div class="section" id="id1">
 <h2>服务器构架</h2>
 <p>前端有一级缓存L1</p>
@@ -179,13 +180,31 @@ uint32类型，4字节，文件头偏移量13字节。</p>
 <div class="section" id="id10">
 <h4>初始化数据库</h4>
 <p>假设有如下Python操作：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">leveldb</span><br/><span style="color: #666666">&gt;&gt;&gt;</span> db <span style="color: #666666">=</span> leveldb<span style="color: #666666">.</span>LevelDB(<span style="color: #BA2121">&#39;./data&#39;</span>)<br/></pre></div>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="keyword namespace">import</span> <span class="name namespace">leveldb</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">db</span> <span class="operator">=</span> <span class="name">leveldb</span><span class="operator">.</span><span class="name">LevelDB</span><span class="punctuation">(</span><span class="literal string">'./data'</span><span class="punctuation">)</span>
+</pre>
 <p>假设当前目录下没有data子目录。leveldb会创建data目录，初始化如下文件：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin   0 2011-12-09 09:52 000003.log</span><br/><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin  16 2011-12-09 09:52 CURRENT</span><br/><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin   0 2011-12-09 09:52 LOCK</span><br/><span style="color: #808080">-rw-rw-r-- 1 amoblin amoblin  53 2011-12-09 09:52 LOG</span><br/><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin 64K 2011-12-09 09:52 MANIFEST-000002</span><br/></pre></div>
+<pre class="code console literal-block">
+<span class="generic output">-rw-r--r-- 1 amoblin amoblin   0 2011-12-09 09:52 000003.log
+-rw-r--r-- 1 amoblin amoblin  16 2011-12-09 09:52 CURRENT
+-rw-r--r-- 1 amoblin amoblin   0 2011-12-09 09:52 LOCK
+-rw-rw-r-- 1 amoblin amoblin  53 2011-12-09 09:52 LOG
+-rw-r--r-- 1 amoblin amoblin 64K 2011-12-09 09:52 MANIFEST-000002</span>
+</pre>
 <p>000003.log为待写文件，后续Put，Delete等操作会将记录保存至此。</p>
 <p>CURRENT内容为MANIFEST文件名，初始时MANIFEST版本为2，即MANIFEST-000002。为什么不是1呢？看接下来的LOG文件。</p>
 <p>LOG文件内容如下：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">2011/12/09-09:52:33.951468 b770d6c0 Delete type=3 #1<br/></pre></div>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">&lt;string&gt;</tt>, line 212)</p>
+<p>Cannot analyze code. No Pygments lexer found for &quot;log&quot;.</p>
+<pre class="literal-block">
+.. code-block:: log
+
+    2011/12/09-09:52:33.951468 b770d6c0 Delete type=3 #1
+
+</pre>
+</div>
 <p>第一列是创建时间，第二列b770d6c0不知何意。Delete代表删除操作。</p>
 <p>type=3，说明是MANIFEST文件，#1是版本号。</p>
 <p>即删除了MANIFEST-000001文件。所以现存的是MANIFEST-000002文件。</p>
@@ -194,11 +213,20 @@ uint32类型，4字节，文件头偏移量13字节。</p>
 <div class="section" id="put">
 <h4>Put数据</h4>
 <p>接着上面的交互：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> db<span style="color: #666666">.</span>Put(<span style="color: #BA2121">&#39;cba&#39;</span>, <span style="color: #BA2121">&#39;abcd&#39;</span>)<br/></pre></div>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">db</span><span class="operator">.</span><span class="name">Put</span><span class="punctuation">(</span><span class="literal string">'cba'</span><span class="punctuation">,</span> <span class="literal string">'abcd'</span><span class="punctuation">)</span>
+</pre>
 <p>这时操作内容被追加到000005.log文件，使其大小由0变为64KB：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin 64K 2011-12-09 10:20 000005.log</span><br/></pre></div>
+<pre class="code console literal-block">
+<span class="generic output">-rw-r--r-- 1 amoblin amoblin 64K 2011-12-09 10:20 000005.log</span>
+</pre>
 <p>查看其内容</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> od -A d -t x1 000003.log<br/><span style="color: #808080">0000000 57 c6 a2 f2 16 00 01 01 00 00 00 00 00 00 00 01</span><br/><span style="color: #808080">0000016 00 00 00 01 03 63 62 61 04 61 62 63 64</span><br/><span style="color: #808080">0000029</span><br/></pre></div>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> od -A d -t x1 000003.log
+<span class="generic output">0000000 57 c6 a2 f2 16 00 01 01 00 00 00 00 00 00 00 01
+0000016 00 00 00 01 03 63 62 61 04 61 62 63 64
+0000029</span>
+</pre>
 <p>循环校验码从第1行倒数第3个数值00开始，到第2行第1个00为止，共4字节。</p>
 <p>接着2字节是length，为0.</p>
 <p>接着1字节是type，这里为1，表示接下来的data包含全部内容，并未分片。</p>
@@ -211,12 +239,35 @@ uint32类型，4字节，文件头偏移量13字节。</p>
 <div class="section" id="id11">
 <h4>再次打开数据库</h4>
 <p>如果打开当前数据库：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> db <span style="color: #666666">=</span> leveldb<span style="color: #666666">.</span>LevelDB(<span style="color: #BA2121">&#39;./data&#39;</span>)<br/></pre></div>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">db</span> <span class="operator">=</span> <span class="name">leveldb</span><span class="operator">.</span><span class="name">LevelDB</span><span class="punctuation">(</span><span class="literal string">'./data'</span><span class="punctuation">)</span>
+</pre>
 <p>查看文件变化情况：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin 119 2011-12-09 10:37 000005.sst</span><br/><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin   0 2011-12-09 10:37 000006.log</span><br/><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin  16 2011-12-09 10:37 CURRENT</span><br/><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin   0 2011-12-09 10:37 LOCK</span><br/><span style="color: #808080">-rw-rw-r-- 1 amoblin amoblin 289 2011-12-09 10:37 LOG</span><br/><span style="color: #808080">-rw-rw-r-- 1 amoblin amoblin  53 2011-12-09 10:37 LOG.old</span><br/><span style="color: #808080">-rw-r--r-- 1 amoblin amoblin 64K 2011-12-09 10:37 MANIFEST-000004</span><br/></pre></div>
+<pre class="code console literal-block">
+<span class="generic output">-rw-r--r-- 1 amoblin amoblin 119 2011-12-09 10:37 000005.sst
+-rw-r--r-- 1 amoblin amoblin   0 2011-12-09 10:37 000006.log
+-rw-r--r-- 1 amoblin amoblin  16 2011-12-09 10:37 CURRENT
+-rw-r--r-- 1 amoblin amoblin   0 2011-12-09 10:37 LOCK
+-rw-rw-r-- 1 amoblin amoblin 289 2011-12-09 10:37 LOG
+-rw-rw-r-- 1 amoblin amoblin  53 2011-12-09 10:37 LOG.old
+-rw-r--r-- 1 amoblin amoblin 64K 2011-12-09 10:37 MANIFEST-000004</span>
+</pre>
 <p>CURRENT内容变为MANIFEST-000004。</p>
 <p>LOG文件内容如下：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">2011/12/09-10:37:43.285941 b770d6c0 Recovering log #3<br/>2011/12/09-10:37:43.286160 b770d6c0 Level-0 table #5: started<br/>2011/12/09-10:37:43.288104 b770d6c0 Level-0 table #5: 119 bytes OK<br/>2011/12/09-10:37:43.291572 b770d6c0 Delete type=3 #2<br/>2011/12/09-10:37:43.291636 b770d6c0 Delete type=0 #3<br/></pre></div>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">&lt;string&gt;</tt>, line 289)</p>
+<p>Cannot analyze code. No Pygments lexer found for &quot;log&quot;.</p>
+<pre class="literal-block">
+.. code-block:: log
+
+    2011/12/09-10:37:43.285941 b770d6c0 Recovering log #3
+    2011/12/09-10:37:43.286160 b770d6c0 Level-0 table #5: started
+    2011/12/09-10:37:43.288104 b770d6c0 Level-0 table #5: 119 bytes OK
+    2011/12/09-10:37:43.291572 b770d6c0 Delete type=3 #2
+    2011/12/09-10:37:43.291636 b770d6c0 Delete type=0 #3
+
+</pre>
+</div>
 <p>从系统日志可以看出，leveldb做了3件事：</p>
 <ul>
 <li><p class="first">执行上次的操作</p>
@@ -232,7 +283,18 @@ uint32类型，4字节，文件头偏移量13字节。</p>
 </ul>
 <p>新文件LOG.old存放上次的LOG文件内容。</p>
 <p>查看000005.sst文件</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> od -A d -t x1 000005.sst<br/><span style="color: #808080">0000000 00 0b 04 63 62 61 01 01 00 00 00 00 00 00 61 62</span><br/><span style="color: #808080">0000016 63 64 00 00 00 00 01 00 00 00 00 e2 3a b7 8c 00</span><br/><span style="color: #808080">0000032 00 00 00 01 00 00 00 00 c0 f2 a1 b0 00 09 02 64</span><br/><span style="color: #808080">0000048 01 ff ff ff ff ff ff ff 00 1a 00 00 00 00 01 00</span><br/><span style="color: #808080">0000064 00 00 00 c9 e4 dd 23 1f 08 2c 16 00 00 00 00 00</span><br/><span style="color: #808080">0000080 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</span><br/><span style="color: #808080">0000096 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 57</span><br/><span style="color: #808080">0000112 fb 80 8b 24 75 47 db</span><br/><span style="color: #808080">0000119</span><br/></pre></div>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> od -A d -t x1 000005.sst
+<span class="generic output">0000000 00 0b 04 63 62 61 01 01 00 00 00 00 00 00 61 62
+0000016 63 64 00 00 00 00 01 00 00 00 00 e2 3a b7 8c 00
+0000032 00 00 00 01 00 00 00 00 c0 f2 a1 b0 00 09 02 64
+0000048 01 ff ff ff ff ff ff ff 00 1a 00 00 00 00 01 00
+0000064 00 00 00 c9 e4 dd 23 1f 08 2c 16 00 00 00 00 00
+0000080 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0000096 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 57
+0000112 fb 80 8b 24 75 47 db
+0000119</span>
+</pre>
 <p>最后48字节是Footer，固定长度。其中从1f开始的40字节是索引。最后8字节是魔数。</p>
 <p>索引不足40字节的话补0。上面的索引数据是 1f 08 2c 16。</p>
 </div>
@@ -288,7 +350,15 @@ uint32类型，4字节，文件头偏移量13字节。</p>
 <p>有两个实现：py-leveldb和cpy-leveldb。</p>
 <p>cpy-leveldb安装：
 首先配置编译环境：libtool, automake,</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">cd </span>snappy<br/><span style="color: #000080; font-weight: bold">$</span> ./autogen.sh<br/><span style="color: #000080; font-weight: bold">$</span> ./configure<br/><span style="color: #000080; font-weight: bold">$</span> make<br/><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">cd</span> ..<br/><span style="color: #000080; font-weight: bold">$</span> make -C leveldb<br/><span style="color: #000080; font-weight: bold">$</span> sudo python setup.py build<br/></pre></div>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> <span class="name builtin">cd </span>snappy
+<span class="generic prompt">$</span> ./autogen.sh
+<span class="generic prompt">$</span> ./configure
+<span class="generic prompt">$</span> make
+<span class="generic prompt">$</span> <span class="name builtin">cd</span> ..
+<span class="generic prompt">$</span> make -C leveldb
+<span class="generic prompt">$</span> sudo python setup.py build
+</pre>
 </div>
 </section>
 <section class="meta">

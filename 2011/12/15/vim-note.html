@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Linghua Zhang" />
+    <title>vim技巧</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/styles/style.css">
+    <link rel="stylesheet" href="/media/styles/github.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>vim技巧</h1>
+        </header>
+        <nav>
+        <span><a title="home page" class="" href="/">home</a></span>
+        <span><a title="tags" class="" href="/tags.html">tags</a></span>
+        <span><a title="blogroll" class="" href="/links.html">links</a></span>
+        <span><a title="subscribe me" class="" href="/atom.xml">feed</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<!-- id: 14 -->
+<!-- publish: YES -->
+<p>保存一个只有root可以写的文件</p>
+<pre class="code console literal-block">
+<span class="generic output">:w !sudo tee %</span>
+</pre>
+<p>键盘映射：</p>
+<p>编译选项：
+--disable-gui     不编译Gvim
+--enable-cscope     使用cscope
+--enable-multibyte     多字节（支持中文）
+--enable-gdb     支持gdb</p>
+<p>quickfix使用：</p>
+<ul class="simple">
+<li>:cc     显示详细错误信息</li>
+<li>:cp     跳到上一个错误</li>
+<li>:cn     跳到下一个错误</li>
+<li>:cw     打开quickfix窗口</li>
+</ul>
+<p>statusline配置：</p>
+<ul class="simple">
+<li>-     左对齐。默认右对齐</li>
+<li>m     是否修改的标记，修改的用[+]表示</li>
+<li>双引号时，转义，单引号不转义。</li>
+</ul>
+<div class="section" id="id1">
+<h2>好用不常用快捷键</h2>
+<ul class="simple">
+<li>zz  当前行居中</li>
+<li>zt  当前行置顶</li>
+<li>zb  当前行置底</li>
+<li>H   至屏幕顶行</li>
+<li>M   至屏幕中央</li>
+<li>L   至屏幕底行</li>
+<li>ma  标记当前位置为a</li>
+<li>’a  跳到a标记处</li>
+</ul>
+<p>删除行尾空格  :1,$s/[ ]*$//g</p>
+<p>删除匹配行 :g/table/d</p>
+<p>插件：</p>
+<p>Tlist</p>
+<ol class="arabic simple">
+<li>查看光标处系统函数man手册：</li>
+</ol>
+<pre class="code console literal-block">
+<span class="generic output">shift + k</span>
+</pre>
+<ol class="arabic simple" start="2">
+<li>c代码折叠</li>
+</ol>
+<p>对于如下风格的c代码：</p>
+<pre class="code c literal-block">
+<span class="keyword type">void</span> <span class="name function">test</span><span class="punctuation">()</span> <span class="punctuation">{</span>
+
+    <span class="keyword">if</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">)</span> <span class="punctuation">{</span>
+        <span class="name">printf</span><span class="punctuation">(</span><span class="literal string">&quot;hello</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="punctuation">);</span>
+    <span class="punctuation">}</span> <span class="keyword">else</span> <span class="punctuation">{</span>
+        <span class="name">printf</span><span class="punctuation">(</span><span class="literal string">&quot;you should never see this.</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="punctuation">);</span>
+    <span class="punctuation">}</span>
+
+    <span class="keyword">switch</span><span class="punctuation">(</span><span class="name">ch</span><span class="punctuation">)</span> <span class="punctuation">{</span>
+        <span class="keyword">case</span> <span class="literal string char">'a'</span>:
+            <span class="name">printf</span><span class="punctuation">(</span><span class="literal string">&quot;hello</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="punctuation">);</span>
+            <span class="keyword">break</span><span class="punctuation">;</span>
+        <span class="name label">default:</span>
+            <span class="name">printf</span><span class="punctuation">(</span><span class="literal string">&quot;hello</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="punctuation">);</span>
+            <span class="keyword">break</span><span class="punctuation">;</span>
+    <span class="punctuation">}</span>
+
+    <span class="keyword">while</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">)</span> <span class="punctuation">{</span>
+        <span class="keyword">if</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">)</span> <span class="punctuation">{</span>
+            <span class="keyword">break</span><span class="punctuation">;</span>
+        <span class="punctuation">}</span>
+        <span class="name">printf</span><span class="punctuation">(</span><span class="literal string">&quot;you should never see this.</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="punctuation">);</span>
+    <span class="punctuation">}</span>
+<span class="punctuation">}</span>
+</pre>
+<p>折叠结果如下：</p>
+<pre class="code c literal-block">
+ <span class="literal number integer">1</span> <span class="keyword type">void</span> <span class="name function">test</span><span class="punctuation">()</span> <span class="punctuation">{</span>
+ <span class="literal number integer">2</span>
+ <span class="literal number integer">3</span> <span class="operator">+---</span>  <span class="literal number integer">2</span> <span class="error">行</span><span class="operator">:</span> <span class="keyword">if</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">)</span> <span class="punctuation">{</span><span class="operator">---------------------------------------------------</span>
+ <span class="literal number integer">5</span> <span class="operator">+---</span>  <span class="literal number integer">3</span> <span class="error">行</span><span class="operator">:</span> <span class="punctuation">}</span> <span class="keyword">else</span> <span class="punctuation">{</span><span class="operator">--------------------------------------------------</span>
+ <span class="literal number integer">8</span>
+ <span class="literal number integer">9</span> <span class="operator">+---</span>  <span class="literal number integer">8</span> <span class="error">行</span><span class="operator">:</span> <span class="keyword">switch</span><span class="punctuation">(</span><span class="name">ch</span><span class="punctuation">)</span> <span class="punctuation">{</span><span class="operator">----------------------------------------------</span>
+<span class="literal number integer">17</span>
+<span class="literal number integer">18</span> <span class="operator">+---</span>  <span class="literal number integer">6</span> <span class="error">行</span><span class="operator">:</span> <span class="keyword">while</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">)</span> <span class="punctuation">{</span><span class="operator">------------------------------------------------</span>
+<span class="literal number integer">24</span> <span class="punctuation">}</span>
+</pre>
+<p>实现上述折叠的vim配置为：</p>
+<pre class="code vim literal-block">
+<span class="keyword">function</span> MyFoldfun<span class="punctuation">(</span>lineNum<span class="punctuation">)</span>
+    <span class="keyword">if</span> getline<span class="punctuation">(</span><span class="keyword">a</span>:lineNum<span class="punctuation">+</span><span class="literal number">1</span><span class="punctuation">)=~</span><span class="literal string single">'^{'</span>
+        <span class="keyword">return</span> <span class="literal string single">'a1'</span>
+    <span class="keyword">elseif</span> getline<span class="punctuation">(</span><span class="keyword">a</span>:lineNum<span class="punctuation">)=~</span><span class="literal string single">'^}'</span>
+        <span class="keyword">return</span> <span class="literal string single">'s1'</span>
+    <span class="keyword">elseif</span> getline<span class="punctuation">(</span><span class="keyword">a</span>:lineNum<span class="punctuation">+</span><span class="literal number">1</span><span class="punctuation">)=~</span><span class="literal string single">'.\+}.\+{'</span>
+        <span class="keyword">return</span> <span class="literal string single">'s1'</span>
+    <span class="keyword">elseif</span> getline<span class="punctuation">(</span><span class="keyword">a</span>:lineNum<span class="punctuation">)=~</span><span class="literal string single">'.\+}.\+{'</span>
+        <span class="keyword">return</span> <span class="literal string single">'a1'</span>
+    <span class="keyword">elseif</span> getline<span class="punctuation">(</span><span class="keyword">a</span>:lineNum<span class="punctuation">)=~</span><span class="literal string single">'.\+}'</span>
+        <span class="keyword">return</span> <span class="literal string single">'s1'</span>
+    <span class="keyword">elseif</span> getline<span class="punctuation">(</span><span class="keyword">a</span>:lineNum<span class="punctuation">)=~</span><span class="literal string single">'.\+{'</span>
+        <span class="keyword">return</span> <span class="literal string single">'a1'</span>
+    <span class="keyword">elseif</span> getline<span class="punctuation">(</span><span class="keyword">a</span>:lineNum<span class="punctuation">)=~</span><span class="literal string single">' \+case '</span>
+        <span class="keyword">return</span> <span class="literal string single">'a1'</span>
+    <span class="keyword">elseif</span> getline<span class="punctuation">(</span><span class="keyword">a</span>:lineNum<span class="punctuation">+</span><span class="literal number">1</span><span class="punctuation">)=~</span><span class="literal string single">' \+case '</span>
+        <span class="keyword">return</span> <span class="literal string single">'s1'</span>
+    <span class="keyword">elseif</span> getline<span class="punctuation">(</span><span class="keyword">a</span>:lineNum<span class="punctuation">+</span><span class="literal number">1</span><span class="punctuation">)=~</span><span class="literal string single">' \+default:'</span>
+        <span class="keyword">return</span> <span class="literal string single">'s1'</span>
+    <span class="keyword">else</span>
+        <span class="keyword">return</span> <span class="literal string single">'='</span>
+    <span class="keyword">endif</span>
+<span class="keyword">endfunction</span>
+
+<span class="keyword">set</span> <span class="name builtin">foldexpr</span><span class="punctuation">=</span>MyFoldfun<span class="punctuation">(</span><span class="keyword">v</span>:lnum<span class="punctuation">)</span>
+</pre>
+<p>其中函数为设置缩进，最后一行设置折叠表达式为上述函数。</p>
+</div>
+</section>
+<section class="meta">
+
+<span class="tags">
+  tagged by 
+  
+</span>
+
+<span class="time">
+  <time datetime="2011-12-15">2011-12-15</time>
+</span>
+</section>
+
+
+        </article>
+        <!-- PingLun.La Begin -->
+        <div id="pinglunla_here"></div><a href="http://pinglun.la/" id="logo-pinglunla">评论啦</a><script type="text/javascript" src="http://static.pinglun.la/md/pinglun.la.js" charset="utf-8"></script>
+        <!-- PingLun.La End -->
+        <div id="copy">&copy; 2012 amoblin | powered by jekyll | themed by <a href="http://lhzhang.com" title="sext ii">sext ii</a></div>
+      </div>
+    </div> <!--! end of #container -->
+  </body>
+</html>

@@ -28,6 +28,8 @@
         <article class="content">
         <section class="post">
 <!-- id: 16 -->
+<!-- Author: amoblin -->
+<!-- publish: YES -->
 <p>screen默认主键是C-a，这个很不方便，C-a在emacs风格的bash下是到行首，而在vim中是增1。</p>
 <p>最好改为其他键。由于screen的快捷键大多在键盘左半区域，所以最好也在左边。</p>
 <p>C-q, C-s 终端占用，不能使用。</p>
@@ -78,7 +80,16 @@ C-l 清屏
 C-m 不能用，否则bash中无法回车。
 C-k</p>
 <p>综上，选择使用C-，在screen中配置为：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">escape ^\\<br/></pre></div>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">&lt;string&gt;</tt>, line 75)</p>
+<p>Cannot analyze code. No Pygments lexer found for &quot;screen&quot;.</p>
+<pre class="literal-block">
+.. code-block:: screen
+
+    escape ^\\
+
+</pre>
+</div>
 <p>有时需要在screen中用ssh登陆服务器，然后再开一个screen，这时要另外选择一个eacape键。</p>
 <p>由于在第二个screen中比较少用ctags，所以综合考虑，选择C-]。</p>
 <p>参考：</p>

@@ -28,6 +28,9 @@
         <article class="content">
         <section class="post">
 <!-- id: 5 -->
+<!-- comments: -->
+<!-- categories: -->
+<!-- publish: YES -->
 <p>shell下有标准输入stdin，标准输出stdout，标准错误输出stderr，标示符分别为0，1，2。
 默认的标准输入是键盘，标准输出和标准错误输出是显示器。</p>
 <p>利用重定向可以改变默认的标准输入输出，使用&quot;&lt;&quot;来重定向标准输入，利用&quot;&gt;&quot;来进行重定向输出。</p>
@@ -50,6 +53,10 @@
 <li>将标准输出和标准错误输出都重定向到/tmp/log文件</li>
 </ol>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> cat /tmp/a.txt not-exist<br/><span style="color: #808080">hello world</span><br/><span style="color: #808080">hello world</span><br/><span style="color: #808080">cat: not-exitst: 没有那个文件或目录</span><br/><span style="color: #000080; font-weight: bold">$</span> cat /tmp/a.txt not-exist &gt; /tmp/log 2&gt;&amp;1<br/><span style="color: #000080; font-weight: bold">$</span> cat /tmp/log<br/><span style="color: #808080">hello world</span><br/><span style="color: #808080">hello world</span><br/><span style="color: #808080">cat: not-exitst: 没有那个文件或目录</span><br/></pre></div>
+<p>不能这样用：</p>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> cat /tmp/a.txt not-exist 2&gt;&amp;1 &gt; /tmp/log
+</pre>
 </section>
 <section class="meta">
 

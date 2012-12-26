@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Linghua Zhang" />
+    <title>MarkBook发布</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/styles/style.css">
+    <link rel="stylesheet" href="/media/styles/github.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>MarkBook发布</h1>
+        </header>
+        <nav>
+        <span><a title="home page" class="" href="/">home</a></span>
+        <span><a title="tags" class="" href="/tags.html">tags</a></span>
+        <span><a title="blogroll" class="" href="/links.html">links</a></span>
+        <span><a title="subscribe me" class="" href="/atom.xml">feed</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<!-- Author: your_name -->
+<!-- publish: YES -->
+<!-- MarkBook今天发布了，但现在还是发现了一些问题。 -->
+<!-- 新建笔记后中栏并不显示，你需要点其他目录再点回来才可以看到，当然你也可以不点，在中栏的最后一个笔记的下一个那里双击，也可以打开它。 -->
+<!-- 它在那里了，我们只是看不到。 -->
+<p>MarkBook正式发布了，从8月23开始第一个提交到现在，共提交76次，终于拿出了一个基本可用版本。</p>
+<p>入门手册，可以参见。</p>
+<div class="section" id="id1">
+<h2>MarkBook的来由</h2>
+<p>用了半年多的Evernote，但我是从Linux转Mac的Vim控，总时不时像按ESC键来切换模式，总感觉光标移动得太慢，跟不上节奏。
+随着Evernote上笔记的增多，启动速度越来越慢，后来我都不忍心打开Evernote了。</p>
+<p>然后就是用vim写rst文档，写脚本生成html页面，make html，make preview，搞定，然后研究如何发布到wp。那时候发现了mac下面的一个万能命令：open。</p>
+<p>后来就发现了Mou，这个软件很不错，界面简洁，icon也很有mac版office的风格，一看就知道作者是前端高手。</p>
+<p>但我没怎么用Mou，首先我不写markdown，其次我不喜欢用Mou来编辑。</p>
+<p>看着Evernote和Mou，我想到了我想要的软件大概是什么样子了。</p>
+<p>Unix的KISS哲学，难道只能用在CLI工具上吗？为什么GUI软件不能互相调用呢？</p>
+<p>我要Evernote的UI，但我不负责编辑，因为Vim会做的更好；我不负责版本控制，冲突解决，云同步，因为Git会做的更好；我不负责带格式，因为有很多置标语言会做的更好。我只负责一件事，就是组织笔记，展示笔记，这方面，Sparrow，Reeder，Evernote，都做的很好。</p>
+<p>所以MarkBook诞生了。</p>
+</div>
+<div class="section" id="id2">
+<h2>MarkBook素描</h2>
+<p>它有类似Sparrow/Reeder/Evernote的三栏式布局，以最完美的姿态来做内容展示：左栏是笔记分类，中栏是笔记缩略图，右栏是笔记全视图。</p>
+<p>双击中栏，会调用编辑器来打开笔记进行编辑。当保存修改后，MarkBook会检测到文件的改动，立刻更新视图内容。</p>
+<p>甚至，你不用在UI上操作，直接在MarkBook笔记目录里进行CLI操作，MarkBook都会同步更新。</p>
+<p>你用它来记笔记，像现在在Evernote里做的一样，但你不用担心打开缓慢，也不用担心数据安全隐私问题，文件冲突问题。</p>
+<p>不仅可以用来记笔记，也可以发博客。</p>
+<p>现在越来越多人从wp赚到了jekyll/Octopress，使用markdown的人也越来越多。通过MarkBook的导入功能，可以将已有博客文章导入到MarkBook中进行管理。</p>
+</div>
+<div class="section" id="id3">
+<h2>未来展望</h2>
+<p>现在这个版本还是很基础的，只有基本功能，如笔记的增删改。还有很多有待完善。</p>
+<ul class="simple">
+<li>查找</li>
+<li>Git UI</li>
+<li>笔记无缝发布到jekyll/Octoress</li>
+</ul>
+</div>
+</section>
+<section class="meta">
+
+<span class="tags">
+  tagged by 
+  
+</span>
+
+<span class="time">
+  <time datetime="2012-12-25">2012-12-25</time>
+</span>
+</section>
+
+
+        </article>
+        <!-- PingLun.La Begin -->
+        <div id="pinglunla_here"></div><a href="http://pinglun.la/" id="logo-pinglunla">评论啦</a><script type="text/javascript" src="http://static.pinglun.la/md/pinglun.la.js" charset="utf-8"></script>
+        <!-- PingLun.La End -->
+        <div id="copy">&copy; 2012 amoblin | powered by jekyll | themed by <a href="http://lhzhang.com" title="sext ii">sext ii</a></div>
+      </div>
+    </div> <!--! end of #container -->
+  </body>
+</html>

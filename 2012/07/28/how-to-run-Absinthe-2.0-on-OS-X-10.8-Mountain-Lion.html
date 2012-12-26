@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="Linghua Zhang" />
-    <title>命令行下使用xcode编译工程</title>
+    <title>在山狮系统上使用Absinthe</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
     <link rel="stylesheet" href="/media/styles/style.css">
@@ -17,7 +17,7 @@
     <div id="container">
       <div id="main" role="main">
         <header>
-        <h1>命令行下使用xcode编译工程</h1>
+        <h1>在山狮系统上使用Absinthe</h1>
         </header>
         <nav>
         <span><a title="home page" class="" href="/">home</a></span>
@@ -27,16 +27,14 @@
         </nav>
         <article class="content">
         <section class="post">
-<p>虽说Xcode使用起来很方便，但有时候为了快捷也希望能够在终端输入一条命令执行编译，幸好Xcode提供了相关的命令，可以通过它来编译xcode工程。</p>
-<ol class="arabic simple">
-<li>查看环境</li>
-</ol>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> xcodebuild -showsdks<br/><span style="color: #808080">Mac OS X SDKs:</span><br/><span style="color: #808080">        Mac OS X 10.6                   -sdk macosx10.6</span><br/><span style="color: #808080">        Mac OS X 10.7                   -sdk macosx10.7</span><br/><br/><span style="color: #808080">iOS SDKs:</span><br/><span style="color: #808080">        iOS 5.0                         -sdk iphoneos5.0</span><br/><br/><span style="color: #808080">iOS Simulator SDKs:</span><br/><span style="color: #808080">        Simulator - iOS 4.3             -sdk iphonesimulator4.3</span><br/><span style="color: #808080">        Simulator - iOS 5.0             -sdk iphonesimulator5.0</span><br/></pre></div>
-<ol class="arabic simple">
-<li>编译</li>
-</ol>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> xcodebuild -sdk iphoneos5.0<br/></pre></div>
-<p>还不知道如何通过命令来运行程序，探索中。。。</p>
+<!-- publish: YES -->
+<p>前天升级了Mountain Lion，昨天晚上取到了修好的手机，回来准备越狱，忽然发现Absinthe不能用了。</p>
+<p>具体症状为：点击Absinthe没反应，不能出来窗口。</p>
+<p>一番查找，找到解决方案如下：</p>
+<p>在Finder中找到Absinthe应用程序，右键选择“显示包内容”，然后依次进入文件夹：Contents/MacOS，选择文件Absinthe-10.6，右键打开方式选择“终端”，然后，就没有然后了。</p>
+<p>熟悉的窗口又出现了，接下来，你懂的。</p>
+<p>参考资料：</p>
+<p><a class="reference external" href="http://www.idownloadblog.com/2012/05/25/absinthe-2-0-mountain-lion/">http://www.idownloadblog.com/2012/05/25/absinthe-2-0-mountain-lion/</a></p>
 </section>
 <section class="meta">
 
@@ -46,7 +44,7 @@
 </span>
 
 <span class="time">
-  <time datetime="2012-03-16">2012-03-16</time>
+  <time datetime="2012-07-28">2012-07-28</time>
 </span>
 </section>
 

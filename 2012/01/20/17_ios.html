@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Linghua Zhang" />
+    <title>ios开发学习</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/styles/style.css">
+    <link rel="stylesheet" href="/media/styles/github.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>ios开发学习</h1>
+        </header>
+        <nav>
+        <span><a title="home page" class="" href="/">home</a></span>
+        <span><a title="tags" class="" href="/tags.html">tags</a></span>
+        <span><a title="blogroll" class="" href="/links.html">links</a></span>
+        <span><a title="subscribe me" class="" href="/atom.xml">feed</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<!-- id: 17 -->
+<!-- publish: YES -->
+<p>界面文件 后缀为.nib或.xib，4.2以后改为storyboard。</p>
+<div class="section" id="id1">
+<h2>真机开发</h2>
+<p>钥匙串访问(keychain)中创建证书，用于程序签名:</p>
+<p>钥匙串访问-&gt; 证书助理 -&gt; 创建证书：</p>
+<p>名称：iPhone Developer
+证书类型：代码签名</p>
+<p>修改Xcode下SDK配置：</p>
+<p>XCode4.5中路径为</p>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> <span class="name builtin">cd</span> /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs
+<span class="generic prompt">$</span> open iPhoneOS6.0.sdk/SDKSettings.plist
+</pre>
+<p>文件不再是xml文件，而是二进制文件了，使用Xcode或Plist Editor Pro编辑，将DefaultProperties中CODE_SIGNING_REQUIRED值改为NO。</p>
+<p>XCode4.3以后Xcode作为独立应用程序，所有的文件都打包在Xcode里面，之前/Developer下的文件现在变为/Applications/Xcode.app/Contents/Developer/。</p>
+<p>Xcode4.3中为：</p>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> <span class="name builtin">cd</span> /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs
+<span class="generic prompt">$</span> sudo vi iPhoneOS5.0.sdk/SDKSettings.plist
+</pre>
+<p>Xcode4.2及其以前的版本中：</p>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> <span class="name builtin">cd</span> /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/
+<span class="generic prompt">$</span> sudo vi iPhoneOS5.0.sdk/SDKSettings.plist
+</pre>
+<p>将如下内容：</p>
+<pre class="code text literal-block">
+15         &lt;key&gt;CODE_SIGNING_REQUIRED&lt;/key&gt;
+16         &lt;string&gt;YES&lt;/string&gt;
+</pre>
+<p>中YES改为NO。</p>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> <span class="name builtin">cd</span> /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/
+</pre>
+<p>将XCiPhoneOSCodeSignContext中的iPhoneOS删掉：</p>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> sudo vi Info.plist
+<span class="generic output">:1,$s/XCiPhoneOSCodeSignContext/XCCodeSignContext/g</span>
+</pre>
+<div class="section" id="id2">
+<h3>二进制补丁</h3>
+<p>XCode4.3中路径为：</p>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> <span class="name builtin">cd</span> /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/PrivatePlugIns/iPhoneOS<span class="literal string escape">\ </span>Build<span class="literal string escape">\ </span>System<span class="literal string escape">\ </span>Support.xcplugin/Contents/MacOS
+</pre>
+<p>XCode 4.2中路径为：</p>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> <span class="name builtin">cd</span> /Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/PrivatePlugIns/iPhoneOS<span class="literal string escape">\ </span>Build<span class="literal string escape">\ </span>System<span class="literal string escape">\ </span>Support.xcplugin/Contents/MacOS
+</pre>
+<p>然后：</p>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> sudo su
+<span class="generic prompt">#</span> dd <span class="keyword">if</span><span class="operator">=</span>iPhoneOS<span class="literal string escape">\ </span>Build<span class="literal string escape">\ </span>System<span class="literal string escape">\ </span>Support <span class="name variable">of</span><span class="operator">=</span>working <span class="name variable">bs</span><span class="operator">=</span>500 <span class="name variable">count</span><span class="operator">=</span>255
+<span class="generic prompt">#</span> <span class="name builtin">echo</span> -n xc3x26x00x00 &gt;&gt; working
+<span class="generic prompt">#</span> chmod 755 working
+<span class="generic prompt">#</span> mv iPhoneOS<span class="literal string escape">\ </span>Build<span class="literal string escape">\ </span>System<span class="literal string escape">\ </span>Support iPhoneOS<span class="literal string escape">\ </span>Build<span class="literal string escape">\ </span>System<span class="literal string escape">\ </span>Support.orig
+<span class="generic prompt">#</span> mv working iPhoneOS<span class="literal string escape">\ </span>Build<span class="literal string escape">\ </span>System<span class="literal string escape">\ </span>Support
+</pre>
+</div>
+<div class="section" id="id3">
+<h3>自定义生成后脚本</h3>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> mkdir /Applications/Xcode.app/Contents/Developer/iphoneentitlements
+<span class="generic prompt">$</span> <span class="name builtin">cd</span> /Applications/Xcode.app/Contents/Developer/iphoneentitlements
+<span class="generic prompt">$</span> wget -q http://www.alexwhittemore.com/iphone/gen_entitlements.txt -O gen_entitlements.py
+<span class="generic prompt">$</span> chmod 755 gen_entitlements.py
+</pre>
+</div>
+<div class="section" id="id4">
+<h3>修改工程设置</h3>
+<p>Add Build Phrase -&gt; Add Run Script，输入以下内容：</p>
+<pre class="code bash literal-block">
+<span class="name builtin">export </span><span class="name variable">CODESIGN_ALLOCATE</span><span class="operator">=</span>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate
+<span class="keyword">if</span> <span class="operator">[</span> <span class="literal string double">&quot;${PLATFORM_NAME}&quot;</span> <span class="operator">==</span> <span class="literal string double">&quot;iphoneos&quot;</span> <span class="operator">]</span>; <span class="keyword">then</span>
+/Applications/Xcode.app/Contents/Developer/iphoneentitlements/gen_entitlements.py <span class="literal string double">&quot;my.company.${PROJECT_NAME}&quot;</span> <span class="literal string double">&quot;${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent&quot;</span>;
+codesign -f -s <span class="literal string double">&quot;iPhone Developer&quot;</span> --entitlements <span class="literal string double">&quot;${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent&quot;</span> <span class="literal string double">&quot;${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/&quot;</span>
+<span class="keyword">fi</span>
+</pre>
+<p>参考资料：</p>
+<blockquote>
+<a class="reference external" href="http://hi.baidu.com/jaywclove/blog/item/0782355562849cdab645ae14.html">http://hi.baidu.com/jaywclove/blog/item/0782355562849cdab645ae14.html</a></blockquote>
+<p><a class="reference external" href="http://slj.me/2010/10/50-open-source-iphone-apps-for-iphone-developers/">http://slj.me/2010/10/50-open-source-iphone-apps-for-iphone-developers/</a></p>
+<p>git</p>
+<p><a class="reference external" href="https://github.com/haqu/tweejump.git">https://github.com/haqu/tweejump.git</a></p>
+<p><a class="reference external" href="https://github.com/freshbooks-addons/freshbooks-iphone-project.git">https://github.com/freshbooks-addons/freshbooks-iphone-project.git</a></p>
+</div>
+</div>
+</section>
+<section class="meta">
+
+<span class="tags">
+  tagged by 
+  
+</span>
+
+<span class="time">
+  <time datetime="2012-01-20">2012-01-20</time>
+</span>
+</section>
+
+
+        </article>
+        <!-- PingLun.La Begin -->
+        <div id="pinglunla_here"></div><a href="http://pinglun.la/" id="logo-pinglunla">评论啦</a><script type="text/javascript" src="http://static.pinglun.la/md/pinglun.la.js" charset="utf-8"></script>
+        <!-- PingLun.La End -->
+        <div id="copy">&copy; 2012 amoblin | powered by jekyll | themed by <a href="http://lhzhang.com" title="sext ii">sext ii</a></div>
+      </div>
+    </div> <!--! end of #container -->
+  </body>
+</html>

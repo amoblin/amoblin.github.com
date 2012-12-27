@@ -4,7 +4,7 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2012-12-27T23:09:01+08:00</updated>
+ <updated>2012-12-27T23:48:42+08:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -141,21 +141,21 @@
  </entry>
  
  <entry>
-   <title>使用MarkBook发布博客到Jekyll</title>
+   <title>使用MarkBook发布rst博客到Jekyll</title>
    <link href="/2012/12/26/markbook-to-jekyll.html"/>
    <updated>2012-12-26T00:00:00+08:00</updated>
    <id>h/2012/12/26/markbook-to-jekyll</id>
    <content type="html">&lt;!-- Author: your_name --&gt;
 &lt;!-- publish: YES --&gt;
-&lt;p&gt;在新版MarkBook( v1.2(81) )中，增加了将rst文件发布到Jekyll博客的功能，先上图。&lt;/p&gt;
+&lt;p&gt;从MarkBook( &lt;a class=&quot;reference external&quot; href=&quot;http://amoblin.github.com/2012/12/25/MarkBook-release.html&quot;&gt;MarkBook是什么？&lt;/a&gt; ) v1.2(81)开始，增加了将rst文件发布到Jekyll博客的功能，先上图：&lt;/p&gt;
 &lt;a class=&quot;reference external image-reference&quot; href=&quot;https://dl.dropbox.com/u/676608/markbook_how_to.png&quot;&gt;&lt;img alt=&quot;https://markbook.googlecode.com/files/markbook_how_to.png&quot; src=&quot;https://markbook.googlecode.com/files/markbook_how_to.png&quot; style=&quot;width: 500px; height: 300px;&quot; /&gt;&lt;/a&gt;
 &lt;p&gt;具体使用步骤如下。&lt;/p&gt;
-&lt;div class=&quot;section&quot; id=&quot;id1&quot;&gt;
+&lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
 &lt;h2&gt;新建笔记&lt;/h2&gt;
 &lt;p&gt;点击左下角 &amp;quot; + &amp;quot; 来新建笔记，输入笔记名称，选择笔记类型为RST。&lt;/p&gt;
 &lt;p&gt;注意如果要发布到jekyll博客的话，笔记名称最好是英文，因为jekyll中文件的路径都是英文的。输入的名字会生成对应的文件名。&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
+&lt;div class=&quot;section&quot; id=&quot;id3&quot;&gt;
 &lt;h2&gt;编辑笔记&lt;/h2&gt;
 &lt;p&gt;在中栏找到新建的笔记，双击打开进行编辑。对RST类型而言，默认生成的模板内容举例如下：&lt;/p&gt;
 &lt;pre class=&quot;literal-block&quot;&gt;
@@ -185,7 +185,7 @@
 然后就可以继续添加内容了。
 &lt;/pre&gt;
 &lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id3&quot;&gt;
+&lt;div class=&quot;section&quot; id=&quot;id4&quot;&gt;
 &lt;h2&gt;发布笔记&lt;/h2&gt;
 &lt;p&gt;最后需要发布的时候，修改第8行的publish值为YES，这样就会在~/.MarkBook/source/blogs/my_blog下生成文件：&lt;/p&gt;
 &lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; ls ~/.MarkBook/source/blogs/my_blog&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;2012-12-26-markbook-to-jekyll.rst&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -198,7 +198,7 @@
  </entry>
  
  <entry>
-   <title>MarkBook发布</title>
+   <title>MarkBook终于发布啦</title>
    <link href="/2012/12/25/MarkBook-release.html"/>
    <updated>2012-12-25T00:00:00+08:00</updated>
    <id>h/2012/12/25/MarkBook-release</id>
@@ -207,10 +207,10 @@
 &lt;!-- MarkBook今天发布了，但现在还是发现了一些问题。 --&gt;
 &lt;!-- 新建笔记后中栏并不显示，你需要点其他目录再点回来才可以看到，当然你也可以不点，在中栏的最后一个笔记的下一个那里双击，也可以打开它。 --&gt;
 &lt;!-- 它在那里了，我们只是看不到。 --&gt;
-&lt;p&gt;(本文昨天晚上写好的，今天晚上才发布，在此期间，实现了 &lt;strong&gt;从MarkBook直接发布博客到jekyll&lt;/strong&gt; 的功能。这个稍后会专门讲解)&lt;/p&gt;
-&lt;p&gt;MarkBook正式发布了，从8月23开始第一个提交到现在，共提交76次，终于拿出了一个基本可用版本。&lt;/p&gt;
+&lt;p&gt;(本文昨天晚上写好的，今天晚上才发布，在此期间，实现了 &lt;a class=&quot;reference external&quot; href=&quot;http://amoblin.github.com/2012/12/26/markbook-to-jekyll.html&quot;&gt;从MarkBook直接发布博客到jekyll&lt;/a&gt; 的功能。)&lt;/p&gt;
+&lt;p&gt;MarkBook正式发布啦，从8月23开始到现在，共提交81次，终于拿出了一个基本可用版本。下载地址参见： &lt;a class=&quot;reference external&quot; href=&quot;https://code.google.com/p/markbook/&quot;&gt;googlecode主页&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;入门手册，可以参见 &lt;a class=&quot;reference external&quot; href=&quot;http://amoblin.github.com/2012/12/25/MarkBook-User-Guide.html&quot;&gt;MarkBook用户手册&lt;/a&gt;&lt;/p&gt;
-&lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
+&lt;div class=&quot;section&quot; id=&quot;id4&quot;&gt;
 &lt;h2&gt;MarkBook的来由&lt;/h2&gt;
 &lt;p&gt;用了半年多的Evernote，但我是从Linux转Mac的Vim控，总时不时像按ESC键来切换模式，总感觉光标移动得太慢，跟不上节奏。
 随着Evernote上笔记的增多，启动速度越来越慢，后来我都不忍心打开Evernote了。&lt;/p&gt;
@@ -222,7 +222,7 @@
 &lt;p&gt;我要Evernote的UI，但我不负责编辑，因为Vim会做的更好；我不负责版本控制，冲突解决，云同步，因为Git会做的更好；我不负责带格式，因为有很多置标语言会做的更好。我只负责一件事，就是组织笔记，展示笔记，这方面，Sparrow，Reeder，Evernote，都做的很好。&lt;/p&gt;
 &lt;p&gt;所以MarkBook诞生了。&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id3&quot;&gt;
+&lt;div class=&quot;section&quot; id=&quot;id5&quot;&gt;
 &lt;h2&gt;MarkBook素描&lt;/h2&gt;
 &lt;p&gt;它有类似Sparrow/Reeder/Evernote的三栏式布局，以最完美的姿态来做内容展示：左栏是笔记分类，中栏是笔记缩略图，右栏是笔记全视图。&lt;/p&gt;
 &lt;p&gt;双击中栏，会调用编辑器来打开笔记进行编辑。当保存修改后，MarkBook会检测到文件的改动，立刻更新视图内容。&lt;/p&gt;
@@ -231,13 +231,13 @@
 &lt;p&gt;不仅可以用来记笔记，也可以发博客。&lt;/p&gt;
 &lt;p&gt;现在越来越多人从wp转到了jekyll/Octopress，使用markdown的人也越来越多。通过MarkBook的导入功能，可以将已有博客文章导入到MarkBook中进行管理。&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id4&quot;&gt;
+&lt;div class=&quot;section&quot; id=&quot;id6&quot;&gt;
 &lt;h2&gt;未来展望&lt;/h2&gt;
 &lt;p&gt;现在这个版本还是很基础的，只有基本功能，如笔记的增删改。还有很多有待完善。&lt;/p&gt;
 &lt;ul class=&quot;simple&quot;&gt;
 &lt;li&gt;查找&lt;/li&gt;
 &lt;li&gt;Git UI&lt;/li&gt;
-&lt;li&gt;笔记无缝发布到jekyll/Octoress&lt;/li&gt;
+&lt;li&gt;markdown笔记无缝发布到jekyll/Octoress&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 

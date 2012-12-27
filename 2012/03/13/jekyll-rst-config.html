@@ -34,6 +34,8 @@
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">cd</span> &lt;jekyll-project-path&gt;<br/><span style="color: #000080; font-weight: bold">$</span> git submodule add https://github.com/xdissent/jekyll-rst.git plugins/jekyll-rst<br/></pre></div>
 <p>安装RbST：</p>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> gem install RbST<br/></pre></div>
+<p>一般安装到：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> ls /.rvm/gems/ruby-1.9.3-p125/gems<br/></pre></div>
 <p>然后把rst文件放到_posts目录下，使用jekyll编译时就会把rst也转换成html了，文件名的格式和md文件名一样。</p>
 <p>但发现一个问题，rst文件中有中文的话，生成html文件为空。没有中文的话就正常。初步判断是编码的问题。</p>
 <p>看了看jekyll-rst的代码，发现jekyll-rst后台使用的是RbST，一个ruby包装的restructuredText转换程序，本质上还是使用自带的rst2html.py来转换。</p>

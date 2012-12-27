@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Linghua Zhang" />
+    <meta name="author" content="amoblin" />
     <title>too many open files解决方法</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
@@ -29,47 +29,32 @@
         <section class="post">
 <!-- publish: YES -->
 <p>查看文件系统最大可打开文件数：</p>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> cat /proc/sys/fs/file-max
-<span class="generic output">345604</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> cat /proc/sys/fs/file-max<br/><span style="color: #808080">345604</span><br/></pre></div>
 <p>程序限制打开文件数：</p>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> <span class="name builtin">ulimit</span> -n
-<span class="generic output">1024</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">ulimit</span> -n<br/><span style="color: #808080">1024</span><br/></pre></div>
 <p>修改配置文件：</p>
 <p>/etc/sysctl.conf</p>
 <p>插入一行：</p>
-<pre class="code console literal-block">
-<span class="generic output">fs.file-max = 8192</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">fs.file-max = 8192</span><br/></pre></div>
 <p>修改文件：</p>
 <p>/etc/security/limits.conf</p>
 <p>添加一行：</p>
-<pre class="code console literal-block">
-<span class="generic output">* - nofile 8192</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">* - nofile 8192</span><br/></pre></div>
 <p>当所有的都不生效时，可以尝试：</p>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> sudo su <span class="literal string backtick">`</span>whoami<span class="literal string backtick">`</span>
-<span class="generic prompt">$</span> <span class="name builtin">ulimit</span> -n
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo su <span style="color: #BA2121">`</span>whoami<span style="color: #BA2121">`</span><br/><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">ulimit</span> -n<br/></pre></div>
 <div class="section" id="id1">
 <h2>可能遇见的错误</h2>
 <div class="section" id="id2">
 <h3>错误1</h3>
-<pre class="code console literal-block">
-<span class="generic output">bash: ulimit: open files: cannot modify limit: Operation not permitted</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">bash: ulimit: open files: cannot modify limit: Operation not permitted</span><br/></pre></div>
 </div>
 <div class="section" id="id3">
 <h3>错误2</h3>
-<pre class="code console literal-block">
-<span class="generic output">ulimit: value exceeds hard limit</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">ulimit: value exceeds hard limit</span><br/></pre></div>
 </div>
 </div>
+
+
 </section>
 <section class="meta">
 

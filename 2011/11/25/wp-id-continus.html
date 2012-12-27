@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Linghua Zhang" />
+    <meta name="author" content="amoblin" />
     <title>wordpress blog id不连续的解决</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
@@ -38,10 +38,7 @@
 <div class="section" id="id1">
 <h2>修改配置文件</h2>
 <p>修改wp-config.php,增加两行：</p>
-<pre class="code php literal-block">
-<span class="other">define( 'AUTOSAVE_INTERVAL', 36000 );
-define('WP_POST_REVISIONS', false );</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">define( &#39;AUTOSAVE_INTERVAL&#39;, 36000 );<br/>define(&#39;WP_POST_REVISIONS&#39;, false );<br/></pre></div>
 <p>第一行中单位是秒。 这里每10小时自动保存一次。</p>
 <p>第二行是禁用版本历史的 Revisions的设置选项说明如下：</p>
 <p>There are options, but they are hidden well :) There is a constant (not even filterable) that can be set by a plugin or in your wp-settings.php file:</p>
@@ -52,72 +49,24 @@ false, 0: do not store any revisions (except the one autosave per post)
 <p>设置这个变量为false或0的话，还是会保留一个历史版本的。</p>
 <p>另外，在每次新建文章时，会自动保存一个记录，要禁用的话，只能硬编码。</p>
 <p>修改wp-admin/post.php和wp-admin/post-new.php，找到如下内容，注释掉。</p>
-<pre class="code php literal-block">
-<span class="other">wp_enqueue_script('autosave');</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">wp_enqueue_script(&#39;autosave&#39;);<br/></pre></div>
 <p>修改wp-admin/post-new.php，在代码的最后几行，有：</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">&lt;string&gt;</tt>, line 57)</p>
-<p>Error in &quot;code-block&quot; directive:
-unknown option: &quot;lineos&quot;.</p>
-<pre class="literal-block">
-.. code-block:: php
-    :lineos:
-
-    38 // Show post form.
-    39 $post = get_default_post_to_edit( $post_type, true);
-    40 $post_ID = $post-&gt;ID;
-    41 include('edit-form-advanced.php');
-    42 include('./admin-footer.php');
-    43 ?&gt;
-
-</pre>
-</div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">38 // Show post form.<br/>39 $post = get_default_post_to_edit( $post_type, true);<br/>40 $post_ID = $post-&gt;ID;<br/>41 include(&#39;edit-form-advanced.php&#39;);<br/>42 include(&#39;./admin-footer.php&#39;);<br/>43 ?&gt;<br/></pre></div>
 <p>将第39行最后的true改为false：</p>
-<pre class="code php literal-block">
-<span class="other">39 $post = get_default_post_to_edit( $post_type, false);</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">39 $post = get_default_post_to_edit( $post_type, false);<br/></pre></div>
 <div class="section" id="id2">
 <h3>硬编码修改</h3>
 <p>此外，还要修改wp-admin/include/post.php，找到如下代码：</p>
-<pre class="code php literal-block">
-<span class="other">418     if ( $create_in_db ) {
-419         // Cleanup old auto-drafts more than 7 days old
-420         $old_posts = $wpdb-&gt;get_col( &quot;SELECT ID FROM $wpdb-&gt;posts WHERE post_status = 'auto-draft' AND DATE_SUB( NOW(), INTERVAL 7 DAY ) &gt; post_date&quot; );
-421         foreach ( (array) $old_posts as $delete )
-422             wp_delete_post( $delete, true ); // Force delete
-423         $post_id = wp_insert_post( array( 'post_title' =&gt; __( 'Auto Draft' ), 'post_type' =&gt; $post_type, 'post_status' =&gt; 'auto-draft' ) );
-424         $post = get_post( $post_id );
-425         if ( current_theme_supports( 'post-formats' ) &amp;&amp; post_type_supports( $post-&gt;post_type, 'post-formats' ) &amp;&amp; get_option( 'default_post_format' ) )
-426             set_post_format( $post, get_option( 'default_post_format' ) );
-427     } else {</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">418     if ( $create_in_db ) {<br/>419         // Cleanup old auto-drafts more than 7 days old<br/>420         $old_posts = $wpdb-&gt;get_col( &quot;SELECT ID FROM $wpdb-&gt;posts WHERE post_status = &#39;auto-draft&#39; AND DATE_SUB( NOW(), INTERVAL 7 DAY ) &gt; post_date&quot; );<br/>421         foreach ( (array) $old_posts as $delete )<br/>422             wp_delete_post( $delete, true ); // Force delete<br/>423         $post_id = wp_insert_post( array( &#39;post_title&#39; =&gt; __( &#39;Auto Draft&#39; ), &#39;post_type&#39; =&gt; $post_type, &#39;post_status&#39; =&gt; &#39;auto-draft&#39; ) );<br/>424         $post = get_post( $post_id );<br/>425         if ( current_theme_supports( &#39;post-formats&#39; ) &amp;&amp; post_type_supports( $post-&gt;post_type, &#39;post-formats&#39; ) &amp;&amp; get_option( &#39;default_post_format&#39; ) )<br/>426             set_post_format( $post, get_option( &#39;default_post_format&#39; ) );<br/>427     } else {<br/></pre></div>
 <p>将if分支中的内容，直到424行，修改成下面的内容：</p>
-<pre class="code php literal-block">
-<span class="other">418     if ( $create_in_db ) {
-419         // modify by akii start
-420         global $current_user;
-421         $post_auto_draft = $wpdb-&gt;get_row( &quot;SELECT * FROM $wpdb-&gt;posts WHERE post_status = 'auto-draft' AND post_author = $current_user-&gt;ID ORDER BY ID ASC LIMIT 1&quot;||        );
-422         if ($post_auto_draft){
-423             $post = $post_auto_draft;
-424         } else {
-425             $post_id = wp_insert_post( array( 'post_title' =&gt; __( 'Auto Draft' ), 'post_type' =&gt; $post_type, 'post_status' =&gt; 'auto-draft' ) );
-426             $post = get_post( $post_id );
-427         }
-428         // modify by akii end
-429         if ( current_theme_supports( 'post-formats' ) &amp;&amp; post_type_supports( $post-&gt;post_type, 'post-formats' ) &amp;&amp; get_option( 'default_post_format' ) )
-430             set_post_format( $post, get_option( 'default_post_format' ) );
-431     } else {</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">418     if ( $create_in_db ) {<br/>419         // modify by akii start<br/>420         global $current_user;<br/>421         $post_auto_draft = $wpdb-&gt;get_row( &quot;SELECT * FROM $wpdb-&gt;posts WHERE post_status = &#39;auto-draft&#39; AND post_author = $current_user-&gt;ID ORDER BY ID ASC LIMIT 1&quot;||        );<br/>422         if ($post_auto_draft){<br/>423             $post = $post_auto_draft;<br/>424         } else {<br/>425             $post_id = wp_insert_post( array( &#39;post_title&#39; =&gt; __( &#39;Auto Draft&#39; ), &#39;post_type&#39; =&gt; $post_type, &#39;post_status&#39; =&gt; &#39;auto-draft&#39; ) );<br/>426             $post = get_post( $post_id );<br/>427         }<br/>428         // modify by akii end<br/>429         if ( current_theme_supports( &#39;post-formats&#39; ) &amp;&amp; post_type_supports( $post-&gt;post_type, &#39;post-formats&#39; ) &amp;&amp; get_option( &#39;default_post_format&#39; ) )<br/>430             set_post_format( $post, get_option( &#39;default_post_format&#39; ) );<br/>431     } else {<br/></pre></div>
 <p>参考自 <a class="reference external" href="http://www.akii.org/wordpress-3-0-prohibit-to-historical-versions-and-automatically-save-the-draft.html">Akii Snow 的博客</a></p>
 </div>
 </div>
 <div class="section" id="id3">
 <h2>禁用版本记录</h2>
 <p>修改wp-config.php,增加一行：</p>
-<pre class="code php literal-block">
-<span class="other">define('WP_POST_REVISIONS', false );</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">define(&#39;WP_POST_REVISIONS&#39;, false );<br/></pre></div>
 </div>
 <div class="section" id="id4">
 <h2>清理数据库中版本历史</h2>
@@ -126,24 +75,16 @@ unknown option: &quot;lineos&quot;.</p>
 <li>安装wp插件</li>
 </ol>
 <p>自动保存的记录是如下记录：</p>
-<pre class="code sql literal-block">
-<span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="operator">`</span><span class="name">wp_posts</span><span class="operator">`</span> <span class="keyword">where</span> <span class="operator">`</span><span class="name">post_status</span><span class="operator">`</span> <span class="operator">=</span> <span class="literal string single">'auto-draft'</span> <span class="punctuation">;</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">select</span> <span style="color: #666666">*</span> <span style="color: #008000; font-weight: bold">from</span> <span style="color: #666666">`</span>wp_posts<span style="color: #666666">`</span> <span style="color: #008000; font-weight: bold">where</span> <span style="color: #666666">`</span>post_status<span style="color: #666666">`</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;auto-draft&#39;</span> ;<br/></pre></div>
 <p>而版本记录是：</p>
-<pre class="code sql literal-block">
-<span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="operator">`</span><span class="name">wp_posts</span><span class="operator">`</span> <span class="keyword">where</span> <span class="operator">`</span><span class="name">post_status</span><span class="operator">`</span> <span class="operator">=</span> <span class="literal string single">'inherit'</span><span class="punctuation">;</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">select</span> <span style="color: #666666">*</span> <span style="color: #008000; font-weight: bold">from</span> <span style="color: #666666">`</span>wp_posts<span style="color: #666666">`</span> <span style="color: #008000; font-weight: bold">where</span> <span style="color: #666666">`</span>post_status<span style="color: #666666">`</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;inherit&#39;</span>;<br/></pre></div>
 <p>手工保存的是：</p>
-<pre class="code sql literal-block">
-<span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="operator">`</span><span class="name">wp_posts</span><span class="operator">`</span> <span class="keyword">where</span> <span class="operator">`</span><span class="name">post_status</span><span class="operator">`</span> <span class="operator">=</span> <span class="literal string single">'draft'</span> <span class="punctuation">;</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">select</span> <span style="color: #666666">*</span> <span style="color: #008000; font-weight: bold">from</span> <span style="color: #666666">`</span>wp_posts<span style="color: #666666">`</span> <span style="color: #008000; font-weight: bold">where</span> <span style="color: #666666">`</span>post_status<span style="color: #666666">`</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;draft&#39;</span> ;<br/></pre></div>
 </div>
 <div class="section" id="id5">
 <h2>删除历史冗余记录</h2>
 <p>删除草稿记录，自动保存记录，版本变迁记录：</p>
-<pre class="code sql literal-block">
-<span class="keyword">delete</span> <span class="keyword">from</span> <span class="operator">`</span><span class="name">wp_posts</span><span class="operator">`</span> <span class="keyword">where</span> <span class="operator">`</span><span class="name">post_status</span><span class="operator">`</span> <span class="operator">=</span> <span class="literal string single">'inherit'</span> <span class="keyword">or</span> <span class="operator">`</span><span class="name">post_status</span><span class="operator">`</span> <span class="operator">=</span> <span class="literal string single">'auto-draft'</span> <span class="keyword">or</span> <span class="operator">`</span><span class="name">post_status</span><span class="operator">`</span> <span class="operator">=</span> <span class="literal string single">'draft'</span><span class="punctuation">;</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">delete</span> <span style="color: #008000; font-weight: bold">from</span> <span style="color: #666666">`</span>wp_posts<span style="color: #666666">`</span> <span style="color: #008000; font-weight: bold">where</span> <span style="color: #666666">`</span>post_status<span style="color: #666666">`</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;inherit&#39;</span> <span style="color: #008000; font-weight: bold">or</span> <span style="color: #666666">`</span>post_status<span style="color: #666666">`</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;auto-draft&#39;</span> <span style="color: #008000; font-weight: bold">or</span> <span style="color: #666666">`</span>post_status<span style="color: #666666">`</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;draft&#39;</span>;<br/></pre></div>
 </div>
 <div class="section" id="id6">
 <h2>禁用自动保存的插件</h2>
@@ -158,12 +99,7 @@ unknown option: &quot;lineos&quot;.</p>
 <h2>将id顺序排列</h2>
 <p>涉及到4张表，都要更新。尝试使用循环解决，未遂。只得手工改。</p>
 <p>下面的例子将id为108的记录修改id为7。</p>
-<pre class="code sql literal-block">
-<span class="keyword">update</span> <span class="operator">`</span><span class="name">wp_posts</span><span class="operator">`</span> <span class="keyword">set</span> <span class="operator">`</span><span class="name">id</span><span class="operator">`</span> <span class="operator">=</span> <span class="literal number integer">7</span> <span class="keyword">where</span> <span class="operator">`</span><span class="name">id</span><span class="operator">`</span> <span class="operator">=</span> <span class="literal number integer">108</span><span class="punctuation">;</span>
-<span class="keyword">update</span> <span class="operator">`</span><span class="name">wp_term_relationships</span><span class="operator">`</span> <span class="keyword">set</span> <span class="operator">`</span><span class="name">object_id</span><span class="operator">`</span> <span class="operator">=</span> <span class="literal number integer">7</span> <span class="keyword">where</span> <span class="operator">`</span><span class="name">object_id</span><span class="operator">`</span> <span class="operator">=</span> <span class="literal number integer">108</span><span class="punctuation">;</span>
-<span class="keyword">update</span> <span class="operator">`</span><span class="name">wp_postmeta</span><span class="operator">`</span> <span class="keyword">set</span> <span class="operator">`</span><span class="name">post_id</span><span class="operator">`</span> <span class="operator">=</span> <span class="literal number integer">7</span> <span class="keyword">where</span> <span class="operator">`</span><span class="name">post_id</span><span class="operator">`</span> <span class="operator">=</span> <span class="literal number integer">108</span><span class="punctuation">;</span>
-<span class="keyword">update</span> <span class="operator">`</span><span class="name">wp_comments</span><span class="operator">`</span> <span class="keyword">set</span> <span class="operator">`</span><span class="name">comment_post_ID</span><span class="operator">`</span> <span class="operator">=</span> <span class="literal number integer">7</span> <span class="keyword">where</span> <span class="operator">`</span><span class="name">comment_post_ID</span><span class="operator">`</span> <span class="operator">=</span> <span class="literal number integer">108</span><span class="punctuation">;</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">update</span> <span style="color: #666666">`</span>wp_posts<span style="color: #666666">`</span> <span style="color: #008000; font-weight: bold">set</span> <span style="color: #666666">`</span>id<span style="color: #666666">`</span> <span style="color: #666666">=</span> <span style="color: #666666">7</span> <span style="color: #008000; font-weight: bold">where</span> <span style="color: #666666">`</span>id<span style="color: #666666">`</span> <span style="color: #666666">=</span> <span style="color: #666666">108</span>;<br/><span style="color: #008000; font-weight: bold">update</span> <span style="color: #666666">`</span>wp_term_relationships<span style="color: #666666">`</span> <span style="color: #008000; font-weight: bold">set</span> <span style="color: #666666">`</span>object_id<span style="color: #666666">`</span> <span style="color: #666666">=</span> <span style="color: #666666">7</span> <span style="color: #008000; font-weight: bold">where</span> <span style="color: #666666">`</span>object_id<span style="color: #666666">`</span> <span style="color: #666666">=</span> <span style="color: #666666">108</span>;<br/><span style="color: #008000; font-weight: bold">update</span> <span style="color: #666666">`</span>wp_postmeta<span style="color: #666666">`</span> <span style="color: #008000; font-weight: bold">set</span> <span style="color: #666666">`</span>post_id<span style="color: #666666">`</span> <span style="color: #666666">=</span> <span style="color: #666666">7</span> <span style="color: #008000; font-weight: bold">where</span> <span style="color: #666666">`</span>post_id<span style="color: #666666">`</span> <span style="color: #666666">=</span> <span style="color: #666666">108</span>;<br/><span style="color: #008000; font-weight: bold">update</span> <span style="color: #666666">`</span>wp_comments<span style="color: #666666">`</span> <span style="color: #008000; font-weight: bold">set</span> <span style="color: #666666">`</span>comment_post_ID<span style="color: #666666">`</span> <span style="color: #666666">=</span> <span style="color: #666666">7</span> <span style="color: #008000; font-weight: bold">where</span> <span style="color: #666666">`</span>comment_post_ID<span style="color: #666666">`</span> <span style="color: #666666">=</span> <span style="color: #666666">108</span>;<br/></pre></div>
 <p>新建博客仍有问题。新博客的id并不小！</p>
 <p>保持id连续的原则：</p>
 <ol class="arabic simple">
@@ -173,6 +109,8 @@ unknown option: &quot;lineos&quot;.</p>
 </ol>
 <p>参考自: <a class="reference external" href="http://www.williamlong.info/archives/1416.html">月光博客</a></p>
 </div>
+
+
 </section>
 <section class="meta">
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Linghua Zhang" />
+    <meta name="author" content="amoblin" />
     <title>Linux C多线程学习</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
@@ -34,19 +34,12 @@
 <p>线程互斥(mutex)</p>
 <p>互斥量(MUTual Exclusion)是线程同步的一种方法。一般用法如下：</p>
 <p>首先定义互斥信号量，并初始化：</p>
-<pre class="code c literal-block">
-<span class="name">pthread_mutex_t</span> <span class="name">count_mutex</span> <span class="operator">=</span> <span class="name">PTHREAD_MUTEX_INITIALIZER</span><span class="punctuation">;</span>
-<span class="name">pthread_mutex_init</span><span class="punctuation">(</span><span class="operator">&amp;</span><span class="name">count_mutex</span><span class="punctuation">,</span> <span class="name builtin">NULL</span><span class="punctuation">);</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">pthread_mutex_t count_mutex <span style="color: #666666">=</span> PTHREAD_MUTEX_INITIALIZER;<br/>pthread_mutex_init(<span style="color: #666666">&amp;</span>count_mutex, <span style="color: #008000">NULL</span>);<br/></pre></div>
 <p>在线程函数中加锁和解锁：</p>
-<pre class="code c literal-block">
-<span class="name">pthread_mutex_lock</span><span class="punctuation">(</span><span class="operator">&amp;</span><span class="name">count_mutex</span><span class="punctuation">);</span>
-
-<span class="punctuation">...</span> <span class="name">some</span> <span class="name">process</span><span class="punctuation">.</span>
-
-<span class="name">pthread_mutex_unlock</span><span class="punctuation">(</span><span class="operator">&amp;</span><span class="name">count_mutex</span><span class="punctuation">);</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">pthread_mutex_lock(<span style="color: #666666">&amp;</span>count_mutex);<br/><br/>... some process.<br/><br/>pthread_mutex_unlock(<span style="color: #666666">&amp;</span>count_mutex);<br/></pre></div>
 <p>这样中间的处理就是原子的。</p>
+
+
 </section>
 <section class="meta">
 

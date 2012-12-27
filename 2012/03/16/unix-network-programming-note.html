@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Linghua Zhang" />
+    <meta name="author" content="amoblin" />
     <title>网络编程学习</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
@@ -35,104 +35,40 @@
 <ol class="arabic simple">
 <li>创建套接字：</li>
 </ol>
-<pre class="code c literal-block">
-<span class="keyword type">int</span> <span class="name">listenfd</span><span class="punctuation">;</span>
-
-<span class="keyword">if</span><span class="punctuation">(</span> <span class="punctuation">(</span><span class="name">listenfd</span> <span class="operator">=</span> <span class="name">socket</span><span class="punctuation">(</span><span class="name">AF_INET</span><span class="punctuation">,</span> <span class="name">SOCK_STREAM</span><span class="punctuation">,</span> <span class="literal number integer">0</span><span class="punctuation">))</span> <span class="operator">&lt;</span> <span class="literal number integer">0</span><span class="punctuation">)</span> <span class="punctuation">{</span>
-    <span class="name">printf</span><span class="punctuation">(</span><span class="literal string">&quot;socket error!</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="punctuation">);</span>
-    <span class="name">exit</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span>
-<span class="punctuation">}</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> listenfd;<br/><br/><span style="color: #008000; font-weight: bold">if</span>( (listenfd <span style="color: #666666">=</span> socket(AF_INET, SOCK_STREAM, <span style="color: #666666">0</span>)) <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>) {<br/>    printf(<span style="color: #BA2121">&quot;socket error!</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>);<br/>    exit(<span style="color: #666666">1</span>);<br/>}<br/></pre></div>
 <ol class="arabic simple">
 <li>设置服务器端口相关，这里为80端口，注意这里的sockaddr_in结构体。</li>
 </ol>
-<pre class="code c literal-block">
-<span class="keyword">struct</span> <span class="name">sockaddr_in</span> <span class="name">servaddr</span><span class="punctuation">;</span>
-
-<span class="name">bzero</span><span class="punctuation">(</span><span class="operator">&amp;</span><span class="name">servaddr</span><span class="punctuation">,</span> <span class="keyword">sizeof</span><span class="punctuation">(</span><span class="name">servaddr</span><span class="punctuation">));</span>
-<span class="name">servaddr</span><span class="punctuation">.</span><span class="name">sin_family</span> <span class="operator">=</span> <span class="name">AF_INET</span><span class="punctuation">;</span>
-<span class="name">servaddr</span><span class="punctuation">.</span><span class="name">sin_addr</span><span class="punctuation">.</span><span class="name">s_addr</span> <span class="operator">=</span> <span class="name">htonl</span><span class="punctuation">(</span><span class="name">INADDR_ANY</span><span class="punctuation">);</span>
-<span class="name">servaddr</span><span class="punctuation">.</span><span class="name">sin_port</span> <span class="operator">=</span> <span class="name">htons</span><span class="punctuation">(</span><span class="literal number integer">80</span><span class="punctuation">);</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">struct</span> sockaddr_in servaddr;<br/><br/>bzero(<span style="color: #666666">&amp;</span>servaddr, <span style="color: #008000; font-weight: bold">sizeof</span>(servaddr));<br/>servaddr.sin_family <span style="color: #666666">=</span> AF_INET;<br/>servaddr.sin_addr.s_addr <span style="color: #666666">=</span> htonl(INADDR_ANY);<br/>servaddr.sin_port <span style="color: #666666">=</span> htons(<span style="color: #666666">80</span>);<br/></pre></div>
 <ol class="arabic simple">
 <li>绑定端口。这里将sockaddr_in结构体转换为sockaddr结构体。</li>
 </ol>
-<pre class="code c literal-block">
-<span class="keyword">if</span><span class="punctuation">(</span> <span class="name">bind</span><span class="punctuation">(</span><span class="name">listenfd</span><span class="punctuation">,</span> <span class="punctuation">(</span><span class="keyword">struct</span> <span class="name">sockaddr</span> <span class="operator">*</span> <span class="punctuation">)</span> <span class="operator">&amp;</span><span class="name">servaddr</span><span class="punctuation">,</span> <span class="keyword">sizeof</span><span class="punctuation">(</span><span class="name">servaddr</span><span class="punctuation">))</span> <span class="operator">&lt;</span> <span class="literal number integer">0</span><span class="punctuation">)</span> <span class="punctuation">{</span>
-    <span class="name">printf</span><span class="punctuation">(</span><span class="literal string">&quot;bind error!</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="punctuation">);</span>
-    <span class="name">exit</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span>
-<span class="punctuation">}</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">if</span>( bind(listenfd, (<span style="color: #008000; font-weight: bold">struct</span> sockaddr <span style="color: #666666">*</span> ) <span style="color: #666666">&amp;</span>servaddr, <span style="color: #008000; font-weight: bold">sizeof</span>(servaddr)) <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>) {<br/>    printf(<span style="color: #BA2121">&quot;bind error!</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>);<br/>    exit(<span style="color: #666666">1</span>);<br/>}<br/></pre></div>
 <p># 监听端口，这里设置套接字排队最大连接数为5，根据BSD传统。</p>
-<pre class="code c literal-block">
-<span class="keyword">if</span><span class="punctuation">(</span> <span class="name">listen</span><span class="punctuation">(</span><span class="name">listenfd</span><span class="punctuation">,</span> <span class="literal number integer">5</span><span class="punctuation">)</span> <span class="operator">&lt;</span> <span class="literal number integer">0</span><span class="punctuation">)</span> <span class="punctuation">{</span>
-    <span class="name">printf</span><span class="punctuation">(</span><span class="literal string">&quot;listen error!</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="punctuation">);</span>
-    <span class="name">exit</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span>
-<span class="punctuation">}</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">if</span>( listen(listenfd, <span style="color: #666666">5</span>) <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>) {<br/>    printf(<span style="color: #BA2121">&quot;listen error!</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>);<br/>    exit(<span style="color: #666666">1</span>);<br/>}<br/></pre></div>
 <ol class="arabic simple">
 <li>处理连接。</li>
 </ol>
-<pre class="code c literal-block">
-<span class="keyword type">int</span> <span class="name">connfd</span><span class="punctuation">;</span>
-
-<span class="keyword">for</span><span class="punctuation">(;</span><span class="punctuation">;</span><span class="punctuation">)</span> <span class="punctuation">{</span>
-    <span class="keyword">if</span> <span class="punctuation">((</span><span class="name">connfd</span> <span class="operator">=</span> <span class="name">accept</span><span class="punctuation">(</span><span class="name">listenfd</span><span class="punctuation">,</span> <span class="keyword">struct</span> <span class="name">sockaddr</span> <span class="operator">*</span> <span class="punctuation">)</span> <span class="name builtin">NULL</span><span class="punctuation">,</span> <span class="name builtin">NULL</span><span class="punctuation">)</span> <span class="operator">&lt;</span> <span class="literal number integer">0</span><span class="punctuation">)</span> <span class="punctuation">{</span>
-        <span class="name">printf</span><span class="punctuation">(</span><span class="literal string">&quot;accept error!</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="punctuation">);</span>
-        <span class="name">exit</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span>
-    <span class="punctuation">}</span>
-    <span class="comment multiline">/* 这里处理连接请求，最简单的是直接处理，但如果比较耗时的话其他就访问不了。
-     * 要能够同时处理多个请求，一般用线程或子进程来完成，
-     * 这样主进程能够继续或者说同时处理下一个请求。 \*/</span>
-    <span class="name">close</span><span class="punctuation">(</span><span class="name">connfd</span><span class="punctuation">);</span>
-<span class="punctuation">}</span>
-<span class="name">close</span><span class="punctuation">(</span><span class="name">listenfd</span><span class="punctuation">);</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> connfd;<br/><br/><span style="color: #008000; font-weight: bold">for</span>(;;) {<br/>    <span style="color: #008000; font-weight: bold">if</span> ((connfd <span style="color: #666666">=</span> accept(listenfd, <span style="color: #008000; font-weight: bold">struct</span> sockaddr <span style="color: #666666">*</span> ) <span style="color: #008000">NULL</span>, <span style="color: #008000">NULL</span>) <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>) {<br/>        printf(<span style="color: #BA2121">&quot;accept error!</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>);<br/>        exit(<span style="color: #666666">1</span>);<br/>    }<br/>    <span style="color: #408080; font-style: italic">/* 这里处理连接请求，最简单的是直接处理，但如果比较耗时的话其他就访问不了。</span><br/><span style="color: #408080; font-style: italic">     * 要能够同时处理多个请求，一般用线程或子进程来完成，</span><br/><span style="color: #408080; font-style: italic">     * 这样主进程能够继续或者说同时处理下一个请求。 \*/</span><br/>    close(connfd);<br/>}<br/>close(listenfd);<br/></pre></div>
 </div>
 <div class="section" id="id3">
 <h3>客户端</h3>
 <ol class="arabic simple">
 <li>创建套接字</li>
 </ol>
-<pre class="code c literal-block">
-<span class="keyword type">int</span> <span class="name">sockfd</span><span class="punctuation">;</span>
-<span class="keyword">if</span><span class="punctuation">(</span> <span class="punctuation">(</span><span class="name">sockfd</span> <span class="operator">=</span> <span class="name">socket</span><span class="punctuation">(</span><span class="name">AF_INET</span><span class="punctuation">,</span> <span class="name">SOCK_STREAM</span><span class="punctuation">,</span> <span class="literal number integer">0</span><span class="punctuation">)</span> <span class="operator">&lt;</span> <span class="literal number integer">0</span><span class="punctuation">))</span> <span class="punctuation">{</span>
-    <span class="name">printf</span><span class="punctuation">(</span><span class="literal string">&quot;socket error.</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="punctuation">);</span>
-    <span class="name">exit</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span>
-    <span class="punctuation">}</span>
-<span class="punctuation">}</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> sockfd;<br/><span style="color: #008000; font-weight: bold">if</span>( (sockfd <span style="color: #666666">=</span> socket(AF_INET, SOCK_STREAM, <span style="color: #666666">0</span>) <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>)) {<br/>    printf(<span style="color: #BA2121">&quot;socket error.</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>);<br/>    exit(<span style="color: #666666">1</span>);<br/>    }<br/>}<br/></pre></div>
 <ol class="arabic simple">
 <li>设置访问端口。</li>
 </ol>
-<pre class="code c literal-block">
-<span class="keyword">struct</span> <span class="name">sockaddr_in</span> <span class="name">servaddr</span><span class="punctuation">;</span>
-
-<span class="name">bzero</span><span class="punctuation">(</span><span class="operator">&amp;</span><span class="name">servaddr</span><span class="punctuation">,</span> <span class="keyword">sizeof</span><span class="punctuation">(</span><span class="name">servaddr</span><span class="punctuation">));</span>
-<span class="name">servaddr</span><span class="punctuation">.</span><span class="name">sin_family</span> <span class="operator">=</span> <span class="name">AF_INET</span><span class="punctuation">;</span>
-<span class="name">servaddr</span><span class="punctuation">.</span><span class="name">sin_port</span> <span class="operator">=</span> <span class="name">htons</span><span class="punctuation">(</span><span class="literal number integer">80</span><span class="punctuation">);</span>
-
-<span class="keyword">if</span><span class="punctuation">(</span> <span class="name">inet_pton</span><span class="punctuation">(</span><span class="name">AF_INET</span><span class="punctuation">,</span> <span class="literal string">&quot;127.0.0.1&quot;</span><span class="punctuation">,</span> <span class="operator">&amp;</span><span class="name">servaddr</span><span class="punctuation">.</span><span class="name">sin_addr</span><span class="punctuation">)</span> <span class="operator">&lt;=</span> <span class="literal number integer">0</span><span class="punctuation">)</span> <span class="punctuation">{</span>
-    <span class="name">printf</span><span class="punctuation">(</span><span class="literal string">&quot;inet_pton error.</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="punctuation">);</span>
-    <span class="name">exit</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span>
-<span class="punctuation">}</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">struct</span> sockaddr_in servaddr;<br/><br/>bzero(<span style="color: #666666">&amp;</span>servaddr, <span style="color: #008000; font-weight: bold">sizeof</span>(servaddr));<br/>servaddr.sin_family <span style="color: #666666">=</span> AF_INET;<br/>servaddr.sin_port <span style="color: #666666">=</span> htons(<span style="color: #666666">80</span>);<br/><br/><span style="color: #008000; font-weight: bold">if</span>( inet_pton(AF_INET, <span style="color: #BA2121">&quot;127.0.0.1&quot;</span>, <span style="color: #666666">&amp;</span>servaddr.sin_addr) <span style="color: #666666">&lt;=</span> <span style="color: #666666">0</span>) {<br/>    printf(<span style="color: #BA2121">&quot;inet_pton error.</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>);<br/>    exit(<span style="color: #666666">1</span>);<br/>}<br/></pre></div>
 <ol class="arabic simple">
 <li>发起连接。错误代码保存在全局变量errno中，errno在errno.h中定义。</li>
 </ol>
-<pre class="code c literal-block">
-<span class="keyword">if</span><span class="punctuation">(</span> <span class="name">connect</span><span class="punctuation">(</span><span class="name">sockfd</span><span class="punctuation">,</span> <span class="punctuation">(</span><span class="keyword">struct</span> <span class="name">sockaddr</span> <span class="operator">*</span> <span class="punctuation">)</span> <span class="operator">&amp;</span><span class="name">servaddr</span><span class="punctuation">,</span> <span class="keyword">sizeof</span><span class="punctuation">(</span><span class="name">servaddr</span><span class="punctuation">))</span> <span class="operator">&lt;</span> <span class="literal number integer">0</span><span class="punctuation">)</span> <span class="punctuation">{</span>
-    <span class="name">printf</span><span class="punctuation">(</span><span class="literal string">&quot;connect error: %s</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="punctuation">,</span> <span class="name">strerror</span><span class="punctuation">(</span><span class="name">errno</span><span class="punctuation">));</span>
-    <span class="name">exit</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span>
-<span class="punctuation">}</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">if</span>( connect(sockfd, (<span style="color: #008000; font-weight: bold">struct</span> sockaddr <span style="color: #666666">*</span> ) <span style="color: #666666">&amp;</span>servaddr, <span style="color: #008000; font-weight: bold">sizeof</span>(servaddr)) <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>) {<br/>    printf(<span style="color: #BA2121">&quot;connect error: %s</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>, strerror(errno));<br/>    exit(<span style="color: #666666">1</span>);<br/>}<br/></pre></div>
 <ol class="arabic simple">
 <li>读写socket，应用处理。这里可以使用各种I/O复用等。</li>
 </ol>
-<pre class="code c literal-block">
-<span class="keyword">while</span><span class="punctuation">(</span><span class="name">read</span><span class="punctuation">(</span><span class="name">sockfd</span><span class="punctuation">,</span> <span class="name">recvlien</span><span class="punctuation">,</span> <span class="name">MAXLINE</span><span class="punctuation">)</span> <span class="operator">&gt;</span> <span class="literal number integer">0</span><span class="punctuation">)</span> <span class="punctuation">{</span>
-<span class="punctuation">}</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">while</span>(read(sockfd, recvlien, MAXLINE) <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span>) {<br/>}<br/></pre></div>
 </div>
 </div>
 <div class="section" id="i-o">
@@ -140,37 +76,13 @@
 <div class="section" id="select">
 <h3>select</h3>
 <p>头文件</p>
-<pre class="code c literal-block">
-<span class="comment preproc">#include &lt;sys/select.h&gt;
-</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;sys/select.h&gt;</span><br/></pre></div>
 <p>定义相关变量并初始化：</p>
-<pre class="code c literal-block">
-<span class="keyword type">int</span> <span class="name">maxfdp1</span><span class="punctuation">;</span>
-<span class="name">fd_set</span> <span class="name">rset</span><span class="punctuation">;</span>
-
-<span class="name">FD_ZERO</span><span class="punctuation">(</span><span class="operator">&amp;</span><span class="name">rset</span><span class="punctuation">);</span>
-<span class="name">FD_SET</span><span class="punctuation">(</span><span class="name">fileno</span><span class="punctuation">(</span><span class="name">fp</span><span class="punctuation">),</span> <span class="operator">&amp;</span><span class="name">rset</span><span class="punctuation">);</span>
-<span class="name">FD_SET</span><span class="punctuation">(</span><span class="name">sockfd</span><span class="punctuation">,</span> <span class="operator">&amp;</span><span class="name">rset</span><span class="punctuation">);</span>
-<span class="name">maxfdp1</span> <span class="operator">=</span> <span class="name">max</span><span class="punctuation">(</span><span class="name">fileno</span><span class="punctuation">(</span><span class="name">fp</span><span class="punctuation">),</span> <span class="name">sockfd</span><span class="punctuation">)</span> <span class="operator">+</span> <span class="literal number integer">1</span><span class="punctuation">;</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> maxfdp1;<br/>fd_set rset;<br/><br/>FD_ZERO(<span style="color: #666666">&amp;</span>rset);<br/>FD_SET(fileno(fp), <span style="color: #666666">&amp;</span>rset);<br/>FD_SET(sockfd, <span style="color: #666666">&amp;</span>rset);<br/>maxfdp1 <span style="color: #666666">=</span> max(fileno(fp), sockfd) <span style="color: #666666">+</span> <span style="color: #666666">1</span>;<br/></pre></div>
 <p>使用select，在可读时响应：</p>
-<pre class="code c literal-block">
-<span class="keyword">if</span><span class="punctuation">((</span> <span class="name">n</span><span class="operator">=</span><span class="name">select</span><span class="punctuation">(</span><span class="name">maxfdp1</span><span class="punctuation">,</span> <span class="operator">&amp;</span><span class="name">rset</span><span class="punctuation">,</span> <span class="name builtin">NULL</span><span class="punctuation">,</span> <span class="name builtin">NULL</span><span class="punctuation">,</span> <span class="name builtin">NULL</span><span class="punctuation">))</span> <span class="operator">&lt;</span> <span class="literal number integer">0</span><span class="punctuation">)</span> <span class="punctuation">{</span>
-    <span class="name">printf</span><span class="punctuation">(</span><span class="literal string">&quot;select error.</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="punctuation">);</span>
-    <span class="name">exit</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span>
-<span class="punctuation">}</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">if</span>(( n<span style="color: #666666">=</span>select(maxfdp1, <span style="color: #666666">&amp;</span>rset, <span style="color: #008000">NULL</span>, <span style="color: #008000">NULL</span>, <span style="color: #008000">NULL</span>)) <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>) {<br/>    printf(<span style="color: #BA2121">&quot;select error.</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>);<br/>    exit(<span style="color: #666666">1</span>);<br/>}<br/></pre></div>
 <p>通过FD_ISSET()判断哪个文件描述符可读：</p>
-<pre class="code c literal-block">
-<span class="keyword">if</span><span class="punctuation">(</span> <span class="name">FD_ISSET</span><span class="punctuation">(</span><span class="name">fileno</span><span class="punctuation">(</span><span class="name">fp</span><span class="punctuation">),</span> <span class="operator">&amp;</span><span class="name">rset</span><span class="punctuation">))</span> <span class="punctuation">{</span>
-    <span class="comment single">// Now can read from fp.
-</span><span class="punctuation">}</span>
-
-<span class="keyword">if</span><span class="punctuation">(</span> <span class="name">FD_ISSET</span><span class="punctuation">(</span> <span class="name">sockfd</span><span class="punctuation">,</span> <span class="operator">&amp;</span><span class="name">rset</span><span class="punctuation">))</span> <span class="punctuation">{</span>
-    <span class="comment single">// Now can read from sockfd.
-</span><span class="punctuation">}</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">if</span>( FD_ISSET(fileno(fp), <span style="color: #666666">&amp;</span>rset)) {<br/>    <span style="color: #408080; font-style: italic">// Now can read from fp.</span><br/>}<br/><br/><span style="color: #008000; font-weight: bold">if</span>( FD_ISSET( sockfd, <span style="color: #666666">&amp;</span>rset)) {<br/>    <span style="color: #408080; font-style: italic">// Now can read from sockfd.</span><br/>}<br/></pre></div>
 <p>具体的例子参见str_cli2函数（在echo_client.c中）。</p>
 </div>
 <div class="section" id="pselect">
@@ -186,6 +98,8 @@
 <li>libevent</li>
 </ol>
 </div>
+
+
 </section>
 <section class="meta">
 

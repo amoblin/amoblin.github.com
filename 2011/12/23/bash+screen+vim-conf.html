@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Linghua Zhang" />
+    <meta name="author" content="amoblin" />
     <title>bash + screen + vim 配置</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
@@ -80,22 +80,15 @@ C-l 清屏
 C-m 不能用，否则bash中无法回车。
 C-k</p>
 <p>综上，选择使用C-，在screen中配置为：</p>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">&lt;string&gt;</tt>, line 75)</p>
-<p>Cannot analyze code. No Pygments lexer found for &quot;screen&quot;.</p>
-<pre class="literal-block">
-.. code-block:: screen
-
-    escape ^\\
-
-</pre>
-</div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">escape ^\\<br/></pre></div>
 <p>有时需要在screen中用ssh登陆服务器，然后再开一个screen，这时要另外选择一个eacape键。</p>
 <p>由于在第二个screen中比较少用ctags，所以综合考虑，选择C-]。</p>
 <p>参考：</p>
 <p><a class="reference external" href="http://houbolin.cn/blog/2009/12/03/linux-%E4%B8%8Bscreen%E5%91%BD%E4%BB%A4/">http://houbolin.cn/blog/2009/12/03/linux-%E4%B8%8Bscreen%E5%91%BD%E4%BB%A4/</a></p>
 <p><a class="reference external" href="https://wiki.archlinux.org/index.php/GNU_Screen">https://wiki.archlinux.org/index.php/GNU_Screen</a></p>
 </div>
+
+
 </section>
 <section class="meta">
 

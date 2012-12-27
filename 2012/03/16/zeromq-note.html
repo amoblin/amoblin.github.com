@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Linghua Zhang" />
+    <meta name="author" content="amoblin" />
     <title>zeromq学习笔记</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
@@ -72,24 +72,12 @@
 </div>
 <div class="section" id="node-js">
 <h2>Node.js使用例子</h2>
-<pre class="code javascript literal-block">
-<span class="keyword declaration">var</span> <span class="name other">context</span> <span class="operator">=</span> <span class="name other">require</span><span class="punctuation">(</span><span class="literal string single">'zeromq'</span><span class="punctuation">)</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> context <span style="color: #666666">=</span> require(<span style="color: #BA2121">&#39;zeromq&#39;</span>)<br/></pre></div>
 <p>请求/响应模式：</p>
-<pre class="code javascript literal-block">
-<span class="keyword declaration">var</span> <span class="name other">server</span> <span class="operator">=</span> <span class="name other">context</span><span class="punctuation">.</span><span class="name other">createSocket</span><span class="punctuation">(</span><span class="literal string single">'rep'</span><span class="punctuation">)</span>
-
-<span class="name other">server</span><span class="punctuation">.</span><span class="name other">on</span><span class="punctuation">(</span><span class="literal string single">'message'</span><span class="punctuation">,</span> <span class="keyword declaration">function</span><span class="punctuation">(</span><span class="name other">request</span><span class="punctuation">)</span> <span class="punctuation">{</span>
-
-<span class="punctuation">})</span>
-</pre>
-<pre class="code javascript literal-block">
-<span class="keyword declaration">var</span> <span class="name other">client</span> <span class="operator">=</span> <span class="name other">context</span><span class="punctuation">.</span><span class="name other">createSocket</span><span class="punctuation">(</span><span class="literal string single">'req'</span><span class="punctuation">)</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> server <span style="color: #666666">=</span> context.createSocket(<span style="color: #BA2121">&#39;rep&#39;</span>)<br/><br/>server.on(<span style="color: #BA2121">&#39;message&#39;</span>, <span style="color: #008000; font-weight: bold">function</span>(request) {<br/><br/>})<br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> client <span style="color: #666666">=</span> context.createSocket(<span style="color: #BA2121">&#39;req&#39;</span>)<br/></pre></div>
 <p>发布/订阅模式：</p>
-<pre class="code javascript literal-block">
-<span class="keyword declaration">var</span> <span class="name other">publisher</span> <span class="operator">=</span> <span class="name other">context</span><span class="punctuation">.</span><span class="name other">createSocket</span><span class="punctuation">(</span><span class="literal string single">'pub'</span><span class="punctuation">)</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> publisher <span style="color: #666666">=</span> context.createSocket(<span style="color: #BA2121">&#39;pub&#39;</span>)<br/></pre></div>
 <div class="system-message">
 <p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">&lt;string&gt;</tt>, line 100)</p>
 <p>Content block expected for the &quot;code-block&quot; directive; none found.</p>
@@ -105,28 +93,20 @@
 <p>目前最新稳定版：<a class="reference external" href="http://download.zeromq.org/zeromq-2.1.11.tar.gz">http://download.zeromq.org/zeromq-2.1.11.tar.gz</a></p>
 <p>github地址：<a class="reference external" href="https://github.com/zeromq/zeromq2-1">https://github.com/zeromq/zeromq2-1</a></p>
 <p>编译安装三部曲：</p>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> ./configure
-<span class="generic prompt">$</span> make
-<span class="generic prompt">$</span> sudo make install
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> ./configure<br/><span style="color: #000080; font-weight: bold">$</span> make<br/><span style="color: #000080; font-weight: bold">$</span> sudo make install<br/></pre></div>
 <p>另外还需要更新动态链接库：</p>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> sudo ldconfig
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo ldconfig<br/></pre></div>
 </div>
 <div class="section" id="python">
 <h2>python绑定</h2>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> sudo easy_install pyzmq
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo easy_install pyzmq<br/></pre></div>
 </div>
 <div class="section" id="id6">
 <h2>Node.js绑定</h2>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> npm install zmq
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> npm install zmq<br/></pre></div>
 </div>
+
+
 </section>
 <section class="meta">
 

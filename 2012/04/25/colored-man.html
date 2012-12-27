@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Linghua Zhang" />
+    <meta name="author" content="amoblin" />
     <title>给终端加点彩</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
@@ -30,33 +30,21 @@
 <!-- publish: YES -->
 <div class="section" id="man">
 <h2>彩色的man</h2>
-<pre class="code console literal-block">
-<span class="generic output">export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;31m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;33m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;32m'</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">export LESS_TERMCAP_mb=$&#39;\E[01;31m&#39;</span><br/><span style="color: #808080">export LESS_TERMCAP_md=$&#39;\E[01;31m&#39;</span><br/><span style="color: #808080">export LESS_TERMCAP_me=$&#39;\E[0m&#39;</span><br/><span style="color: #808080">export LESS_TERMCAP_se=$&#39;\E[0m&#39;</span><br/><span style="color: #808080">export LESS_TERMCAP_so=$&#39;\E[01;44;33m&#39;</span><br/><span style="color: #808080">export LESS_TERMCAP_ue=$&#39;\E[0m&#39;</span><br/><span style="color: #808080">export LESS_TERMCAP_us=$&#39;\E[01;32m&#39;</span><br/></pre></div>
 <p>参考：
 <a class="reference external" href="http://blog.longwin.com.tw/2006/07/color_grep_man_2006/">http://blog.longwin.com.tw/2006/07/color_grep_man_2006/</a></p>
 </div>
 <div class="section" id="less">
 <h2>彩色less</h2>
 <p>让less识别颜色转义序列：</p>
-<pre class="code console literal-block">
-<span class="generic output">export LESS='-R'</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">export LESS=&#39;-R&#39;</span><br/></pre></div>
 <p>参考：</p>
 <p><a class="reference external" href="http://linuxtoy.org/archives/less-highlight.html">http://linuxtoy.org/archives/less-highlight.html</a></p>
 <p><a class="reference external" href="http://xiaogaozi.blogspot.com/2009/01/less.html">http://xiaogaozi.blogspot.com/2009/01/less.html</a></p>
 </div>
 <div class="section" id="grep">
 <h2>彩色grep</h2>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> <span class="name builtin">alias </span><span class="name variable">grep</span><span class="operator">=</span><span class="literal string single">'grep --color'</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">alias </span><span style="color: #19177C">grep</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;grep --color&#39;</span><br/></pre></div>
 <p>这是fedora和ubuntu的标配，但centos和mac下就要使用上述设置了。然而使用发现，centos和mac下即使使用了这个设置，显示效果仍然比不上fedora/ubuntu。</p>
 <p>Mac OS X中如何实现ubuntu的彩色grep效果呢？</p>
 <p>经过多方查证，发现原因是： 新老版本的区别。老版本grep只有有限的彩色支持，使用GREP_COLOR来配置，配置内容也很少。</p>
@@ -65,14 +53,11 @@ export LESS_TERMCAP_us=$'\E[01;32m'</span>
 <p>homebrew里也没有grep，理由是：</p>
 <p>We don't ship system duplicates.</p>
 <p>那就自己动手，丰衣足食。下载grep源码，最新版2.12。</p>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> xz -d grep-2.12.tar.xz
-<span class="generic prompt">$</span> tar -xvf  grep-2.12.tar
-<span class="generic prompt">$</span> <span class="name builtin">cd </span>grep-2.12
-<span class="generic prompt">$</span> ./configure <span class="operator">&amp;&amp;</span> make <span class="operator">&amp;&amp;</span> sudo make install
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> xz -d grep-2.12.tar.xz<br/><span style="color: #000080; font-weight: bold">$</span> tar -xvf  grep-2.12.tar<br/><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">cd </span>grep-2.12<br/><span style="color: #000080; font-weight: bold">$</span> ./configure <span style="color: #666666">&amp;&amp;</span> make <span style="color: #666666">&amp;&amp;</span> sudo make install<br/></pre></div>
 <p>OK，彩色出来了！</p>
 </div>
+
+
 </section>
 <section class="meta">
 

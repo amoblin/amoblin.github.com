@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Linghua Zhang" />
+    <meta name="author" content="amoblin" />
     <title>使用MarkBook发布博客到Jekyll</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
@@ -32,7 +32,8 @@
 <p>在新版MarkBook( v1.1(77) 中，增加了将rst文件发布到Jekyll博客的功能。具体使用步骤如下。</p>
 <div class="section" id="id1">
 <h2>新建笔记</h2>
-<p>点击左下角 &quot; + &quot; 来新建笔记，输入笔记名称，选择笔记类型为RST。注意输入的笔记名称最好是英文，因为jekyll中文件的路径都是英文的。</p>
+<p>点击左下角 &quot; + &quot; 来新建笔记，输入笔记名称，选择笔记类型为RST。</p>
+<p>注意如果要发布到jekyll博客的话，笔记名称最好是英文，因为jekyll中文件的路径都是英文的。输入的名字会生成对应的文件名。</p>
 </div>
 <div class="section" id="id2">
 <h2>编辑笔记</h2>
@@ -47,7 +48,9 @@
   7 .. |date| date:: 2012-12-26
   8 .. publish:: NO
 
-其中第2行是新建笔记时输入的名字，第7行的日期是当前日期，其他内容是固定的。可以修改第二行和地6行的名称，这里用来显示标题。比如我修改完后是这样的：
+其中第2行是新建笔记时输入的名字，第7行的日期是当前日期，其他内容是固定的。
+
+可以修改第2行和第6行的名称，这里可以使用中文，因为是显示在页面里面的标题。比如我修改完后是这样的：
 </pre>
 <pre class="literal-block">
   1 ================================
@@ -65,17 +68,13 @@
 <div class="section" id="id3">
 <h2>发布笔记</h2>
 <p>最后需要发布的时候，修改第8行的publish值为YES，这样就会在~/.MarkBook/source/blogs/my_blog下生成文件：</p>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> ls ~/.MarkBook/source/blogs/my_blog
-<span class="generic output">2012-12-26-markbook-to-jekyll.rst</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> ls ~/.MarkBook/source/blogs/my_blog<br/><span style="color: #808080">2012-12-26-markbook-to-jekyll.rst</span><br/></pre></div>
 <p>你说我自己的jekyll目录不在这个地方啊，那好办，建一个软链接即可：</p>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> rm -rf ~/.MarkBook/source/blogs/my_blog
-<span class="generic prompt">$</span> ln -sf /path/to/jekyll/_posts ~/.MarkBook/source/blogs/my_blog
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> rm -rf ~/.MarkBook/source/blogs/my_blog<br/><span style="color: #000080; font-weight: bold">$</span> ln -sf /path/to/jekyll/_posts ~/.MarkBook/source/blogs/my_blog<br/></pre></div>
 <p>没错，本篇博客就是这么发布的！</p>
 </div>
+
+
 </section>
 <section class="meta">
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Linghua Zhang" />
+    <meta name="author" content="amoblin" />
     <title>Iphone越狱。。。</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
@@ -31,9 +31,7 @@
 <div class="section" id="ios6">
 <h2>iOS6不完美越狱</h2>
 <p><a class="reference external" href="http://cn.ibtimes.com/artnews/14624/20120920/ios6-jailbreak-cydia-install.htm">http://cn.ibtimes.com/artnews/14624/20120920/ios6-jailbreak-cydia-install.htm</a></p>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> wget -q http://downloads.kr1sis.net/cyinstall.sh
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> wget -q http://downloads.kr1sis.net/cyinstall.sh<br/></pre></div>
 <p>2012-09-20 21:54</p>
 <p>越狱前准备工作：</p>
 <ol class="arabic simple" start="0">
@@ -85,11 +83,7 @@ cydia+openbackup备份</p>
 <li>解决cydia添加源闪退:</li>
 </ol>
 <p>ssh登陆iphone，执行如下操作：</p>
-<pre class="code console literal-block">
-<span class="generic prompt">#</span> ls /var/root/Library/
-<span class="generic output">AddressBook  Caches  Cookies  Lockdown  Logs  Mail  Preferences  WebKit
-</span><span class="generic prompt">#</span> cp -r /User/Library/Keyboard/ /var/root/Library/
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">#</span> ls /var/root/Library/<br/><span style="color: #808080">AddressBook  Caches  Cookies  Lockdown  Logs  Mail  Preferences  WebKit</span><br/><span style="color: #000080; font-weight: bold">#</span> cp -r /User/Library/Keyboard/ /var/root/Library/<br/></pre></div>
 <ol class="arabic simple">
 <li>添加国内178源：</li>
 </ol>
@@ -104,37 +98,24 @@ cydia+openbackup备份</p>
 <h2>iOS中Unix环境配置</h2>
 <div class="section" id="ssh">
 <h3>使用ssh登陆系统</h3>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> ssh root&#64;192.168.2.2
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> ssh root@192.168.2.2<br/></pre></div>
 <p>初始密码为alpine，最好修改一下。</p>
 </div>
 <div class="section" id="id1">
 <h3>添加178源</h3>
-<pre class="code console literal-block">
-<span class="generic prompt">#</span> <span class="name builtin">echo</span> <span class="literal string double">&quot;deb http://apt.178.com/ ./&quot;</span> &gt;&gt; /etc/apt/sources.list.d/cydia.list
-<span class="generic prompt">#</span> apt-get update
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">#</span> <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;deb http://apt.178.com/ ./&quot;</span> &gt;&gt; /etc/apt/sources.list.d/cydia.list<br/><span style="color: #000080; font-weight: bold">#</span> apt-get update<br/></pre></div>
 <ol class="arabic simple">
 <li>安装aptitude：</li>
 </ol>
-<pre class="code console literal-block">
-<span class="generic prompt">#</span> apt-get install aptitude
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">#</span> apt-get install aptitude<br/></pre></div>
 <ol class="arabic simple">
 <li>使用aptitude搜索软件包：</li>
 </ol>
-<pre class="code console literal-block">
-<span class="generic prompt">#</span> aptitude search zephyr
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">#</span> aptitude search zephyr<br/></pre></div>
 <p>Linux/Unix用户必备工具：</p>
-<pre class="code console literal-block">
-<span class="generic prompt">#</span> apt-get install sudo less vim git python screen zsh
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">#</span> apt-get install sudo less vim git python screen zsh<br/></pre></div>
 <p>iPhone必备软件(Zephyr, NcSettings, KuaiDial)：</p>
-<pre class="code console literal-block">
-<span class="generic prompt">#</span> apt-get install zephyr.178 com.jamied360.ncsettings kuaidial-beta.178
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">#</span> apt-get install zephyr.178 com.jamied360.ncsettings kuaidial-beta.178<br/></pre></div>
 <p>开发工具集：</p>
 <p>aptitude
 adv-cmds
@@ -148,9 +129,7 @@ shell-cmds
 system-cmds
 inetutils</p>
 <p>通过命令行发短信：</p>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> sudo apt-get install sendsms
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo apt-get install sendsms<br/></pre></div>
 </div>
 </div>
 <div class="section" id="ios">
@@ -158,16 +137,14 @@ inetutils</p>
 <ol class="arabic simple">
 <li>重启SpringBoard</li>
 </ol>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> sudo sbreload
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo sbreload<br/></pre></div>
 <ol class="arabic simple">
 <li>重启iphone</li>
 </ol>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> sudo reboot
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo reboot<br/></pre></div>
 </div>
+
+
 </section>
 <section class="meta">
 

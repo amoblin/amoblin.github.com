@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Linghua Zhang" />
+    <meta name="author" content="amoblin" />
     <title>memcached学习笔记</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
@@ -30,67 +30,27 @@
 <!-- id: 12 -->
 <!-- publish: YES -->
 <p>ubuntu下安装：</p>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> sudo apt-get install memcached
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo apt-get install memcached<br/></pre></div>
 <p>启动：</p>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> memcached -d
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> memcached -d<br/></pre></div>
 <p>默认端口号为11211，可以通过ps查看：</p>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> ps -ef|grep memcached
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> ps -ef|grep memcached<br/></pre></div>
 <div class="section" id="telnet">
 <h2>使用Telnet测试：</h2>
 <p>查看状态：</p>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> telnet localhost 11211
-<span class="generic output">Trying ::1...
-Connected to shiroh-laptop.
-Escape character is '^]'.
-stats
-STAT pid 2768
-STAT uptime 4614
-STAT time 1323677670
-STAT version 1.4.7
-STAT libevent 2.0.12-stable
-...
-STAT total_items 9
-STAT evictions 0
-STAT reclaimed 0
-END</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> telnet localhost 11211<br/><span style="color: #808080">Trying ::1...</span><br/><span style="color: #808080">Connected to shiroh-laptop.</span><br/><span style="color: #808080">Escape character is &#39;^]&#39;.</span><br/><span style="color: #808080">stats</span><br/><span style="color: #808080">STAT pid 2768</span><br/><span style="color: #808080">STAT uptime 4614</span><br/><span style="color: #808080">STAT time 1323677670</span><br/><span style="color: #808080">STAT version 1.4.7</span><br/><span style="color: #808080">STAT libevent 2.0.12-stable</span><br/><span style="color: #808080">...</span><br/><span style="color: #808080">STAT total_items 9</span><br/><span style="color: #808080">STAT evictions 0</span><br/><span style="color: #808080">STAT reclaimed 0</span><br/><span style="color: #808080">END</span><br/></pre></div>
 <p>set操作(继续上面的telnet操作）：</p>
-<pre class="code console literal-block">
-<span class="generic output">set name 0 0 7
-amoblin
-STORED
-set gender 0 0 1
-1
-STORED</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">set name 0 0 7</span><br/><span style="color: #808080">amoblin</span><br/><span style="color: #808080">STORED</span><br/><span style="color: #808080">set gender 0 0 1</span><br/><span style="color: #808080">1</span><br/><span style="color: #808080">STORED</span><br/></pre></div>
 <p>get操作：</p>
-<pre class="code console literal-block">
-<span class="generic output">get name
-VALUE name 0 7
-amoblin
-END
-get gender
-VALUE gender 0 1
-1
-END</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">get name</span><br/><span style="color: #808080">VALUE name 0 7</span><br/><span style="color: #808080">amoblin</span><br/><span style="color: #808080">END</span><br/><span style="color: #808080">get gender</span><br/><span style="color: #808080">VALUE gender 0 1</span><br/><span style="color: #808080">1</span><br/><span style="color: #808080">END</span><br/></pre></div>
 <div class="section" id="id1">
 <h3>测试工具</h3>
 <p>自带memslap：</p>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> sudo apt-get install libmemcached-tools
-<span class="generic output">...
-</span><span class="generic prompt">$</span> memslap
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo apt-get install libmemcached-tools<br/><span style="color: #808080">...</span><br/><span style="color: #000080; font-weight: bold">$</span> memslap<br/></pre></div>
 </div>
 </div>
+
+
 </section>
 <section class="meta">
 

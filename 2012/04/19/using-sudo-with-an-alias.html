@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Linghua Zhang" />
+    <meta name="author" content="amoblin" />
     <title>在sudo中使用alias</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
@@ -30,35 +30,21 @@
 <!-- publish: YES -->
 <p>使用bash时发现，在sudo时，所有的配置都失效了，比如alias的配置。</p>
 <p>我习惯使用vi来打开vim，所以有如下配置：</p>
-<pre class="code console literal-block">
-<span class="generic output">alias vi='vim'</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">alias vi=&#39;vim&#39;</span><br/></pre></div>
 <p>在直接使用vi时，bash很规矩地按照alias来调用vim，从下看出：</p>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> which vi
-<span class="generic output">alias vi='vim'
-    /usr/bin/vim</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> which vi<br/><span style="color: #808080">alias vi=&#39;vim&#39;</span><br/><span style="color: #808080">    /usr/bin/vim</span><br/></pre></div>
 <p>但当使用sudo vi时，就出现了警告：</p>
-<pre class="code console literal-block">
-<span class="generic output">Error detected while processing /usr/home/amoblin/.vimrc:
-line   31:
-E518: Unknown option: autochdir
-Press ENTER or type command to continue</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">Error detected while processing /usr/home/amoblin/.vimrc:</span><br/><span style="color: #808080">line   31:</span><br/><span style="color: #808080">E518: Unknown option: autochdir</span><br/><span style="color: #808080">Press ENTER or type command to continue</span><br/></pre></div>
 <p>这里vi调用的哪个呢?</p>
-<pre class="code console literal-block">
-<span class="generic prompt">$</span> sudo which vi
-<span class="generic output">/bin/vi</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo which vi<br/><span style="color: #808080">/bin/vi</span><br/></pre></div>
 <p>是原始的vi，不是vim，难怪对autochdir不支持。</p>
 <p>怎么解决呢？很简单，再增加一个alias：</p>
-<pre class="code console literal-block">
-<span class="generic output">alias sudo='sudo '</span>
-</pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">alias sudo=&#39;sudo &#39;</span><br/></pre></div>
 <p>不要小看这个空格，正是它让你在sudo时能够使用之前的alias配置。</p>
 <p>传说还有另外一个很变态的alias，欲知详情，请移步这里：</p>
 <p><a class="reference external" href="http://www.shellperson.net/using-sudo-with-an-alias/">http://www.shellperson.net/using-sudo-with-an-alias/</a></p>
+
+
 </section>
 <section class="meta">
 

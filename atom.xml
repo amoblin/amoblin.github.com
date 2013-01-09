@@ -4,7 +4,7 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2012-12-29T10:25:06+08:00</updated>
+ <updated>2013-01-09T15:26:51+08:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -74,7 +74,7 @@
 &lt;!-- publish: YES --&gt;
 &lt;div class=&quot;section&quot; id=&quot;markbook&quot;&gt;
 &lt;h2&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id11&quot;&gt;欢迎使用MarkBook&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;欢迎您使用MarkBook，目前版本为 v1.2&lt;/p&gt;
+&lt;p&gt;欢迎您使用MarkBook，目前版本为 v0.2&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
 &lt;h2&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id12&quot;&gt;MarkBook是什么？&lt;/a&gt;&lt;/h2&gt;
@@ -473,6 +473,37 @@ git reset HEAD^&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://itspg.github.com/blog/2012/04/06/more-octopress/&quot;&gt;http://itspg.github.com/blog/2012/04/06/more-octopress/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://dayuan.im/blog/add-category-list-for-octopress.html/&quot;&gt;http://dayuan.im/blog/add-category-list-for-octopress.html/&lt;/a&gt; Mac ,beijing&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://geek42.info/&quot;&gt;http://geek42.info/&lt;/a&gt; 云帆 rst&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://qixinglu.com/&quot;&gt;http://qixinglu.com/&lt;/a&gt;    muzuiget, linux + vim&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.binux.me/2012/10/migrate-from-wordpress-to-jekyll/&quot;&gt;http://blog.binux.me/2012/10/migrate-from-wordpress-to-jekyll/&lt;/a&gt; mac&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://www.cnfn.org/links.html&quot;&gt;http://www.cnfn.org/links.html&lt;/a&gt; windows + linux&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://hackfisher.info/about.html&quot;&gt;http://hackfisher.info/about.html&lt;/a&gt;  mac&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.dayanjia.com/archives/&quot;&gt;http://blog.dayanjia.com/archives/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://roylez.herokuapp.com/2011/11/22/migration-to-octopress.html&quot;&gt;http://roylez.herokuapp.com/2011/11/22/migration-to-octopress.html&lt;/a&gt; Linux&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://dongbeta.com/about/&quot;&gt;http://dongbeta.com/about/&lt;/a&gt; Mac&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://leiming.github.com/archive.html&quot;&gt;http://leiming.github.com/archive.html&lt;/a&gt; Windows + Linux&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.skydark.info/programming/2012/03/23/play-with-jekyll/&quot;&gt;http://blog.skydark.info/programming/2012/03/23/play-with-jekyll/&lt;/a&gt;   Linux&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://www.kafeitu.me/about.html&quot;&gt;http://www.kafeitu.me/about.html&lt;/a&gt;    Mac + Vim&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://weizhifeng.net/&quot;&gt;http://weizhifeng.net/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://beiyuu.com/github-pages/&quot;&gt;http://beiyuu.com/github-pages/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://dobila.info/&quot;&gt;http://dobila.info/&lt;/a&gt; 简洁风&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://xiaoxiongmao.me/about.html&quot;&gt;http://xiaoxiongmao.me/about.html&lt;/a&gt; 画廊不错&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://fengqijun.me/blog/2012/11/17/move-from-wordpress-to-jekyll/#.UOjxQ4lEIbc&quot;&gt;http://fengqijun.me/blog/2012/11/17/move-from-wordpress-to-jekyll/#.UOjxQ4lEIbc&lt;/a&gt; ios开发&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://lhzhang.com/2011/12/19/migrated-to-github-pages.html&quot;&gt;http://lhzhang.com/2011/12/19/migrated-to-github-pages.html&lt;/a&gt;     mac&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://mytharcher.github.com/posts/publish-jekyll-theme-simplegray.html&quot;&gt;http://mytharcher.github.com/posts/publish-jekyll-theme-simplegray.html&lt;/a&gt; theme&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://equation85.github.com/blog/install-jekyll-on-mac/&quot;&gt;http://equation85.github.com/blog/install-jekyll-on-mac/&lt;/a&gt;    mac&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://jiangle.name/2012/02/06/switched-to-jekyll/&quot;&gt;http://jiangle.name/2012/02/06/switched-to-jekyll/&lt;/a&gt;  mac&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://www.timger.info/2012/02/12/hello-git-blog-on-mac.html&quot;&gt;http://www.timger.info/2012/02/12/hello-git-blog-on-mac.html&lt;/a&gt;  mac&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://livid.v2ex.com/essays/2012/01/18/say-hello-to-jekyll/&quot;&gt;http://livid.v2ex.com/essays/2012/01/18/say-hello-to-jekyll/&lt;/a&gt;    v2ex&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://idenizen.net/blog/archive/2012/09/29/separating-work-and-home-life/&quot;&gt;http://idenizen.net/blog/archive/2012/09/29/separating-work-and-home-life/&lt;/a&gt; mac, Ruhoh&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://dourok.info/about/&quot;&gt;http://dourok.info/about/&lt;/a&gt;   Ruhoh&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.fangjian.me/about/&quot;&gt;http://blog.fangjian.me/about/&lt;/a&gt;  mac Rhhoh&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://daisygao.com/cs/2012/12/07/%E5%8D%9A%E5%AE%A2%E4%BB%8Ewordpress%E8%BD%AC%E7%94%A8ruhoh%E5%95%A6/&quot;&gt;http://daisygao.com/cs/2012/12/07/%E5%8D%9A%E5%AE%A2%E4%BB%8Ewordpress%E8%BD%AC%E7%94%A8ruhoh%E5%95%A6/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://rubyer.me/&quot;&gt;http://rubyer.me/&lt;/a&gt;   mac&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://tech.wangyaodi.com/&quot;&gt;http://tech.wangyaodi.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://brandonbohling.com/2011/08/27/Installing-Jekyll-on-Mac/&quot;&gt;http://brandonbohling.com/2011/08/27/Installing-Jekyll-on-Mac/&lt;/a&gt; Mac foreigner&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://pukkaone.github.com/2010/12/18/jekyll-mac-osx.html&quot;&gt;http://pukkaone.github.com/2010/12/18/jekyll-mac-osx.html&lt;/a&gt;   Mac foreigner&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html&quot;&gt;http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html&lt;/a&gt; 阮一峰&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://www.worldhello.net/2011/11/29/jekyll-based-blog-setup.html&quot;&gt;http://www.worldhello.net/2011/11/29/jekyll-based-blog-setup.html&lt;/a&gt; 《Git权威指南》作者蒋鑫&lt;/p&gt;
 
 </content>
  </entry>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="amoblin" />
+    <title>Mac下创建本地化目录</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/styles/style.css">
+    <link rel="stylesheet" href="/media/styles/github.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>Mac下创建本地化目录</h1>
+        </header>
+        <nav>
+        <span><a title="home page" class="" href="/">home</a></span>
+        <span><a title="tags" class="" href="/tags.html">tags</a></span>
+        <span><a title="blogroll" class="" href="/links.html">links</a></span>
+        <span><a title="subscribe me" class="" href="/atom.xml">feed</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<!-- Author: your_name -->
+<!-- publish: YES -->
+<p>很好奇Mac下Finder中文件夹名字为&quot;文稿&quot;或&quot;下载&quot;的，在终端上ls却显示&quot;Documents&quot;和&quot;Downloads&quot;，这是如何实现的呢？</p>
+<p>通过查阅资料找到了系统文件夹的本地化目录：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> % ls /System/Library/CoreServices/SystemFolderLocalizations<br/><span style="color: #808080">French.lproj   ar.lproj       da.lproj       en.lproj       he.lproj       ko.lproj       pl.lproj       ro.lproj       sv.lproj       uk.lproj</span><br/><span style="color: #808080">Italian.lproj  ca.lproj       de.lproj       es.lproj       hr.lproj       nl.lproj       pt.lproj       ru.lproj       th.lproj       zh_CN.lproj</span><br/><span style="color: #808080">Japanese.lproj cs.lproj       el.lproj       fi.lproj       hu.lproj       no.lproj       pt_PT.lproj    sk.lproj       tr.lproj       zh_TW.lproj</span><br/></pre></div>
+<p>每个目录下面只有1个二进制文件: SystemFolderLocalizations.strings</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">cd</span> /System/Library/CoreServices/SystemFolderLocalizations/zh_CN.lproj<br/><span style="color: #000080; font-weight: bold">$</span> ls<br/><span style="color: #808080">SystemFolderLocalizations.strings</span><br/><span style="color: #000080; font-weight: bold">$</span> file SystemFolderLocalizations.strings<br/><span style="color: #808080">SystemFolderLocalizations.strings: Apple binary property list</span><br/></pre></div>
+<p>用PlistEdit Pro打开，可以看到是一个字典，包含对应的键值映射：</p>
+<img alt="http://amoblin.github.com/images/SystemFolderLocalizations.png" src="http://amoblin.github.com/images/SystemFolderLocalizations.png" />
+<p>修改这个文件可不好玩，万一改错了就囧了，所以我们还是另找它法吧。</p>
+<p>继续查找，发现了如下的方法。</p>
+<p>假设我们要创建一个目录，叫做MyNotes，希望在Finder里面显示为“我的笔记”，那么需要这么做：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> mkdir -p MyNotes.localized/.localized<br/><span style="color: #000080; font-weight: bold">$</span> touch MyNotes.localized/zh_CN.strings<br/></pre></div>
+<p>输入如下内容即可：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #7D9029">&quot;MyNotes&quot;</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;我的笔记&quot;;</span><br/></pre></div>
+<p>我写了一个脚本来完成上述功能( <a class="reference external" href="https://gist.github.com/4481107">Gist</a> )：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">#!/bin/sh<br/><br/>local=`locale|grep LC_CTYPE|awk -F&#39;&quot;&#39; &#39;{print $2}&#39;|awk -F&#39;.&#39; &#39;{print $1}&#39;`<br/><br/>mkdir -p $1.localized/.localized<br/>echo \&quot;$1\&quot; = \&quot;$2\&quot;\; &gt; $1.localized/.localized/$local.strings<br/></pre></div>
+<p>使用时，第1个参数为英文名，第2个参数为中文名。</p>
+<p>参考资料：</p>
+<p><a class="reference external" href="http://hints.macworld.com/article.php?story=20020926061746306">http://hints.macworld.com/article.php?story=20020926061746306</a></p>
+<p><a class="reference external" href="http://blog.tenyi.com/2011/12/localized-folder-name-on-mac-osx-mac.html">http://blog.tenyi.com/2011/12/localized-folder-name-on-mac-osx-mac.html</a></p>
+<p><a class="reference external" href="http://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPInternational/Articles/LocalizingPathnames.html">http://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPInternational/Articles/LocalizingPathnames.html</a></p>
+
+
+</section>
+<section class="meta">
+
+<span class="tags">
+  tagged by 
+  
+</span>
+
+<span class="time">
+  <time datetime="2013-01-10">2013-01-10</time>
+</span>
+</section>
+
+
+        </article>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'amoblin'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+        <div id="copy">&copy; 2012 amoblin | powered by jekyll | themed by <a href="http://lhzhang.com" title="sext ii">sext ii</a></div>
+      </div>
+    </div> <!--! end of #container -->
+  </body>
+</html>

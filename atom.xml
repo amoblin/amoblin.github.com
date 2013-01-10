@@ -4,13 +4,44 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2013-01-10T18:11:47+08:00</updated>
+ <updated>2013-01-10T19:02:16+08:00</updated>
  <id></id>
  <author>
    <name></name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Mac下创建本地化目录</title>
+   <link href="/2013/01/10/create-localized-directory-on-os-x.html"/>
+   <updated>2013-01-10T00:00:00+08:00</updated>
+   <id>h/2013/01/10/create-localized-directory-on-os-x</id>
+   <content type="html">&lt;!-- Author: your_name --&gt;
+&lt;!-- publish: YES --&gt;
+&lt;p&gt;很好奇Mac下Finder中文件夹名字为&amp;quot;文稿&amp;quot;或&amp;quot;下载&amp;quot;的，在终端上ls却显示&amp;quot;Documents&amp;quot;和&amp;quot;Downloads&amp;quot;，这是如何实现的呢？&lt;/p&gt;
+&lt;p&gt;通过查阅资料找到了系统文件夹的本地化目录：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; % ls /System/Library/CoreServices/SystemFolderLocalizations&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;French.lproj   ar.lproj       da.lproj       en.lproj       he.lproj       ko.lproj       pl.lproj       ro.lproj       sv.lproj       uk.lproj&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;Italian.lproj  ca.lproj       de.lproj       es.lproj       hr.lproj       nl.lproj       pt.lproj       ru.lproj       th.lproj       zh_CN.lproj&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;Japanese.lproj cs.lproj       el.lproj       fi.lproj       hu.lproj       no.lproj       pt_PT.lproj    sk.lproj       tr.lproj       zh_TW.lproj&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;每个目录下面只有1个二进制文件: SystemFolderLocalizations.strings&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; &lt;span style=&quot;color: #008000&quot;&gt;cd&lt;/span&gt; /System/Library/CoreServices/SystemFolderLocalizations/zh_CN.lproj&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; ls&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;SystemFolderLocalizations.strings&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; file SystemFolderLocalizations.strings&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;SystemFolderLocalizations.strings: Apple binary property list&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;用PlistEdit Pro打开，可以看到是一个字典，包含对应的键值映射：&lt;/p&gt;
+&lt;img alt=&quot;http://amoblin.github.com/images/SystemFolderLocalizations.png&quot; src=&quot;http://amoblin.github.com/images/SystemFolderLocalizations.png&quot; /&gt;
+&lt;p&gt;修改这个文件可不好玩，万一改错了就囧了，所以我们还是另找它法吧。&lt;/p&gt;
+&lt;p&gt;继续查找，发现了如下的方法。&lt;/p&gt;
+&lt;p&gt;假设我们要创建一个目录，叫做MyNotes，希望在Finder里面显示为“我的笔记”，那么需要这么做：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; mkdir -p MyNotes.localized/.localized&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; touch MyNotes.localized/zh_CN.strings&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输入如下内容即可：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #7D9029&quot;&gt;&amp;quot;MyNotes&amp;quot;&lt;/span&gt; &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;我的笔记&amp;quot;;&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;我写了一个脚本来完成上述功能( &lt;a class=&quot;reference external&quot; href=&quot;https://gist.github.com/4481107&quot;&gt;Gist&lt;/a&gt; )：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;#!/bin/sh&lt;br/&gt;&lt;br/&gt;local=`locale|grep LC_CTYPE|awk -F&amp;#39;&amp;quot;&amp;#39; &amp;#39;{print $2}&amp;#39;|awk -F&amp;#39;.&amp;#39; &amp;#39;{print $1}&amp;#39;`&lt;br/&gt;&lt;br/&gt;mkdir -p $1.localized/.localized&lt;br/&gt;echo \&amp;quot;$1\&amp;quot; = \&amp;quot;$2\&amp;quot;\; &amp;gt; $1.localized/.localized/$local.strings&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;使用时，第1个参数为英文名，第2个参数为中文名。&lt;/p&gt;
+&lt;p&gt;参考资料：&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://hints.macworld.com/article.php?story=20020926061746306&quot;&gt;http://hints.macworld.com/article.php?story=20020926061746306&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.tenyi.com/2011/12/localized-folder-name-on-mac-osx-mac.html&quot;&gt;http://blog.tenyi.com/2011/12/localized-folder-name-on-mac-osx-mac.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPInternational/Articles/LocalizingPathnames.html&quot;&gt;http://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPInternational/Articles/LocalizingPathnames.html&lt;/a&gt;&lt;/p&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>twitter bootstrap站点集锦(持续更新ing)</title>
@@ -175,7 +206,7 @@
    <content type="html">&lt;!-- Author: your_name --&gt;
 &lt;!-- publish: YES --&gt;
 &lt;p&gt;从MarkBook( &lt;a class=&quot;reference external&quot; href=&quot;http://amoblin.github.com/2012/12/25/MarkBook-release.html&quot;&gt;MarkBook是什么？&lt;/a&gt; ) v1.2(81)开始，增加了将rst文件发布到Jekyll博客的功能，先上图：&lt;/p&gt;
-&lt;a class=&quot;reference external image-reference&quot; href=&quot;https://dl.dropbox.com/u/676608/markbook_how_to.png&quot;&gt;&lt;img alt=&quot;https://markbook.googlecode.com/files/markbook_how_to.png&quot; src=&quot;https://markbook.googlecode.com/files/markbook_how_to.png&quot; style=&quot;width: 500px; height: 300px;&quot; /&gt;&lt;/a&gt;
+&lt;a class=&quot;reference external image-reference&quot; href=&quot;http://amoblin.github.com/images/markbook_how_to.png&quot;&gt;&lt;img alt=&quot;http://amoblin.github.com/images/markbook_how_to.png&quot; src=&quot;http://amoblin.github.com/images/markbook_how_to.png&quot; style=&quot;width: 500px; height: 300px;&quot; /&gt;&lt;/a&gt;
 &lt;p&gt;具体使用步骤如下。&lt;/p&gt;
 &lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
 &lt;h2&gt;新建笔记&lt;/h2&gt;

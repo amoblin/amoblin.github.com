@@ -4,13 +4,34 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2013-01-09T15:26:51+08:00</updated>
+ <updated>2013-01-10T10:44:56+08:00</updated>
  <id></id>
  <author>
    <name></name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>twitter bootstrap站点集锦(持续更新ing)</title>
+   <link href="/2013/01/10/beautiful-twitter-bootstrap-sites.html"/>
+   <updated>2013-01-10T00:00:00+08:00</updated>
+   <id>h/2013/01/10/beautiful-twitter-bootstrap-sites</id>
+   <content type="html">&lt;!-- Author: your_name --&gt;
+&lt;!-- publish: YES --&gt;
+&lt;!-- 知乎上 什么是Twitter Bootstrap：http://www.zhihu.com/question/19821825 --&gt;
+&lt;!-- http://www.cnblogs.com/ventlam/archive/2012/05/28/2520703.html --&gt;
+&lt;!-- http://wrongwaycn.github.com/bootstrap/docs/index.html --&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.evercoding.net/about.html&quot;&gt;http://blog.evercoding.net/about.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://xxz.cc/&quot;&gt;http://xxz.cc/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://www.mcgtts.com/&quot;&gt;http://www.mcgtts.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://www.zavakid.com/tags.html&quot;&gt;http://www.zavakid.com/tags.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://liusihao.com/&quot;&gt;http://liusihao.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://reverland.org/about.html&quot;&gt;http://reverland.org/about.html&lt;/a&gt;  从这里发现了bootswatch&lt;/p&gt;
+&lt;!-- 主题呀！！！ http://bootswatch.com/ --&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>Cocoa开发必备书籍</title>
@@ -439,20 +460,33 @@ git reset HEAD^&lt;/p&gt;
  </entry>
  
  <entry>
-   <title>octopress站点集锦</title>
+   <title>jekyll/octopress站点集锦</title>
    <link href="/2012/08/27/beautiful-Octopress-sites.html"/>
    <updated>2012-08-27T00:00:00+08:00</updated>
    <id>h/2012/08/27/beautiful-Octopress-sites</id>
    <content type="html">&lt;!-- publish: YES --&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://jiyeqian.github.com/2012/07/host-your-pages-at-github-using-jekyll/&quot;&gt;http://jiyeqian.github.com/2012/07/host-your-pages-at-github-using-jekyll/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://hungyuhei.github.com/&quot;&gt;http://hungyuhei.github.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.17up.org/&quot;&gt;http://blog.17up.org/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://crabby.cn/&quot;&gt;http://crabby.cn/&lt;/a&gt;   Fedora&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://lixiaolai.com/&quot;&gt;http://lixiaolai.com/&lt;/a&gt;   李笑来&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://www.soimort.org/posts/101/&quot;&gt;http://www.soimort.org/posts/101/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://shanewfx.github.com/&quot;&gt;http://shanewfx.github.com/&lt;/a&gt; Windows, C++&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://dbian.github.com/pages/about.html&quot;&gt;http://dbian.github.com/pages/about.html&lt;/a&gt;    Arch&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://hpyhacking.me/&quot;&gt;http://hpyhacking.me/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://tim.everyday-cn.com/about.html&quot;&gt;http://tim.everyday-cn.com/about.html&lt;/a&gt;   Mac&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://songjiayang.github.com/&quot;&gt;http://songjiayang.github.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.neten.de/&quot;&gt;http://blog.neten.de/&lt;/a&gt;   Mac，需翻牆&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.yesmryang.net/&quot;&gt;http://blog.yesmryang.net/&lt;/a&gt;  老杨 Windows&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://mrzhang.me&quot;&gt;http://mrzhang.me&lt;/a&gt;  using Mac&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://zonyitoo.github.com&quot;&gt;http://zonyitoo.github.com&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.leezhong.com&quot;&gt;http://blog.leezhong.com&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://tinyxd.me&quot;&gt;http://tinyxd.me&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.leezhong.com&quot;&gt;http://blog.leezhong.com&lt;/a&gt;    模板还行&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://tinyxd.me&quot;&gt;http://tinyxd.me&lt;/a&gt; linux内核&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.eddie.com.tw/2012/01/06/heroku-the-best-cloud-platform-on-ruby-language/&quot;&gt;http://blog.eddie.com.tw/2012/01/06/heroku-the-best-cloud-platform-on-ruby-language/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://octopress.org/docs/deploying/heroku/&quot;&gt;http://octopress.org/docs/deploying/heroku/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://opoo.org/o/octopress/&quot;&gt;http://opoo.org/o/octopress/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://cocoa.venj.me/&quot;&gt;http://cocoa.venj.me/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://chen.yanping.me/cn/blog/2012/03/13/pandoc/&quot;&gt;http://chen.yanping.me/cn/blog/2012/03/13/pandoc/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://cocoa.venj.me/&quot;&gt;http://cocoa.venj.me/&lt;/a&gt;   很多Cocoa开发的文章，超赞！&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://chen.yanping.me/cn/blog/2012/03/13/pandoc/&quot;&gt;http://chen.yanping.me/cn/blog/2012/03/13/pandoc/&lt;/a&gt;   R&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://yihui.name/cn/&quot;&gt;http://yihui.name/cn/&lt;/a&gt; 谢益辉&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://aurora1625.github.com/blog/2012/03/08/de-di-de/&quot;&gt;http://aurora1625.github.com/blog/2012/03/08/de-di-de/&lt;/a&gt; under Mac&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://imwuyu.me/blog/octopress-deploying-to-github-pages.html/&quot;&gt;http://imwuyu.me/blog/octopress-deploying-to-github-pages.html/&lt;/a&gt; Mac&lt;/p&gt;
@@ -504,6 +538,7 @@ git reset HEAD^&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://pukkaone.github.com/2010/12/18/jekyll-mac-osx.html&quot;&gt;http://pukkaone.github.com/2010/12/18/jekyll-mac-osx.html&lt;/a&gt;   Mac foreigner&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html&quot;&gt;http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html&lt;/a&gt; 阮一峰&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://www.worldhello.net/2011/11/29/jekyll-based-blog-setup.html&quot;&gt;http://www.worldhello.net/2011/11/29/jekyll-based-blog-setup.html&lt;/a&gt; 《Git权威指南》作者蒋鑫&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://geekontheway.github.com/&quot;&gt;http://geekontheway.github.com/&lt;/a&gt; Octopress, Ubuntu&lt;/p&gt;
 
 </content>
  </entry>

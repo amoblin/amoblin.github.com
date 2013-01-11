@@ -39,7 +39,7 @@
 <p>修改最后一次提交：</p>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git commit --amend<br/></pre></div>
 <p>恢复到上一个提交：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git reset --hard<br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git reset --hard HEAD^<br/></pre></div>
 <p>提交上一次提交的反转：</p>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git revert HEAD<br/></pre></div>
 <p>ssl认证出错：</p>
@@ -48,34 +48,40 @@
 <p>git fetch origin     会将远程分支也下载下来，但本地无分支</p>
 <p>git checkout -b branche_name origin/branch_name 将远程分支创建本地分支</p>
 <p>对于原始库，就是创建分支的那个库，想得到后来其他库对分支的修改，需要使用git pull： git pull origin branch_name</p>
-<p>转换hg到git
-使用fast-export:</p>
+</div>
+<div class="section" id="hggit">
+<h2>转换hg到git</h2>
+<p>使用fast-export:</p>
 <p>1.创建目的git库：mkdir dest_git; cd dest_git; git init
 2.转换： /path/to/hg-fast-export.sh -r /path/to/source_hg
-3.git reset HEAD; git co .</p>
+3.git reset --hard HEAD</p>
 <p>cd existing_git_repo
 git remote add origin <a class="reference external" href="mailto:git&#64;github.com">git&#64;github.com</a>:amoblin/flyshion.git
 git push -u origin master</p>
-<p>git ci --amend     修改最后一次提交</p>
-<p>合并多次提交：
-git reset --soft [开始合并的提交]
-git ci --amend</p>
-<p>git svn相关：</p>
+</div>
+<div class="section" id="id3">
+<h2>合并多次提交</h2>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git reset --soft <span style="color: #666666">[</span>开始合并的提交<span style="color: #666666">]</span><br/><span style="color: #000080; font-weight: bold">$</span> git ci --amend<br/></pre></div>
+</div>
+<div class="section" id="git-svn">
+<h2>git svn相关</h2>
 <p>git svn rebase   更新版本库</p>
 <p>讲Git工作流的，很好
 <a class="reference external" href="http://heikezhi.com/2011/08/04/understanding-the-git-workflow/">http://heikezhi.com/2011/08/04/understanding-the-git-workflow/</a>
 知道了squash合并</p>
 <p>git clone <a class="reference external" href="https://">https://</a> 出现认证错误解决方法：
 $ git config --global http.sslVerify false</p>
-<p>退回上一个版本：
-git reset HEAD^</p>
 <p>git rebase 变基，　一般用来把两个分支合并成一个分支，但不是merge，而是移植。</p>
 <p>防止远程合并，不顺序</p>
-<div class="section" id="id3">
+<div class="section" id="id4">
 <h3>打包</h3>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git archive -o ../proj.zip HEAD<br/></pre></div>
 </div>
-<div class="section" id="id4">
+<div class="section" id="submodule">
+<h3>不能删除submodule</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git rm --cached <span style="color: #666666">[</span>dir<span style="color: #666666">]</span><br/></pre></div>
+</div>
+<div class="section" id="id5">
 <h3>遇到的问题</h3>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git st<br/><span style="color: #808080">fatal: cannot exec &#39;git-st&#39;: Permission denied</span><br/></pre></div>
 <p>解决方法：</p>

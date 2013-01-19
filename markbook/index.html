@@ -1,60 +1,96 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> MarkBook </title>
+        <title> MarkBook for Mac Geek</title>
         <meta charset="utf-8">
         <!-- Bootstrap -->
-        <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="/media/css/base.css" type="text/css">
+        <link href="/media/css/ruhoh.css" rel="stylesheet" media="screen">
+        <link href="/media/css/style.css" rel="stylesheet" media="screen">
+        <link href="/media/css/sunburst-custom.css" rel="stylesheet" media="screen">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="/bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body style="background-color:transparent">
-        <script src="../js/bootstrap.min.js"></script>
-        <!-- your code here -->
-        <div class="container">
-            <div class="row">
-                <ul class="nav nav-pills pull-right">
-                    <li class="active"> <a href="#"> Home </a> </li>
-                    <li> <a href="http://amoblin.github.com"> Blog </a> </li>
-                    <li> <a href="http://github.com/amoblin/markbook"> Github </a> </li>
-                </ul>
-            </div>
-            <div class="hero-unit">
-                <h1> MarkBook <small>for</small> <em>Mac Geek</em> </h1>
-                <p></p>
-                <p>
-                <a class="btn btn-primary btn-large" href="http://code.google.com/p/markbook"> Download <i class="icon-arrow-down"></i></a>
-                
-                </p>
-            </div>
-            <div class="row">
-                <div class="span12">
-                    <p class="lead">Are you a geek does not like Evernote because you prefer Markdown/reStructuredText to rich text ? </p>
-                    <p class="lead">Are you a geek does not use Mou because you want to use Vi/Emacs ? </p>
-                    <p class="lead">Are you a geek does not like "Cloud Sync" because you know git is better ? </p>
-                    <p class="lead">A geek who believes in K.I.S.S. </p>
+        <div class="navbar">
+            <div class="navbar-inner" style="background:#F0F0D8; box-shadow: 0 0 0 0; border-bottom:1px solid #E0E4CC">
+                <div class="container" style="width:100%; padding:0 20px;">
+                    <a class="brand" href="/">MarkBook</a>
+                    <ul class="nav">
+                        <li><a href="/markbook/guide">Read More...</a></li>
+                    </ul>
+                    <ul class="nav social pull-right">
+                        <li><a href="http://amoblin.github.com/">Blog</a></li>
+                        <li><a href="https://twitter.com/amoblin" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @amoblin</a></li>
+                        <li><a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-url="http://amoblin.github.com/markbook/" data-hashtags="MarkBook" data-text="new markdown notes manager for the hack using OS X">Tweet</a></li>
+                    </ul>
                 </div>
             </div>
-            <ul class="thumbnails">
-                <li class="span4">
-                <a class="thumbnail">
-                    <image data-src="holder.js/300x200" src="../images/markbook-create-note.png" width="100%" alt=""/>
-                </a>
-                </li>
-                <li class="span4">
-                <a class="thumbnail">
-                    <image data-src="holder.js/300x200" src="../images/markbook-preferences.png" width="100%"/>
-                </a>
-                </li>
-                <li class="span4">
-                <a class="thumbnail">
-                    <image data-src="holder.js/300x200" src="../images/markbook-progit.png" width="100%"/>
-                </a>
-                </li>
-                <li class="span12">
-                <a class="thumbnail">
-                    <image data-src="holder.js/300x200" src="../images/markbook-index.png" width="100%"/>
-                </a>
-                </li>
-            </ul>
         </div>
-    </body>
+        <div class="container" style="position:relative; top:50px">
+            <div class="content">
+                <h1 class="splash-header">The Notes Manager Ever You Want.</h1>
+                <div class="row splash stripe">
+                    <div class="span6 splash-message">
+                        <div id="themeStep1">
+                            <img src="/media/images/markbook-theme-wood.png" />
+                        </div>
+                        <div class="download">
+                            <a class="download-button" href="http://code.google.com/p/markbook">
+                                <span class="inner">
+                                    <h4>Download the latest</h4>
+                                    <p id="current-version-description">v0.3 January 19th 2013</p>
+                                </span>
+                            </a>
+                            <p class="requirements">OS X 10.7+</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="span6 splash-message">
+                    <div class="wrapper" style="padding:20px">
+                        <p style="margin-bottom:20px">
+                        <strong>MarkBook</strong> is the <em>only</em> personal knowledge manager with open platform.
+                        </p>
+                        <table class="table-condensed" style="margin:0; width:100%">
+                            <tbody>
+                                <tr>
+                                    <td><i class="icon-ok-sign"></i> <strong>Markdown</strong></td>
+                                    <td>for writing.</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="icon-ok-sign"></i> <strong>Vim/Emacs</strong></td>
+                                    <td>for editing.</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="icon-ok-sign"></i> <strong>HTML</strong></td>
+                                    <td>for templating.</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="icon-ok-sign"></i> <strong>Shell Scripts</strong></td>
+                                    <td>for generating.</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="icon-ok-sign"></i> <strong>Git</strong></td>
+                                    <td>for file management.</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="icon-ok-sign"></i> <strong>Command-line</strong></td>
+                                    <td>for <em>everything</em>.</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="icon-ok-sign"></i> <strong>Full-Control</strong></td>
+                                    <td>Multiple <a href="/markbook/guide">configurable</a> options.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer" style="text-align:center; margin:50px 0">
+        @2013 amoblin. All rights reserved.
+        </footer>
+    </div>
+</body>
 </html>

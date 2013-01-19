@@ -4,7 +4,7 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2013-01-20T05:22:00+08:00</updated>
+ <updated>2013-01-20T05:27:30+08:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -13,7 +13,7 @@
 
  
  <entry>
-   <title>可以是中文名</title>
+   <title>使用Vim加密文件</title>
    <link href="/2013/01/20/vim-encryption.html"/>
    <updated>2013-01-20T00:00:00+08:00</updated>
    <id>h/2013/01/20/vim-encryption</id>

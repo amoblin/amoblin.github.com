@@ -6,8 +6,8 @@
     <title>Mac下创建本地化目录</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
-    <link rel="stylesheet" href="/media/styles/style.css">
-    <link rel="stylesheet" href="/media/styles/github.css">
+    <link rel="stylesheet" href="/media/css/jekyll-0.css">
+    <link rel="stylesheet" href="/media/css/github.css">
     <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
     <script type="text/javascript">
       hljs.initHighlightingOnLoad();
@@ -35,7 +35,7 @@
 <p>每个目录下面只有1个二进制文件: SystemFolderLocalizations.strings</p>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">cd</span> /System/Library/CoreServices/SystemFolderLocalizations/zh_CN.lproj<br/><span style="color: #000080; font-weight: bold">$</span> ls<br/><span style="color: #808080">SystemFolderLocalizations.strings</span><br/><span style="color: #000080; font-weight: bold">$</span> file SystemFolderLocalizations.strings<br/><span style="color: #808080">SystemFolderLocalizations.strings: Apple binary property list</span><br/></pre></div>
 <p>用PlistEdit Pro打开，可以看到是一个字典，包含对应的键值映射：</p>
-<img alt="http://amoblin.github.com/images/SystemFolderLocalizations.png" src="http://amoblin.github.com/images/SystemFolderLocalizations.png" />
+<img alt="/media/images/SystemFolderLocalizations.png" src="/media/images/SystemFolderLocalizations.png" />
 <p>修改这个文件可不好玩，万一改错了就囧了，所以我们还是另找它法吧。</p>
 <p>继续查找，发现了如下的方法。</p>
 <p>假设我们要创建一个目录，叫做MyNotes，希望在Finder里面显示为“我的笔记”，那么需要这么做：</p>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="amoblin" />
+    <title>可以是中文名</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="setImpl" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/styles/style.css">
+    <link rel="stylesheet" href="/media/styles/github.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>可以是中文名</h1>
+        </header>
+        <nav>
+        <span><a title="home page" class="" href="/">home</a></span>
+        <span><a title="tags" class="" href="/tags.html">tags</a></span>
+        <span><a title="blogroll" class="" href="/links.html">links</a></span>
+        <span><a title="subscribe me" class="" href="/atom.xml">feed</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<!-- Author: your_name -->
+<!-- publish: YES -->
+<p>Vim可以加密文档，不知道吧？</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">:X</span><br/><span style="color: #808080">Enter encryption key: ******</span><br/><span style="color: #808080">Enter same key again: ******</span><br/></pre></div>
+<p>输入的密码保存在*key option*中。输入上面命令后不会立刻加密，在保存文件的时候才会执行加密。</p>
+<p>重新打开加密文件，Vim会要求你输入密码：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">Need encryption key for &quot;diary.rst&quot;</span><br/><span style="color: #808080">Enter encryption key: ******</span><br/></pre></div>
+<p>如果密码错误，Vim还是会打开文件，不过显示的是乱码。</p>
+<p>编辑加密过的文件的时候，对应的swap文件和undo文件也是加密的，不过内存中的没有加密。viminfo文件也没有加密，因此不建议使用。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">:set viminfo=</span><br/></pre></div>
+<p>如果要禁用加密，清空key值即可：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">: set key=</span><br/></pre></div>
+<p>聪明的童鞋马上想到了，可以这样加密呀：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">: set key=password</span><br/></pre></div>
+<p>但这样加密的缺点是显而易见的：密码是明文。</p>
+<p>而使用 :X 加密的话，不仅输入密码时显示为*从而防止偷窥，而且关键是 :set 也查看不到。</p>
+<p>( amoblin注：不过在Vim7.3下后者通过 :set 也查看不到 )</p>
+<p>从7.3版起，Vim支持了Blowfish加密。以前只有pkzip-compatible这一种加密方法。通过下面的方法来设置使用哪一种加密方法，保存文件的时候生效：</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">:setlocal cm=zip</span><br/><span style="color: #808080">:setlocal cm=blowfish</span><br/></pre></div>
+<p>cm是 &quot;cryptmethod&quot; 的缩写。Pkzip是弱加密，但是兼容7.2及更老版本；Blowfish更安全。帮助文档里这样描述pkzip加密方法：</p>
+<pre class="literal-block">
+(加密)算法比较脆弱。破解4字符的密码大约需要1小时，6字符是1天(Pentium 133 PC)。
+&quot; This require that you know some text that must appear in the file. &quot;。
+解密专家可以破解任意密码。当文件被破解后，也能反推出密码，这样其他使用同样密码的加密文件就。。。
+</pre>
+<p>原文：</p>
+<blockquote>
+<p>Vim can encrypt your documents. :X prompts for an encryption key, which is stored in the key option. The file will remain unchanged until you write it.</p>
+<p>When you reopen the file, Vim will ask for the key; if you enter the wrong key, Vim will simply open the file as-is, which will look like gibberish. The text in the swap file and the undo file is also encrypted; the text in memory is not encrypted. The viminfo file is not encrypted, and should not be used:</p>
+<p>:set viminfo=</p>
+<p>If you want to disable encryption, just empty the key option:</p>
+<p>:set key=</p>
+<p>The difference between :X and :set key=something is that :X displays asterisks as you type, so that no one can peek at your encryption key. Also, :set commands may end up in your viminfo file.</p>
+<p>From version 7.3, Vim supports Blowfish encryption as well as a pkzip-compatible method. To choose which one to use, type one of these two before writing the file:</p>
+<p>:setlocal cm=zip
+:setlocal cm=blowfish</p>
+<p>cm is an abbreviation for cryptmethod. Pkzip is a weak encryption method, but compatible with Vim 7.2 and older; Blowfish is strong. The help file has this to say about the pkzip method:</p>
+<p>The algorithm used is breakable. A 4 character key in about one hour, a 6 character key in one day (on a Pentium 133 PC). This requires that you know some text that must appear in the file. An expert can break it for any key. When the text has been decrypted, this also means that the key can be revealed, and other files encrypted with the same key can be decrypted.</p>
+<p>Some older Vim versions (older than 7.1, at least) ask only once for the password -- if you happen to mistype it, then good luck finding out what you mistyped.</p>
+</blockquote>
+<p><a class="reference external" href="http://vim.wikia.com/wiki/Encryption">http://vim.wikia.com/wiki/Encryption</a></p>
+
+
+</section>
+<section class="meta">
+
+<span class="tags">
+  tagged by 
+  
+</span>
+
+<span class="time">
+  <time datetime="2013-01-20">2013-01-20</time>
+</span>
+</section>
+
+
+        </article>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'amoblin'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+        <div id="copy">&copy; 2012 amoblin | powered by jekyll | themed by <a href="http://lhzhang.com" title="sext ii">sext ii</a></div>
+      </div>
+    </div> <!--! end of #container -->
+  </body>
+</html>

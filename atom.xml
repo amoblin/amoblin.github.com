@@ -4,7 +4,7 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2013-01-20T05:27:30+08:00</updated>
+ <updated>2013-01-20T17:19:59+08:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -482,10 +482,14 @@
    <id>h/2012/08/27/git-note</id>
    <content type="html">&lt;!-- publish: YES --&gt;
 &lt;div class=&quot;section&quot; id=&quot;id1&quot;&gt;
+&lt;h2&gt;修改工作目录&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; git config core.worktree /path/to/new/dir&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
 &lt;h2&gt;使用别名&lt;/h2&gt;
 &lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;[alias]&lt;/span&gt;&lt;br/&gt;        &lt;span style=&quot;color: #7D9029&quot;&gt;st&lt;/span&gt; &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #BA2121&quot;&gt;status&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;        ci = commit&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;        co = checkout&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;        br = branch&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;        glog = log --graph&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;        dlog = log --decorate&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;        plog = log -p&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;        nlog = log --name-status&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;[color]&lt;/span&gt;&lt;br/&gt;        &lt;span style=&quot;color: #7D9029&quot;&gt;ui&lt;/span&gt; &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #BA2121&quot;&gt;auto&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;[core]&lt;/span&gt;&lt;br/&gt;        &lt;span style=&quot;color: #7D9029&quot;&gt;editor&lt;/span&gt; &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #BA2121&quot;&gt;vim&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
+&lt;div class=&quot;section&quot; id=&quot;id3&quot;&gt;
 &lt;h2&gt;创建空分支&lt;/h2&gt;
 &lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; git symbolic-ref HEAD refs/heads/newbranch&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; rm .git/index&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;&amp;lt;do work&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; git add your files&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; git commit -m &lt;span style=&quot;color: #BA2121&quot;&gt;&amp;#39;Initial commit&amp;#39;&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://gitbook.liuhui998.com/5_1.html&quot;&gt;http://gitbook.liuhui998.com/5_1.html&lt;/a&gt;&lt;/p&gt;
@@ -512,7 +516,7 @@
 git remote add origin &lt;a class=&quot;reference external&quot; href=&quot;mailto:git&amp;#64;github.com&quot;&gt;git&amp;#64;github.com&lt;/a&gt;:amoblin/flyshion.git
 git push -u origin master&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id3&quot;&gt;
+&lt;div class=&quot;section&quot; id=&quot;id4&quot;&gt;
 &lt;h2&gt;合并多次提交&lt;/h2&gt;
 &lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; git reset --soft &lt;span style=&quot;color: #666666&quot;&gt;[&lt;/span&gt;开始合并的提交&lt;span style=&quot;color: #666666&quot;&gt;]&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; git ci --amend&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -526,7 +530,7 @@ git push -u origin master&lt;/p&gt;
 $ git config --global http.sslVerify false&lt;/p&gt;
 &lt;p&gt;git rebase 变基，　一般用来把两个分支合并成一个分支，但不是merge，而是移植。&lt;/p&gt;
 &lt;p&gt;防止远程合并，不顺序&lt;/p&gt;
-&lt;div class=&quot;section&quot; id=&quot;id4&quot;&gt;
+&lt;div class=&quot;section&quot; id=&quot;id5&quot;&gt;
 &lt;h3&gt;打包&lt;/h3&gt;
 &lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; git archive -o ../proj.zip HEAD&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -534,7 +538,7 @@ $ git config --global http.sslVerify false&lt;/p&gt;
 &lt;h3&gt;不能删除submodule&lt;/h3&gt;
 &lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; git rm --cached &lt;span style=&quot;color: #666666&quot;&gt;[&lt;/span&gt;dir&lt;span style=&quot;color: #666666&quot;&gt;]&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id5&quot;&gt;
+&lt;div class=&quot;section&quot; id=&quot;id6&quot;&gt;
 &lt;h3&gt;遇到的问题&lt;/h3&gt;
 &lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; git st&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;fatal: cannot exec &amp;#39;git-st&amp;#39;: Permission denied&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;解决方法：&lt;/p&gt;
@@ -557,25 +561,25 @@ $ git config --global http.sslVerify false&lt;/p&gt;
    <content type="html">&lt;!-- publish: YES --&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://jiyeqian.github.com/2012/07/host-your-pages-at-github-using-jekyll/&quot;&gt;http://jiyeqian.github.com/2012/07/host-your-pages-at-github-using-jekyll/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://hungyuhei.github.com/&quot;&gt;http://hungyuhei.github.com/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.17up.org/&quot;&gt;http://blog.17up.org/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://crabby.cn/&quot;&gt;http://crabby.cn/&lt;/a&gt;   Fedora&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://lixiaolai.com/&quot;&gt;http://lixiaolai.com/&lt;/a&gt;   李笑来&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://www.soimort.org/posts/101/&quot;&gt;http://www.soimort.org/posts/101/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.17up.org/&quot;&gt;http://blog.17up.org/&lt;/a&gt;   !github&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://crabby.cn/&quot;&gt;http://crabby.cn/&lt;/a&gt;   Fedora  !github&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://lixiaolai.com/&quot;&gt;http://lixiaolai.com/&lt;/a&gt;   李笑来  !github&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://www.soimort.org/posts/101/&quot;&gt;http://www.soimort.org/posts/101/&lt;/a&gt;   !github&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://shanewfx.github.com/&quot;&gt;http://shanewfx.github.com/&lt;/a&gt; Windows, C++&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://dbian.github.com/pages/about.html&quot;&gt;http://dbian.github.com/pages/about.html&lt;/a&gt;    Arch&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://hpyhacking.me/&quot;&gt;http://hpyhacking.me/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://tim.everyday-cn.com/about.html&quot;&gt;http://tim.everyday-cn.com/about.html&lt;/a&gt;   Mac&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://hpyhacking.me/&quot;&gt;http://hpyhacking.me/&lt;/a&gt;   !github&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://tim.everyday-cn.com/about.html&quot;&gt;http://tim.everyday-cn.com/about.html&lt;/a&gt;   Mac !github &amp;#64;linode&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://songjiayang.github.com/&quot;&gt;http://songjiayang.github.com/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.neten.de/&quot;&gt;http://blog.neten.de/&lt;/a&gt;   Mac，需翻牆&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.yesmryang.net/&quot;&gt;http://blog.yesmryang.net/&lt;/a&gt;  老杨 Windows&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://mrzhang.me&quot;&gt;http://mrzhang.me&lt;/a&gt;  using Mac&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://zonyitoo.github.com&quot;&gt;http://zonyitoo.github.com&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.leezhong.com&quot;&gt;http://blog.leezhong.com&lt;/a&gt;    模板还行&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://tinyxd.me&quot;&gt;http://tinyxd.me&lt;/a&gt; linux内核&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://tinyxd.me&quot;&gt;http://tinyxd.me&lt;/a&gt; linux内核 未托管github&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://blog.eddie.com.tw/2012/01/06/heroku-the-best-cloud-platform-on-ruby-language/&quot;&gt;http://blog.eddie.com.tw/2012/01/06/heroku-the-best-cloud-platform-on-ruby-language/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://octopress.org/docs/deploying/heroku/&quot;&gt;http://octopress.org/docs/deploying/heroku/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://opoo.org/o/octopress/&quot;&gt;http://opoo.org/o/octopress/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://cocoa.venj.me/&quot;&gt;http://cocoa.venj.me/&lt;/a&gt;   很多Cocoa开发的文章，超赞！&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://cocoa.venj.me/&quot;&gt;http://cocoa.venj.me/&lt;/a&gt;   很多Cocoa开发的文章，超赞！ &amp;#64;github&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://chen.yanping.me/cn/blog/2012/03/13/pandoc/&quot;&gt;http://chen.yanping.me/cn/blog/2012/03/13/pandoc/&lt;/a&gt;   R&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://yihui.name/cn/&quot;&gt;http://yihui.name/cn/&lt;/a&gt; 谢益辉    我的第一个jekyll主题取自这里&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://ztpala.com/&quot;&gt;http://ztpala.com/&lt;/a&gt;  界面不错.&lt;/p&gt;

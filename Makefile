@@ -1,6 +1,6 @@
 default:
 	jekyll
-	cd ../git-repos/amoblin-blog-git;git add -A;git ci -m "update blog"
+	cd ../git-repos/amoblin-blog-git;git add -A;git ci -m "update blog";git push
 
 preview:
 	jekyll --server

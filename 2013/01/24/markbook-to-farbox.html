@@ -29,7 +29,7 @@
         <section class="post">
 <!-- Author: your_name -->
 <!-- publish: YES -->
-<p>MarkBook v0.3.3中新增了一个功能：Make/Rake Button。</p>
+<p><a class="reference external" href="http://markbook.farbox.com">MarkBook</a> v0.3.3中新增了一个功能：Make/Rake Button。</p>
 <p>点击这个按钮就会触发make或rake命令，执行Makefile或Rakefile中的操作。</p>
 <p>通过对Makefile或Rakefile进行配置，可以实现一键式自动发布博客到github，farbox等。</p>
 <p>amoblin使用Jekyll来生成静态博客，所以下面以Makefile + Jekyll为例来演示：</p>
@@ -48,9 +48,9 @@
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git config core.worktree ~/Dropbox/Apps/FarBox/markbook<br/></pre></div>
 <p>现在git库管理的目录就从当前目录变为FarBox下的markbook目录。</p>
 <p>把所有文件都提交，推送到github：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git commit -A -m <span style="color: #BA2121">&quot;updte blog&quot;</span><br/><span style="color: #000080; font-weight: bold">$</span> git push<br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git add -A<br/><span style="color: #000080; font-weight: bold">$</span> git commit -m <span style="color: #BA2121">&quot;updte blog&quot;</span><br/><span style="color: #000080; font-weight: bold">$</span> git push<br/></pre></div>
 <p>操作知道了以后就很简单了，和 <a class="reference internal" href="#farbox">发布到FarBox</a> 一样，Makefile文件写入如下内容：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #0000FF">default</span><span style="color: #666666">:</span><br/>    jekyll . ~/Dropbox/Apps/FarBox/markbook<br/>    <span style="color: #008000">cd</span> /path/to/yourname.github.com; git commit -A -m <span style="color: #BA2121">&quot;updte blog&quot;</span>; git push<br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #0000FF">default</span><span style="color: #666666">:</span><br/>    jekyll . ~/Dropbox/Apps/FarBox/markbook<br/>    <span style="color: #008000">cd</span> /path/to/yourname.github.com; git add -A; git commit -m <span style="color: #BA2121">&quot;updte blog&quot;</span>; git push<br/></pre></div>
 <p>把上面的路径改为自己的git库地址。</p>
 <p>这样每次点击 MakeRake Button 不仅会更新Farbox下markbook目录的内容，而且还会推送到github。</p>
 <p>发挥你的想象力，看看 <a class="reference external" href="http://markbook.farbox.com">MarkBook</a> 还能怎么折腾？</p>

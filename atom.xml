@@ -4,13 +4,52 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2013-01-23T13:58:10+08:00</updated>
+ <updated>2013-01-24T08:02:00+08:00</updated>
  <id></id>
  <author>
    <name></name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>用MarkBook发布博客到farbox</title>
+   <link href="/2013/01/24/markbook-to-farbox.html"/>
+   <updated>2013-01-24T00:00:00+08:00</updated>
+   <id>h/2013/01/24/markbook-to-farbox</id>
+   <content type="html">&lt;!-- Author: your_name --&gt;
+&lt;!-- publish: YES --&gt;
+&lt;p&gt;MarkBook v0.3.3中新增了一个功能：Make/Rake Button。&lt;/p&gt;
+&lt;p&gt;点击这个按钮就会触发make或rake命令，执行Makefile或Rakefile中的操作。&lt;/p&gt;
+&lt;p&gt;通过对Makefile或Rakefile进行配置，可以实现一键式自动发布博客到github，farbox等。&lt;/p&gt;
+&lt;p&gt;amoblin使用Jekyll来生成静态博客，所以下面以Makefile + Jekyll为例来演示：&lt;/p&gt;
+&lt;div class=&quot;section&quot; id=&quot;farbox&quot;&gt;
+&lt;h2&gt;发布到FarBox&lt;/h2&gt;
+&lt;p&gt;在需要发布的目录下新建Makefile文件，写入如下内容：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #0000FF&quot;&gt;default&lt;/span&gt;&lt;span style=&quot;color: #666666&quot;&gt;:&lt;/span&gt;&lt;br/&gt;    jekyll . ~/Dropbox/Apps/FarBox/markbook&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;注意第二行jekyll前面不是空格，而是tab符。&lt;/p&gt;
+&lt;p&gt;这里将当前目录下的文件全部导出为html，保存到FarBox下markbook目录中。&lt;/p&gt;
+&lt;p&gt;这样每次点击MakeRake Button就会更新Farbox下markbook目录中的内容。此时你会发现dropbox开始同步啦。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot; id=&quot;github&quot;&gt;
+&lt;h2&gt;发布到GitHub&lt;/h2&gt;
+&lt;p&gt;GitHub的发布需要使用git，我们先对博客的git库进行一下配置。&lt;/p&gt;
+&lt;p&gt;进入博客目录，设置工作树路径：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; git config core.worktree ~/Dropbox/Apps/FarBox/markbook&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;现在git库管理的目录就从当前目录变为FarBox下的markbook目录。&lt;/p&gt;
+&lt;p&gt;把所有文件都提交，推送到github：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; git commit -A -m &lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;updte blog&amp;quot;&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; git push&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;操作知道了以后就很简单了，和 &lt;a class=&quot;reference internal&quot; href=&quot;#farbox&quot;&gt;发布到FarBox&lt;/a&gt; 一样，Makefile文件写入如下内容：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #0000FF&quot;&gt;default&lt;/span&gt;&lt;span style=&quot;color: #666666&quot;&gt;:&lt;/span&gt;&lt;br/&gt;    jekyll . ~/Dropbox/Apps/FarBox/markbook&lt;br/&gt;    &lt;span style=&quot;color: #008000&quot;&gt;cd&lt;/span&gt; /path/to/yourname.github.com; git commit -A -m &lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;updte blog&amp;quot;&lt;/span&gt;; git push&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;把上面的路径改为自己的git库地址。&lt;/p&gt;
+&lt;p&gt;这样每次点击 MakeRake Button 不仅会更新Farbox下markbook目录的内容，而且还会推送到github。&lt;/p&gt;
+&lt;p&gt;发挥你的想象力，看看 &lt;a class=&quot;reference external&quot; href=&quot;http://markbook.farbox.com&quot;&gt;MarkBook&lt;/a&gt; 还能怎么折腾？&lt;/p&gt;
+&lt;hr class=&quot;docutils&quot; /&gt;
+&lt;p&gt;如果你打算用MarkBook来发布博客，希望能在jekyll模板中增加MarkBook的链接，谢谢！&lt;/p&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>关于如何在颗粒物污染环境下选择呼吸防护用品的问答(转)</title>

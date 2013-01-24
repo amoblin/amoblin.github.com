@@ -31,19 +31,20 @@
 <!-- publish: YES -->
 <p><a class="reference external" href="http://markbook.farbox.com/">MarkBook</a> 从v0.4版开始，新增了一个功能：Make/Rake Button。</p>
 <p>点击这个按钮就会触发make或rake命令，执行Makefile或Rakefile中的操作。</p>
-<p>通过对Makefile或Rakefile进行配置，可以实现一键式自动发布博客到github，farbox等。</p>
+<p>通过对Makefile或Rakefile进行配置，可以实现一键式自动发布博客到GitHub/GitCafe，farbox等。</p>
 <p>amoblin使用Jekyll来生成静态博客，所以下面以Makefile + Jekyll为例来演示：</p>
 <div class="section" id="farbox">
 <h2>发布到FarBox</h2>
 <p>在需要发布的目录下新建Makefile文件，写入如下内容：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #0000FF">default</span><span style="color: #666666">:</span><br/>    jekyll . ~/Dropbox/Apps/FarBox/markbook<br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #0000FF">default</span><span style="color: #666666">:</span><br/>    jekyll . ~/Dropbox/Apps/FarBox/markbook<br/>    curl http://farbox.com/service/sync/dropbox/1234567<br/></pre></div>
 <p>注意第二行jekyll前面不是空格，而是tab符。</p>
+<p>第三行是 <a class="reference external" href="http://farbox.com/docs/sync.md">手工同步FarBox</a> ， 最后的数字替换为你的Dropbox ID。</p>
 <p>这里将当前目录下的文件全部导出为html，保存到FarBox下markbook目录中。</p>
 <p>这样每次点击MakeRake Button就会更新Farbox下markbook目录中的内容。此时你会发现dropbox开始同步啦。</p>
 </div>
 <div class="section" id="github">
 <h2>发布到GitHub</h2>
-<p>GitHub的发布需要使用git，我们先对博客的git库进行一下配置。</p>
+<p>GitHub/GitCafe的发布需要使用git，我们先对博客的git库进行一下配置。</p>
 <p>进入博客目录，设置工作树路径：</p>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git config core.worktree ~/Dropbox/Apps/FarBox/markbook<br/></pre></div>
 <p>现在git库管理的目录就从当前目录变为FarBox下的markbook目录。</p>

@@ -4,7 +4,7 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2013-01-24T10:15:43+08:00</updated>
+ <updated>2013-01-24T12:06:51+08:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -21,19 +21,20 @@
 &lt;!-- publish: YES --&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://markbook.farbox.com/&quot;&gt;MarkBook&lt;/a&gt; 从v0.4版开始，新增了一个功能：Make/Rake Button。&lt;/p&gt;
 &lt;p&gt;点击这个按钮就会触发make或rake命令，执行Makefile或Rakefile中的操作。&lt;/p&gt;
-&lt;p&gt;通过对Makefile或Rakefile进行配置，可以实现一键式自动发布博客到github，farbox等。&lt;/p&gt;
+&lt;p&gt;通过对Makefile或Rakefile进行配置，可以实现一键式自动发布博客到GitHub/GitCafe，farbox等。&lt;/p&gt;
 &lt;p&gt;amoblin使用Jekyll来生成静态博客，所以下面以Makefile + Jekyll为例来演示：&lt;/p&gt;
 &lt;div class=&quot;section&quot; id=&quot;farbox&quot;&gt;
 &lt;h2&gt;发布到FarBox&lt;/h2&gt;
 &lt;p&gt;在需要发布的目录下新建Makefile文件，写入如下内容：&lt;/p&gt;
-&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #0000FF&quot;&gt;default&lt;/span&gt;&lt;span style=&quot;color: #666666&quot;&gt;:&lt;/span&gt;&lt;br/&gt;    jekyll . ~/Dropbox/Apps/FarBox/markbook&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #0000FF&quot;&gt;default&lt;/span&gt;&lt;span style=&quot;color: #666666&quot;&gt;:&lt;/span&gt;&lt;br/&gt;    jekyll . ~/Dropbox/Apps/FarBox/markbook&lt;br/&gt;    curl http://farbox.com/service/sync/dropbox/1234567&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;注意第二行jekyll前面不是空格，而是tab符。&lt;/p&gt;
+&lt;p&gt;第三行是 &lt;a class=&quot;reference external&quot; href=&quot;http://farbox.com/docs/sync.md&quot;&gt;手工同步FarBox&lt;/a&gt; ， 最后的数字替换为你的Dropbox ID。&lt;/p&gt;
 &lt;p&gt;这里将当前目录下的文件全部导出为html，保存到FarBox下markbook目录中。&lt;/p&gt;
 &lt;p&gt;这样每次点击MakeRake Button就会更新Farbox下markbook目录中的内容。此时你会发现dropbox开始同步啦。&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;section&quot; id=&quot;github&quot;&gt;
 &lt;h2&gt;发布到GitHub&lt;/h2&gt;
-&lt;p&gt;GitHub的发布需要使用git，我们先对博客的git库进行一下配置。&lt;/p&gt;
+&lt;p&gt;GitHub/GitCafe的发布需要使用git，我们先对博客的git库进行一下配置。&lt;/p&gt;
 &lt;p&gt;进入博客目录，设置工作树路径：&lt;/p&gt;
 &lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; git config core.worktree ~/Dropbox/Apps/FarBox/markbook&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;现在git库管理的目录就从当前目录变为FarBox下的markbook目录。&lt;/p&gt;

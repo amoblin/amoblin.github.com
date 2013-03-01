@@ -4,7 +4,7 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2013-01-26T16:08:01+08:00</updated>
+ <updated>2013-03-01T16:54:05+08:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -281,109 +281,6 @@
  </entry>
  
  <entry>
-   <title>欢迎使用MarkBook</title>
-   <link href="/2012/12/27/MarkBook-User-Guide.html"/>
-   <updated>2012-12-27T00:00:00+08:00</updated>
-   <id>h/2012/12/27/MarkBook-User-Guide</id>
-   <content type="html">&lt;div class=&quot;contents topic&quot; id=&quot;id1&quot;&gt;
-&lt;p class=&quot;topic-title first&quot;&gt;目录&lt;/p&gt;
-&lt;ul class=&quot;simple&quot;&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#markbook&quot; id=&quot;id11&quot;&gt;欢迎使用MarkBook&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#id2&quot; id=&quot;id12&quot;&gt;MarkBook是什么？&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#id4&quot; id=&quot;id13&quot;&gt;使用MarkBook&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#id5&quot; id=&quot;id14&quot;&gt;新建笔记&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#id6&quot; id=&quot;id15&quot;&gt;编辑笔记&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#id7&quot; id=&quot;id16&quot;&gt;删除笔记&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#id8&quot; id=&quot;id17&quot;&gt;偏好设置&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#for-cli-user&quot; id=&quot;id18&quot;&gt;for CLI User&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#jekyll-octopress&quot; id=&quot;id19&quot;&gt;导入jekyll/Octopress博客&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#id9&quot; id=&quot;id20&quot;&gt;发布到jekyll/Octopress博客&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#todo&quot; id=&quot;id21&quot;&gt;TODO&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#git-ui&quot; id=&quot;id22&quot;&gt;Git UI&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#markdown&quot; id=&quot;id23&quot;&gt;markdown版欢迎页&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;!-- author: amoblin &lt;amoblin@gmail.com&gt; --&gt;
-&lt;!-- publish: YES --&gt;
-&lt;div class=&quot;section&quot; id=&quot;markbook&quot;&gt;
-&lt;h2&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id11&quot;&gt;欢迎使用MarkBook&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;欢迎您使用MarkBook，目前版本为 v0.2&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
-&lt;h2&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id12&quot;&gt;MarkBook是什么？&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;MarkBook是用来管理置标语言文件的，目前支持reStructuredText和Markdown文件，后续会加入Ascii，wiki等的支持。&lt;/p&gt;
-&lt;p&gt;通过像类似Evernote的界面来管理，组织Markup文件，实时更新显示HTML输出页面。&lt;/p&gt;
-&lt;p&gt;自动发布博客到Jekyll/Octopress站点。&lt;/p&gt;
-&lt;p&gt;关于MarkBook的创作理念，可以看我的 &lt;a class=&quot;reference external&quot; href=&quot;http://amoblin.github.com/2012/12/25/MarkBook-release.html&quot;&gt;这篇文章&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id4&quot;&gt;
-&lt;h2&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id13&quot;&gt;使用MarkBook&lt;/a&gt;&lt;/h2&gt;
-&lt;div class=&quot;section&quot; id=&quot;id5&quot;&gt;
-&lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id14&quot;&gt;新建笔记&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;点窗口左下角”+“来新建一个笔记，新建时需要指定笔记格式，rst or md。&lt;/p&gt;
-&lt;p&gt;注意如果稍后要通过jekyll发布的话，输入的笔记名称最好不要有中文。&lt;/p&gt;
-&lt;p&gt;因为输入的名字会生成文件名，jekyll对中文文件名的支持不是很好。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id6&quot;&gt;
-&lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id15&quot;&gt;编辑笔记&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;双击中栏笔记缩略图，会启动关联的外部编辑器(参见 &lt;a class=&quot;reference internal&quot; href=&quot;#id8&quot;&gt;偏好设置&lt;/a&gt;)来编辑笔记。保存修改后，MarkBook会同步更新内容。&lt;/p&gt;
-&lt;p&gt;下面是c代码样例：&lt;/p&gt;
-&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #BC7A00&quot;&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;color: #B00040&quot;&gt;int&lt;/span&gt; &lt;span style=&quot;color: #0000FF&quot;&gt;main&lt;/span&gt;() {&lt;br/&gt;    &lt;span style=&quot;color: #B00040&quot;&gt;char&lt;/span&gt;&lt;span style=&quot;color: #666666&quot;&gt;*&lt;/span&gt; a[&lt;span style=&quot;color: #666666&quot;&gt;3&lt;/span&gt;];&lt;br/&gt;    &lt;span style=&quot;color: #B00040&quot;&gt;int&lt;/span&gt; i;&lt;br/&gt;    a[&lt;span style=&quot;color: #666666&quot;&gt;0&lt;/span&gt;] &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;你好&amp;quot;&lt;/span&gt;;&lt;br/&gt;    a[&lt;span style=&quot;color: #666666&quot;&gt;1&lt;/span&gt;] &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;hello&amp;quot;&lt;/span&gt;;&lt;br/&gt;    a[&lt;span style=&quot;color: #666666&quot;&gt;2&lt;/span&gt;] &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;world!&amp;quot;&lt;/span&gt;;&lt;br/&gt;&lt;br/&gt;    printf(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;a&amp;#39;s address is: %p&lt;/span&gt;&lt;span style=&quot;color: #BB6622; font-weight: bold&quot;&gt;\n&lt;/span&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;&lt;/span&gt;, a);&lt;br/&gt;    &lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;for&lt;/span&gt;(i&lt;span style=&quot;color: #666666&quot;&gt;=0&lt;/span&gt;; i&lt;span style=&quot;color: #666666&quot;&gt;&amp;lt;3&lt;/span&gt;; i&lt;span style=&quot;color: #666666&quot;&gt;++&lt;/span&gt;) {&lt;br/&gt;        printf(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;%p: %s&lt;/span&gt;&lt;span style=&quot;color: #BB6622; font-weight: bold&quot;&gt;\n&lt;/span&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;&lt;/span&gt;, a[i], a[i]);&lt;br/&gt;    }&lt;br/&gt;}&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id7&quot;&gt;
-&lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id16&quot;&gt;删除笔记&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;点击窗口左下角“-”来删除笔记。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id8&quot;&gt;
-&lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id17&quot;&gt;偏好设置&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;按[ &lt;strong&gt;Command + ,&lt;/strong&gt; ]打开偏好设置，选择喜欢的编辑器即可。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;for-cli-user&quot;&gt;
-&lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id18&quot;&gt;for CLI User&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;MarkBook的主目录为~/.MarkBook，里面主要有如下内容：&lt;/p&gt;
-&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; tree ~/.MarkBook&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;MarkBook&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;├── build&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;│   └── MyNotes&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;│       └── Sample&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;│           ├── welcome.rst.html&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;│           └── welcome.rst.png&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;└── source&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;    └── MyNotes&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;        └── Sample&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;            └── welcome.rst&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;6 directories, 3 files&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;其中build用来存放编译生成的html文件，source存放源文件。&lt;/p&gt;
-&lt;p&gt;source目录下有三层，第一层(MyNotes)是笔记本库，一般也是一个git库(MarkBook会忽略.git目录)。&lt;/p&gt;
-&lt;p&gt;第二层(Sample)是笔记本，存放各种分类的笔记。&lt;/p&gt;
-&lt;p&gt;第三层(welcome.rst)就是笔记，可以是.markdown或.md或.rst后缀。&lt;/p&gt;
-&lt;p&gt;凡是符合上述要求的都会被MarkBook识别，后台更新文件后MarkBook界面会自动同步更新。&lt;/p&gt;
-&lt;p&gt;下面是我的笔记，仅供参考：&lt;/p&gt;
-&lt;a class=&quot;reference external image-reference&quot; href=&quot;https://markbook.googlecode.com/files/markbook.png&quot;&gt;&lt;img alt=&quot;https://markbook.googlecode.com/files/markbook.png&quot; src=&quot;https://markbook.googlecode.com/files/markbook.png&quot; style=&quot;width: 500px; height: 300px;&quot; /&gt;&lt;/a&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;jekyll-octopress&quot;&gt;
-&lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id19&quot;&gt;导入jekyll/Octopress博客&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;File -&amp;gt; Import Notes...，选择jekyll或Octopress博客的_posts目录，即可将该目录下的博客文章导入到MarkBook中。&lt;/p&gt;
-&lt;p&gt;导入的操作是复制了一份，所以对导入的博客的修改不影响导入源。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id9&quot;&gt;
-&lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id20&quot;&gt;发布到jekyll/Octopress博客&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;由于amoblin主要使用rst来写文档，对rst比较熟悉，而md就不太熟悉，所以目前此功能仅支持rst格式。后续会加入md支持。&lt;/p&gt;
-&lt;p&gt;如果在文件名为my-first-blog.rst的笔记中定义了如下内容：&lt;/p&gt;
-&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;.. &lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;|date|&lt;/span&gt; &lt;span style=&quot;color: #AA22FF; font-weight: bold&quot;&gt;date&lt;/span&gt;:: 2012-08-31&lt;br/&gt;.. &lt;span style=&quot;color: #AA22FF; font-weight: bold&quot;&gt;title&lt;/span&gt;:: 博客标题&lt;br/&gt;.. &lt;span style=&quot;color: #AA22FF; font-weight: bold&quot;&gt;publish&lt;/span&gt;:: YES&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;就会在 &lt;strong&gt;~/.MarkBook/source/blogs/my_blog&lt;/strong&gt; 目录下创建 2012-08-31-my-first-blog.rst的博客文件，publish为NO时删除上述文件。&lt;/p&gt;
-&lt;p&gt;jekyll/Octorpress用户可以把自己的_posts目录软链到上述目录。具体例子可以看我的文章：&lt;a class=&quot;reference external&quot; href=&quot;http://amoblin.github.com/2012/12/26/markbook-to-jekyll.html&quot;&gt;使用MarkBook发布博客到Jekyll&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;todo&quot;&gt;
-&lt;h2&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id21&quot;&gt;TODO&lt;/a&gt;&lt;/h2&gt;
-&lt;div class=&quot;section&quot; id=&quot;git-ui&quot;&gt;
-&lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id22&quot;&gt;Git UI&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;像Xcode一样显示文件状态，同时添加git pull，git push按钮。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;markdown&quot;&gt;
-&lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id23&quot;&gt;markdown版欢迎页&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;由于amoblin一直用rst，不熟悉markdown，所以本说明文档是rst格式的，希望有擅长markdown者写一篇markdown版的，不胜感激。&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-</content>
- </entry>
- 
- <entry>
    <title>使用MarkBook发布rst博客到Jekyll</title>
    <link href="/2012/12/26/markbook-to-jekyll.html"/>
    <updated>2012-12-26T00:00:00+08:00</updated>
@@ -391,7 +288,7 @@
    <content type="html">&lt;!-- Author: your_name --&gt;
 &lt;!-- publish: YES --&gt;
 &lt;p&gt;从MarkBook( &lt;a class=&quot;reference external&quot; href=&quot;http://amoblin.github.com/2012/12/25/MarkBook-release.html&quot;&gt;MarkBook是什么？&lt;/a&gt; ) v1.2(81)开始，增加了将rst文件发布到Jekyll博客的功能，先上图：&lt;/p&gt;
-&lt;a class=&quot;reference external image-reference&quot; href=&quot;/media/images/markbook_how_to.png&quot;&gt;&lt;img alt=&quot;/media/images/markbook_how_to.png&quot; src=&quot;/media/images/markbook_how_to.png&quot; style=&quot;width: 500px; height: 300px;&quot; /&gt;&lt;/a&gt;
+&lt;a class=&quot;reference external image-reference&quot; href=&quot;/media/images/markbook_how_to.png&quot;&gt;&lt;img alt=&quot;/media/images/marboo/markbook_how_to.png&quot; src=&quot;/media/images/marboo/markbook_how_to.png&quot; style=&quot;width: 500px; height: 300px;&quot; /&gt;&lt;/a&gt;
 &lt;p&gt;具体使用步骤如下。&lt;/p&gt;
 &lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
 &lt;h2&gt;新建笔记&lt;/h2&gt;
@@ -482,104 +379,6 @@
 &lt;li&gt;Git UI&lt;/li&gt;
 &lt;li&gt;markdown笔记无缝发布到jekyll/Octoress&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;
-
-</content>
- </entry>
- 
- <entry>
-   <title>欢迎使用MarkBook</title>
-   <link href="/2012/12/25/MarkBook-User-Guide.html"/>
-   <updated>2012-12-25T00:00:00+08:00</updated>
-   <id>h/2012/12/25/MarkBook-User-Guide</id>
-   <content type="html">&lt;div class=&quot;contents topic&quot; id=&quot;id1&quot;&gt;
-&lt;p class=&quot;topic-title first&quot;&gt;目录&lt;/p&gt;
-&lt;ul class=&quot;simple&quot;&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#id2&quot; id=&quot;id11&quot;&gt;MarkBook是什么？&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#id4&quot; id=&quot;id12&quot;&gt;使用MarkBook&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#id5&quot; id=&quot;id13&quot;&gt;新建笔记&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#id6&quot; id=&quot;id14&quot;&gt;编辑笔记&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#id7&quot; id=&quot;id15&quot;&gt;删除笔记&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#id8&quot; id=&quot;id16&quot;&gt;偏好设置&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#for-cli-user&quot; id=&quot;id17&quot;&gt;for CLI User&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#jekyll-octopress&quot; id=&quot;id18&quot;&gt;导入jekyll/Octopress博客&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#id9&quot; id=&quot;id19&quot;&gt;发布到jekyll/Octopress博客&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#todo&quot; id=&quot;id20&quot;&gt;TODO&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#git-ui&quot; id=&quot;id21&quot;&gt;Git UI&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;reference internal&quot; href=&quot;#markdown&quot; id=&quot;id22&quot;&gt;markdown版欢迎页&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;!-- author: amoblin &lt;amoblin@gmail.com&gt; --&gt;
-&lt;!-- publish: YES --&gt;
-&lt;div class=&quot;section&quot; id=&quot;id2&quot;&gt;
-&lt;h2&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id11&quot;&gt;MarkBook是什么？&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;MarkBook是用来管理置标语言文件的，目前支持reStructuredText和Markdown文件，后续会加入Ascii，wiki等的支持。&lt;/p&gt;
-&lt;p&gt;通过像类似Evernote的界面来管理，组织Markup文件，实时更新显示HTML输出页面。&lt;/p&gt;
-&lt;p&gt;自动发布博客到Jekyll/Octopress站点。&lt;/p&gt;
-&lt;p&gt;关于MarkBook的创作理念，可以看我的 &lt;a class=&quot;reference external&quot; href=&quot;http://amoblin.github.com/2012/12/25/MarkBook-release.html&quot;&gt;这篇文章&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id4&quot;&gt;
-&lt;h2&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id12&quot;&gt;使用MarkBook&lt;/a&gt;&lt;/h2&gt;
-&lt;div class=&quot;section&quot; id=&quot;id5&quot;&gt;
-&lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id13&quot;&gt;新建笔记&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;点窗口左下角”+“来新建一个笔记，新建时需要指定笔记格式，rst or md。&lt;/p&gt;
-&lt;p&gt;注意如果稍后要通过jekyll发布的话，输入的笔记名称最好不要有中文。&lt;/p&gt;
-&lt;p&gt;因为输入的名字会生成文件名，jekyll对中文文件名的支持不是很好。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id6&quot;&gt;
-&lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id14&quot;&gt;编辑笔记&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;双击中栏笔记缩略图，会启动关联的外部编辑器(参见 &lt;a class=&quot;reference internal&quot; href=&quot;#id8&quot;&gt;偏好设置&lt;/a&gt;)来编辑笔记。保存修改后，MarkBook会同步更新内容。&lt;/p&gt;
-&lt;p&gt;下面是c代码样例：&lt;/p&gt;
-&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #BC7A00&quot;&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;color: #B00040&quot;&gt;int&lt;/span&gt; &lt;span style=&quot;color: #0000FF&quot;&gt;main&lt;/span&gt;() {&lt;br/&gt;    &lt;span style=&quot;color: #B00040&quot;&gt;char&lt;/span&gt;&lt;span style=&quot;color: #666666&quot;&gt;*&lt;/span&gt; a[&lt;span style=&quot;color: #666666&quot;&gt;3&lt;/span&gt;];&lt;br/&gt;    &lt;span style=&quot;color: #B00040&quot;&gt;int&lt;/span&gt; i;&lt;br/&gt;    a[&lt;span style=&quot;color: #666666&quot;&gt;0&lt;/span&gt;] &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;你好&amp;quot;&lt;/span&gt;;&lt;br/&gt;    a[&lt;span style=&quot;color: #666666&quot;&gt;1&lt;/span&gt;] &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;hello&amp;quot;&lt;/span&gt;;&lt;br/&gt;    a[&lt;span style=&quot;color: #666666&quot;&gt;2&lt;/span&gt;] &lt;span style=&quot;color: #666666&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;world!&amp;quot;&lt;/span&gt;;&lt;br/&gt;&lt;br/&gt;    printf(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;a&amp;#39;s address is: %p&lt;/span&gt;&lt;span style=&quot;color: #BB6622; font-weight: bold&quot;&gt;\n&lt;/span&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;&lt;/span&gt;, a);&lt;br/&gt;    &lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;for&lt;/span&gt;(i&lt;span style=&quot;color: #666666&quot;&gt;=0&lt;/span&gt;; i&lt;span style=&quot;color: #666666&quot;&gt;&amp;lt;3&lt;/span&gt;; i&lt;span style=&quot;color: #666666&quot;&gt;++&lt;/span&gt;) {&lt;br/&gt;        printf(&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;%p: %s&lt;/span&gt;&lt;span style=&quot;color: #BB6622; font-weight: bold&quot;&gt;\n&lt;/span&gt;&lt;span style=&quot;color: #BA2121&quot;&gt;&amp;quot;&lt;/span&gt;, a[i], a[i]);&lt;br/&gt;    }&lt;br/&gt;}&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id7&quot;&gt;
-&lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id15&quot;&gt;删除笔记&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;点击窗口左下角“-”来删除笔记。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id8&quot;&gt;
-&lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id16&quot;&gt;偏好设置&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;按[ &lt;strong&gt;Command + ,&lt;/strong&gt; ]打开偏好设置，选择喜欢的编辑器即可。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;for-cli-user&quot;&gt;
-&lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id17&quot;&gt;for CLI User&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;MarkBook的主目录为~/.MarkBook，里面主要有如下内容：&lt;/p&gt;
-&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; tree ~/.MarkBook&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;MarkBook&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;├── build&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;│   └── MyNotes&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;│       └── Sample&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;│           ├── welcome.rst.html&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;│           └── welcome.rst.png&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;└── source&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;    └── MyNotes&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;        └── Sample&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;            └── welcome.rst&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;6 directories, 3 files&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;其中build用来存放编译生成的html文件，source存放源文件。&lt;/p&gt;
-&lt;p&gt;source目录下有三层，第一层(MyNotes)是笔记本库，一般也是一个git库(MarkBook会忽略.git目录)。&lt;/p&gt;
-&lt;p&gt;第二层(Sample)是笔记本，存放各种分类的笔记。&lt;/p&gt;
-&lt;p&gt;第三层(welcome.rst)就是笔记，可以是.markdown或.md或.rst后缀。&lt;/p&gt;
-&lt;p&gt;凡是符合上述要求的都会被MarkBook识别，后台更新文件后MarkBook界面会自动同步更新。&lt;/p&gt;
-&lt;p&gt;下面是我的笔记，仅供参考：&lt;/p&gt;
-&lt;a class=&quot;reference external image-reference&quot; href=&quot;https://markbook.googlecode.com/files/markbook.png&quot;&gt;&lt;img alt=&quot;https://markbook.googlecode.com/files/markbook.png&quot; src=&quot;https://markbook.googlecode.com/files/markbook.png&quot; style=&quot;width: 500px; height: 300px;&quot; /&gt;&lt;/a&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;jekyll-octopress&quot;&gt;
-&lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id18&quot;&gt;导入jekyll/Octopress博客&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;File -&amp;gt; Import Notes...，选择jekyll或Octopress博客的_posts目录，即可将该目录下的博客文章导入到MarkBook中。&lt;/p&gt;
-&lt;p&gt;导入的操作是复制了一份，所以对导入的博客的修改不影响导入源。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;id9&quot;&gt;
-&lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id19&quot;&gt;发布到jekyll/Octopress博客&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;由于amoblin主要使用rst来写文档，对rst比较熟悉，而md就不太熟悉，所以目前此功能仅支持rst格式。后续会加入md支持。&lt;/p&gt;
-&lt;p&gt;如果在文件名为my-first-blog.rst的笔记中定义了如下内容：&lt;/p&gt;
-&lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;.. &lt;span style=&quot;color: #008000; font-weight: bold&quot;&gt;|date|&lt;/span&gt; &lt;span style=&quot;color: #AA22FF; font-weight: bold&quot;&gt;date&lt;/span&gt;:: 2012-08-31&lt;br/&gt;.. &lt;span style=&quot;color: #AA22FF; font-weight: bold&quot;&gt;title&lt;/span&gt;:: 博客标题&lt;br/&gt;.. &lt;span style=&quot;color: #AA22FF; font-weight: bold&quot;&gt;publish&lt;/span&gt;:: YES&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;就会在 &lt;strong&gt;~/.MarkBook/source/blogs/my_blog&lt;/strong&gt; 目录下创建 2012-08-31-my-first-blog.rst的博客文件，publish为NO时删除上述文件。&lt;/p&gt;
-&lt;p&gt;jekyll/Octorpress用户可以把自己的_posts目录软链到上述目录。具体例子可以看我的文章：&lt;a class=&quot;reference external&quot; href=&quot;http://amoblin.github.com/2012/12/26/markbook-to-jekyll.html&quot;&gt;使用MarkBook发布博客到Jekyll&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;todo&quot;&gt;
-&lt;h2&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id20&quot;&gt;TODO&lt;/a&gt;&lt;/h2&gt;
-&lt;div class=&quot;section&quot; id=&quot;git-ui&quot;&gt;
-&lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id21&quot;&gt;Git UI&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;像Xcode一样显示文件状态，同时添加git pull，git push按钮。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot; id=&quot;markdown&quot;&gt;
-&lt;h3&gt;&lt;a class=&quot;toc-backref&quot; href=&quot;#id22&quot;&gt;markdown版欢迎页&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;由于amoblin一直用rst，不熟悉markdown，所以本说明文档是rst格式的，希望有擅长markdown者写一篇markdown版的，不胜感激。&lt;/p&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 
 </content>
@@ -1821,6 +1620,8 @@ C-k&lt;/p&gt;
    <id>h/2011/12/15/vim-note</id>
    <content type="html">&lt;!-- id: 14 --&gt;
 &lt;!-- publish: YES --&gt;
+&lt;p&gt;分享vimrc：  &lt;a class=&quot;reference external&quot; href=&quot;http://www.vimbits.com/&quot;&gt;http://www.vimbits.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;vim colorscheme: &lt;a class=&quot;reference external&quot; href=&quot;http://vimcolorschemetest.googlecode.com/svn/html/index-html.html&quot;&gt;http://vimcolorschemetest.googlecode.com/svn/html/index-html.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;保存一个只有root可以写的文件&lt;/p&gt;
 &lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #808080&quot;&gt;:w !sudo tee %&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;键盘映射：&lt;/p&gt;
@@ -1853,6 +1654,7 @@ C-k&lt;/p&gt;
 &lt;li&gt;L   至屏幕底行&lt;/li&gt;
 &lt;li&gt;ma  标记当前位置为a&lt;/li&gt;
 &lt;li&gt;’a  跳到a标记处&lt;/li&gt;
+&lt;li&gt;''    跳回上次行。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;删除行尾空格  :1,$s/[ ]*$//g&lt;/p&gt;
 &lt;p&gt;删除匹配行 :g/table/d&lt;/p&gt;

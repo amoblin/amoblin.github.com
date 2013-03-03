@@ -4,7 +4,7 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2013-03-01T16:54:05+08:00</updated>
+ <updated>2013-03-03T19:35:54+08:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -13,13 +13,13 @@
 
  
  <entry>
-   <title>用MarkBook发布博客，就这么简单</title>
+   <title>用Marboo发布博客，就这么简单</title>
    <link href="/2013/01/24/markbook-to-farbox.html"/>
    <updated>2013-01-24T00:00:00+08:00</updated>
    <id>h/2013/01/24/markbook-to-farbox</id>
    <content type="html">&lt;!-- Author: your_name --&gt;
 &lt;!-- publish: YES --&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://markbook.farbox.com/&quot;&gt;MarkBook&lt;/a&gt; 从v0.4版开始，新增了一个功能：Make/Rake Button。&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://marboo.biz/&quot;&gt;Marboo&lt;/a&gt; 从v0.4版开始，新增了一个功能：Make/Rake Button。&lt;/p&gt;
 &lt;p&gt;点击这个按钮就会触发make或rake命令，执行Makefile或Rakefile中的操作。&lt;/p&gt;
 &lt;p&gt;通过对Makefile或Rakefile进行配置，可以实现一键式自动发布博客到GitHub/GitCafe，farbox等。&lt;/p&gt;
 &lt;p&gt;amoblin使用Jekyll来生成静态博客，所以下面以Makefile + Jekyll为例来演示：&lt;/p&gt;
@@ -45,9 +45,15 @@
 &lt;p&gt;把上面的路径改为自己的git库地址。&lt;/p&gt;
 &lt;p&gt;这样每次点击 MakeRake Button 不仅会更新Farbox下markbook目录的内容，而且还会推送到github。&lt;/p&gt;
 &lt;p&gt;MarkBook会等待make结束才有响应。 所以如果文件比较多的话，界面会有短暂的停滞(刚开发出来，急于给大家分享，后期版本会修复)。&lt;/p&gt;
-&lt;p&gt;发挥你的想象力，看看除了 &lt;a class=&quot;reference external&quot; href=&quot;http://markbook.farbox.com/gallery/&quot;&gt;MarkBook Gallery&lt;/a&gt; 列出的以外， 还能怎么折腾？&lt;/p&gt;
+&lt;p&gt;发挥你的想象力，看看除了 &lt;a href=&quot;#id3&quot;&gt;&lt;span class=&quot;problematic&quot; id=&quot;id4&quot;&gt;`MarkBook Gallery`_&lt;/span&gt;&lt;/a&gt; 列出的以外， 还能怎么折腾？&lt;/p&gt;
 &lt;hr class=&quot;docutils&quot; /&gt;
 &lt;p&gt;如果你打算用MarkBook来发布博客，希望能在jekyll模板中增加MarkBook的链接，谢谢！&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;system-messages section&quot;&gt;
+&lt;h2&gt;Docutils System Messages&lt;/h2&gt;
+&lt;div class=&quot;system-message&quot; id=&quot;id3&quot;&gt;
+&lt;p class=&quot;system-message-title&quot;&gt;System Message: ERROR/3 (&lt;tt class=&quot;docutils&quot;&gt;&amp;lt;string&amp;gt;&lt;/tt&gt;, line 74); &lt;em&gt;&lt;a href=&quot;#id4&quot;&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Unknown target name: &amp;quot;markbook gallery&amp;quot;.&lt;/div&gt;
 &lt;/div&gt;
 
 </content>

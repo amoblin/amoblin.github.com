@@ -2,7 +2,8 @@
 
 desc "build the html page"
 task :default do
-    #sh "cp -r ~/.MarkBook/source/media ."
+    sh "cp -r ~/.marboo/source/media/images/blog media/images"
+    sh "cp -r ~/.marboo/source/media/css media"
 	system "jekyll"
 end
 

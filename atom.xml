@@ -4,7 +4,7 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2013-03-04T10:28:53+08:00</updated>
+ <updated>2013-03-25T22:47:05+08:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -213,7 +213,7 @@ Unknown target name: &amp;quot;markbook gallery&amp;quot;.&lt;/div&gt;
 &lt;p&gt;每个目录下面只有1个二进制文件: SystemFolderLocalizations.strings&lt;/p&gt;
 &lt;div class=&quot;highlight&quot; style=&quot;background: #f8f8f8&quot;&gt;&lt;pre style=&quot;line-height: 125%&quot;&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; &lt;span style=&quot;color: #008000&quot;&gt;cd&lt;/span&gt; /System/Library/CoreServices/SystemFolderLocalizations/zh_CN.lproj&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; ls&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;SystemFolderLocalizations.strings&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;color: #000080; font-weight: bold&quot;&gt;$&lt;/span&gt; file SystemFolderLocalizations.strings&lt;br/&gt;&lt;span style=&quot;color: #808080&quot;&gt;SystemFolderLocalizations.strings: Apple binary property list&lt;/span&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;用PlistEdit Pro打开，可以看到是一个字典，包含对应的键值映射：&lt;/p&gt;
-&lt;img alt=&quot;/media/images/SystemFolderLocalizations.png&quot; src=&quot;/media/images/SystemFolderLocalizations.png&quot; /&gt;
+&lt;img alt=&quot;/media/images/blog/SystemFolderLocalizations.png&quot; src=&quot;/media/images/blog/SystemFolderLocalizations.png&quot; /&gt;
 &lt;p&gt;修改这个文件可不好玩，万一改错了就囧了，所以我们还是另找它法吧。&lt;/p&gt;
 &lt;p&gt;继续查找，发现了如下的方法。&lt;/p&gt;
 &lt;p&gt;假设我们要创建一个目录，叫做MyNotes，希望在Finder里面显示为“我的笔记”，那么需要这么做：&lt;/p&gt;

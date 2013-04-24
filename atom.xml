@@ -4,7 +4,7 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2013-03-27T16:48:13+08:00</updated>
+ <updated>2013-04-24T09:56:39+08:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -263,20 +263,21 @@ Unknown target name: &amp;quot;markbook gallery&amp;quot;.&lt;/div&gt;
    <content type="html">&lt;!-- Author: your_name --&gt;
 &lt;!-- publish: YES --&gt;
 &lt;!-- http://db.tt/p8LtkZ2 --&gt;
+&lt;p&gt;4.24更新：近来由于安全隐患，dropbox和github一样把用户空间和主站独立开来，下载域名由dl.dropbox.com转到dl.dropboxusercontent.com。(囧，能用个短点的域名么。。。)&lt;/p&gt;
 &lt;p&gt;初学cocoa开发，找了一些资料，觉得甚好，拿来与大家分享。&lt;/p&gt;
 &lt;p&gt;下载地址都是dropbox的，可能需要使用代理访问。不能下载的看后面的googlecode地址。&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropbox.com/u/676608/ebooks/[Cocoa.Programming(2010.04)].Daniel.H.Steinberg.文字版.pdf&quot;&gt;[Cocoa.Programming(2010.04)].Daniel.H.Steinberg.文字版.pdf&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropbox.com/u/676608/ebooks/Beginning_iOS5_Development_Exploring_the_iOS_SDK(iOS5开发基础教程).pdf&quot;&gt;Beginning_iOS5_Development_Exploring_the_iOS_SDK(iOS5开发基础教程).pdf&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropbox.com/u/676608/ebooks/Cocoa+Design+Patterns.pdf&quot;&gt;Cocoa+Design+Patterns.pdf&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropbox.com/u/676608/ebooks/Head_First_iPhone_Development.pdf&quot;&gt;Head_First_iPhone_Development.pdf&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropbox.com/u/676608/ebooks/iOS_5_Programming_Cookbook.pdf&quot;&gt;iOS_5_Programming_Cookbook.pdf&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropbox.com/u/676608/ebooks/iphone3开发基础教程_扫描版.pdf&quot;&gt;iphone3开发基础教程_扫描版.pdf 127.4MB&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropbox.com/u/676608/ebooks/Learn_Cocoa_on_the_Mac.pdf&quot;&gt;Learn_Cocoa_on_the_Mac.pdf&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropbox.com/u/676608/ebooks/Learn_Objective_C_On_The_Mac.pdf&quot;&gt;Learn_Objective_C_On_The_Mac.pdf&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropbox.com/u/676608/ebooks/Mac_Hackers_Handbook.pdf&quot;&gt;Mac_Hackers_Handbook.pdf&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropbox.com/u/676608/ebooks/Oreilly.Cocoa.and.Objective.C.Up.and.Running.May.2010.pdf&quot;&gt;Oreilly.Cocoa.and.Objective.C.Up.and.Running.May.2010.pdf&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropbox.com/u/676608/ebooks/object-c基础教程.pdf&quot;&gt;object-c基础教程.pdf&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropbox.com/u/676608/ebooks/Programming_in_Objective-C_2.0.pdf&quot;&gt;Programming_in_Objective-C_2.0.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropboxusercontent.com/u/676608/ebooks/[Cocoa.Programming(2010.04)].Daniel.H.Steinberg.文字版.pdf&quot;&gt;[Cocoa.Programming(2010.04)].Daniel.H.Steinberg.文字版.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropboxusercontent.com/u/676608/ebooks/Beginning_iOS5_Development_Exploring_the_iOS_SDK(iOS5开发基础教程).pdf&quot;&gt;Beginning_iOS5_Development_Exploring_the_iOS_SDK(iOS5开发基础教程).pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropboxusercontent.com/u/676608/ebooks/Cocoa+Design+Patterns.pdf&quot;&gt;Cocoa+Design+Patterns.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropboxusercontent.com/u/676608/ebooks/Head_First_iPhone_Development.pdf&quot;&gt;Head_First_iPhone_Development.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropboxusercontent.com/u/676608/ebooks/iOS_5_Programming_Cookbook.pdf&quot;&gt;iOS_5_Programming_Cookbook.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropboxusercontent.com/u/676608/ebooks/iphone3开发基础教程_扫描版.pdf&quot;&gt;iphone3开发基础教程_扫描版.pdf 127.4MB&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropboxusercontent.com/u/676608/ebooks/Learn_Cocoa_on_the_Mac.pdf&quot;&gt;Learn_Cocoa_on_the_Mac.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropboxusercontent.com/u/676608/ebooks/Learn_Objective_C_On_The_Mac.pdf&quot;&gt;Learn_Objective_C_On_The_Mac.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropboxusercontent.com/u/676608/ebooks/Mac_Hackers_Handbook.pdf&quot;&gt;Mac_Hackers_Handbook.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropboxusercontent.com/u/676608/ebooks/Oreilly.Cocoa.and.Objective.C.Up.and.Running.May.2010.pdf&quot;&gt;Oreilly.Cocoa.and.Objective.C.Up.and.Running.May.2010.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropboxusercontent.com/u/676608/ebooks/object-c基础教程.pdf&quot;&gt;object-c基础教程.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://dl.dropboxusercontent.com/u/676608/ebooks/Programming_in_Objective-C_2.0.pdf&quot;&gt;Programming_in_Objective-C_2.0.pdf&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;放了几本到googlecode上&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://markbook.googlecode.com/files/Beginning_iOS5_Development_Exploring_the_iOS_SDK(iOS5开发基础教程).pdf&quot;&gt;Beginning_iOS5_Development_Exploring_the_iOS_SDK(iOS5开发基础教程).pdf&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;http://markbook.googlecode.com/files/iphone3开发基础教程_扫描版.pdf&quot;&gt;iphone3开发基础教程_扫描版.pdf 127.4MB&lt;/a&gt;&lt;/p&gt;

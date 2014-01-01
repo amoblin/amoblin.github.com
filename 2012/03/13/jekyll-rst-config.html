@@ -46,7 +46,7 @@
 <p>现在找到解决方法了，但不优雅。</p>
 <p>这不是RbST的问题，而是python设置的问题。</p>
 <p>查看pyhton的默认编码：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> python -c <span style="color: #BA2121">&quot;import sys;print sys.getdefaultencoding()&quot;</span><br/><span style="color: #808080">ascii</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> python -c <span style="color: #BA2121">&quot;import sys;print sys.getdefaultencoding()&quot;</span><br/><span style="color: #888888">ascii</span><br/></pre></div>
 <p>果然不是utf8！这下好了，只要设置pyhton默认编码就行了。</p>
 <p>可以在site-packages下创建一个文件sitecustomize.py，这个文件会在pyhton启动时加载。把上面的python脚本内容放入这个文件，搞定！</p>
 <p>此文是使用jekyll-rst写的第一篇文章。</p>

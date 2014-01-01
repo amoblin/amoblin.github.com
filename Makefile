@@ -1,5 +1,5 @@
 default:
-	jekyll
+	jekyll build
 	mkdir -p /tmp/amoblin.marboo.biz/media/images
 	cp -r ../../media/images/blog /tmp/amoblin.marboo.biz/media/images
 	cp -r ../../media/css /tmp/amoblin.marboo.biz/media/
@@ -7,7 +7,7 @@ default:
 	#git add -A;git ci -m "update blog";git push
 
 preview:
-	jekyll --server
+	jekyll serve
 	cp -r github.git _site/.git
 
 update: default

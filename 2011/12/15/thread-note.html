@@ -34,7 +34,7 @@
 <p>线程互斥(mutex)</p>
 <p>互斥量(MUTual Exclusion)是线程同步的一种方法。一般用法如下：</p>
 <p>首先定义互斥信号量，并初始化：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">pthread_mutex_t count_mutex <span style="color: #666666">=</span> PTHREAD_MUTEX_INITIALIZER;<br/>pthread_mutex_init(<span style="color: #666666">&amp;</span>count_mutex, <span style="color: #008000">NULL</span>);<br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">pthread_mutex_t</span> count_mutex <span style="color: #666666">=</span> PTHREAD_MUTEX_INITIALIZER;<br/>pthread_mutex_init(<span style="color: #666666">&amp;</span>count_mutex, <span style="color: #008000">NULL</span>);<br/></pre></div>
 <p>在线程函数中加锁和解锁：</p>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">pthread_mutex_lock(<span style="color: #666666">&amp;</span>count_mutex);<br/><br/>... some process.<br/><br/>pthread_mutex_unlock(<span style="color: #666666">&amp;</span>count_mutex);<br/></pre></div>
 <p>这样中间的处理就是原子的。</p>

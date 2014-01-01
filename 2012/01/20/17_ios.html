@@ -50,7 +50,7 @@
 <p>中YES改为NO。</p>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">cd</span> /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/<br/></pre></div>
 <p>将XCiPhoneOSCodeSignContext中的iPhoneOS删掉：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo vi Info.plist<br/><span style="color: #808080">:1,$s/XCiPhoneOSCodeSignContext/XCCodeSignContext/g</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo vi Info.plist<br/><span style="color: #888888">:1,$s/XCiPhoneOSCodeSignContext/XCCodeSignContext/g</span><br/></pre></div>
 <div class="section" id="id2">
 <h3>二进制补丁</h3>
 <p>XCode4.3中路径为：</p>

@@ -30,22 +30,22 @@
 <!-- Author: your_name -->
 <!-- publish: YES -->
 <p>Vim可以加密文档，不知道吧？</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">:X</span><br/><span style="color: #808080">Enter encryption key: ******</span><br/><span style="color: #808080">Enter same key again: ******</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">:X</span><br/><span style="color: #888888">Enter encryption key: ******</span><br/><span style="color: #888888">Enter same key again: ******</span><br/></pre></div>
 <p>输入的密码保存在*key option*中。输入上面命令后不会立刻加密，在保存文件的时候才会执行加密。</p>
 <p>重新打开加密文件，Vim会要求你输入密码：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">Need encryption key for &quot;diary.rst&quot;</span><br/><span style="color: #808080">Enter encryption key: ******</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">Need encryption key for &quot;diary.rst&quot;</span><br/><span style="color: #888888">Enter encryption key: ******</span><br/></pre></div>
 <p>如果密码错误，Vim还是会打开文件，不过显示的是乱码。</p>
 <p>编辑加密过的文件的时候，对应的swap文件和undo文件也是加密的，不过内存中的没有加密。viminfo文件也没有加密，因此不建议使用。</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">:set viminfo=</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">:set viminfo=</span><br/></pre></div>
 <p>如果要禁用加密，清空key值即可：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">: set key=</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">: set key=</span><br/></pre></div>
 <p>聪明的童鞋马上想到了，可以这样加密呀：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">: set key=password</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">: set key=password</span><br/></pre></div>
 <p>但这样加密的缺点是显而易见的：密码是明文。</p>
 <p>而使用 :X 加密的话，不仅输入密码时显示为*从而防止偷窥，而且关键是 :set 也查看不到。</p>
 <p>( amoblin注：不过在Vim7.3下后者通过 :set 也查看不到 )</p>
 <p>从7.3版起，Vim支持了Blowfish加密。以前只有pkzip-compatible这一种加密方法。通过下面的方法来设置使用哪一种加密方法，保存文件的时候生效：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">:setlocal cm=zip</span><br/><span style="color: #808080">:setlocal cm=blowfish</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">:setlocal cm=zip</span><br/><span style="color: #888888">:setlocal cm=blowfish</span><br/></pre></div>
 <p>cm是 &quot;cryptmethod&quot; 的缩写。Pkzip是弱加密，但是兼容7.2及更老版本；Blowfish更安全。帮助文档里这样描述pkzip加密方法：</p>
 <pre class="literal-block">
 (加密)算法比较脆弱。破解4字符的密码大约需要1小时，6字符是1天(Pentium 133 PC)。

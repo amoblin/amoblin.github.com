@@ -38,7 +38,7 @@
 </div>
 <div class="section" id="id3">
 <h2>创建空分支</h2>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git symbolic-ref HEAD refs/heads/newbranch<br/><span style="color: #000080; font-weight: bold">$</span> rm .git/index<br/><span style="color: #808080">&lt;do work&gt;</span><br/><span style="color: #000080; font-weight: bold">$</span> git add your files<br/><span style="color: #000080; font-weight: bold">$</span> git commit -m <span style="color: #BA2121">&#39;Initial commit&#39;</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git symbolic-ref HEAD refs/heads/newbranch<br/><span style="color: #000080; font-weight: bold">$</span> rm .git/index<br/><span style="color: #888888">&lt;do work&gt;</span><br/><span style="color: #000080; font-weight: bold">$</span> git add your files<br/><span style="color: #000080; font-weight: bold">$</span> git commit -m <span style="color: #BA2121">&#39;Initial commit&#39;</span><br/></pre></div>
 <p><a class="reference external" href="http://gitbook.liuhui998.com/5_1.html">http://gitbook.liuhui998.com/5_1.html</a></p>
 <p>修改最后一次提交：</p>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git commit --amend<br/></pre></div>
@@ -47,7 +47,7 @@
 <p>提交上一次提交的反转：</p>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git revert HEAD<br/></pre></div>
 <p>ssl认证出错：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">git config --global http.sslVerify false</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">git config --global http.sslVerify false</span><br/></pre></div>
 <p>git push origin branch_name     推送分支。默认只推送master分支。</p>
 <p>git fetch origin     会将远程分支也下载下来，但本地无分支</p>
 <p>git checkout -b branche_name origin/branch_name 将远程分支创建本地分支</p>
@@ -87,12 +87,12 @@ $ git config --global http.sslVerify false</p>
 </div>
 <div class="section" id="id6">
 <h3>遇到的问题</h3>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git st<br/><span style="color: #808080">fatal: cannot exec &#39;git-st&#39;: Permission denied</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> git st<br/><span style="color: #888888">fatal: cannot exec &#39;git-st&#39;: Permission denied</span><br/></pre></div>
 <p>解决方法：</p>
 <p>查看问题的原因：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> strace -f -eexecve git st 2&gt;&amp;1 | grep EACC<br/><span style="color: #808080">[pid  3993] execve(&quot;/home/sndba/scripts/bin/git-st&quot;, [&quot;git-st&quot;], [/* 22 vars */]) = -1 EACCES (Permission denied)</span><br/><span style="color: #808080">[pid  3993] execve(&quot;/home/sndba/scripts/bin/git-st&quot;, [&quot;git-st&quot;], [/* 22 vars */]) = -1 EACCES (Permission denied)</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> strace -f -eexecve git st 2&gt;&amp;1 | grep EACC<br/><span style="color: #888888">[pid  3993] execve(&quot;/home/sndba/scripts/bin/git-st&quot;, [&quot;git-st&quot;], [/* 22 vars */]) = -1 EACCES (Permission denied)</span><br/><span style="color: #888888">[pid  3993] execve(&quot;/home/sndba/scripts/bin/git-st&quot;, [&quot;git-st&quot;], [/* 22 vars */]) = -1 EACCES (Permission denied)</span><br/></pre></div>
 <p>目录没有访问权限？</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">#</span> ll /home/sndba -d<br/><span style="color: #808080">drwx------ 5 my3000 3353 4096 Jul  6 15:34 /home/sndba</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">#</span> ll /home/sndba -d<br/><span style="color: #888888">drwx------ 5 my3000 3353 4096 Jul  6 15:34 /home/sndba</span><br/></pre></div>
 <p>果然！</p>
 </div>
 </div>

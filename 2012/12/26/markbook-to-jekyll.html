@@ -70,7 +70,7 @@
 <div class="section" id="id4">
 <h2>发布笔记</h2>
 <p>最后需要发布的时候，修改第8行的publish值为YES，这样就会在~/.MarkBook/source/blogs/my_blog下生成文件：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> ls ~/.MarkBook/source/blogs/my_blog<br/><span style="color: #808080">2012-12-26-markbook-to-jekyll.rst</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> ls ~/.MarkBook/source/blogs/my_blog<br/><span style="color: #888888">2012-12-26-markbook-to-jekyll.rst</span><br/></pre></div>
 <p>你说我自己的jekyll目录不在这个地方啊，那好办，建一个软链接即可：</p>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> rm -rf ~/.MarkBook/source/blogs/my_blog<br/><span style="color: #000080; font-weight: bold">$</span> ln -sf /path/to/jekyll/_posts ~/.MarkBook/source/blogs/my_blog<br/></pre></div>
 <p>没错，本篇博客就是这么发布的！</p>

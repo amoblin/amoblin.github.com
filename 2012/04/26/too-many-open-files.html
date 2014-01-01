@@ -29,28 +29,28 @@
         <section class="post">
 <!-- publish: YES -->
 <p>查看文件系统最大可打开文件数：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> cat /proc/sys/fs/file-max<br/><span style="color: #808080">345604</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> cat /proc/sys/fs/file-max<br/><span style="color: #888888">345604</span><br/></pre></div>
 <p>程序限制打开文件数：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">ulimit</span> -n<br/><span style="color: #808080">1024</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">ulimit</span> -n<br/><span style="color: #888888">1024</span><br/></pre></div>
 <p>修改配置文件：</p>
 <p>/etc/sysctl.conf</p>
 <p>插入一行：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">fs.file-max = 8192</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">fs.file-max = 8192</span><br/></pre></div>
 <p>修改文件：</p>
 <p>/etc/security/limits.conf</p>
 <p>添加一行：</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">* - nofile 8192</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">* - nofile 8192</span><br/></pre></div>
 <p>当所有的都不生效时，可以尝试：</p>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">$</span> sudo su <span style="color: #BA2121">`</span>whoami<span style="color: #BA2121">`</span><br/><span style="color: #000080; font-weight: bold">$</span> <span style="color: #008000">ulimit</span> -n<br/></pre></div>
 <div class="section" id="id1">
 <h2>可能遇见的错误</h2>
 <div class="section" id="id2">
 <h3>错误1</h3>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">bash: ulimit: open files: cannot modify limit: Operation not permitted</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">bash: ulimit: open files: cannot modify limit: Operation not permitted</span><br/></pre></div>
 </div>
 <div class="section" id="id3">
 <h3>错误2</h3>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #808080">ulimit: value exceeds hard limit</span><br/></pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">ulimit: value exceeds hard limit</span><br/></pre></div>
 </div>
 </div>
 

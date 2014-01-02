@@ -4,7 +4,7 @@
  <title></title>
  <link href="/atom.xml" rel="self"/>
  <link href=""/>
- <updated>2014-01-02T07:57:05+08:00</updated>
+ <updated>2014-01-02T08:26:18+08:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -147,6 +147,56 @@ Marboo也是如此。Marboo用纯文本把所有的 笔记、脑图等整合到�
 发觉竟已过了大半年了。最近开始重新学习Emacs，仔细研究了Org-mode，发现功能
 异常强大，有相见恨晚之感。这两周的笔记也都陆续迁移到Org-mode格式，同时
 Marboo对Org-mode的支持也日渐完善。遂打算发布新版本。
+&lt;/body&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Marboo 2013总结</title>
+   <link href="/2014/01/02/Marboo-2013.html"/>
+   <updated>2014-01-02T00:00:00+08:00</updated>
+   <id>h/2014/01/02/Marboo-2013</id>
+   <content type="html">&lt;body&gt;
+&lt;h2&gt;&lt;a name=&quot;sec-1&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;不知不觉，marboo.biz域名快1年了，在这一年里，Marboo发布了若干版本，总结如下：
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-2&quot;&gt;Marboo Mac版持续更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-3&quot;&gt;Marboo Chrome插件版基本可用，支持Windows，Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-4&quot;&gt;Google Reader的克隆版：Marboo Reader&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-5&quot;&gt;Marboo和Emacs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-6&quot;&gt;后记&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;&lt;a name=&quot;sec-2&quot;&gt;Marboo Mac版持续更新&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;6月份之前，Marboo的更新比较频繁，后来由于工作的关系，最近才发布了新版本。
+以后Marboo的更新可能不会那么快，除非有紧急的bug需要修复。
+但Marboo的开发是永远不会停止的：早上刚把Marboo的域名续了2年。
+&lt;/p&gt;
+&lt;h2&gt;&lt;a name=&quot;sec-3&quot;&gt;Marboo Chrome插件版基本可用，支持Windows，Linux&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;感谢BSCH，才有了Marboo Chrome版。
+&lt;/p&gt;
+&lt;h2&gt;&lt;a name=&quot;sec-4&quot;&gt;Google Reader的克隆版：Marboo Reader&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Google Reader的倒闭，让多少人为之扼腕叹息。云上得来终觉悬，绝知此事要躬行。
+于是有了&lt;a href=&quot;http://reader.marboo.biz&quot;&gt;http://reader.marboo.biz&lt;/a&gt;
+&lt;/p&gt;
+&lt;h2&gt;&lt;a name=&quot;sec-5&quot;&gt;Marboo和Emacs&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;amoblin从Vim转到了Emacs，和Org-mode一见如故，这也是更新Marboo新版的一个主要原因。
+&lt;/p&gt;
+&lt;h2&gt;&lt;a name=&quot;sec-6&quot;&gt;后记&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Godaddy的新年优惠码真心给力，省了15刀。附上：
+&lt;/p&gt;
+&lt;p&gt;
+Godaddy 通用优惠码，31% OFF，可用于新购买和续费：
+&lt;/p&gt;
+&lt;p&gt;
+GD31227BA
 &lt;/body&gt;
 </content>
  </entry>
